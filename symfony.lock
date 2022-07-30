@@ -1,4 +1,55 @@
 {
+    "amphp/amp": {
+        "version": "v2.6.2"
+    },
+    "amphp/byte-stream": {
+        "version": "v1.8.1"
+    },
+    "amphp/cache": {
+        "version": "v1.5.0"
+    },
+    "amphp/dns": {
+        "version": "v1.2.3"
+    },
+    "amphp/hpack": {
+        "version": "v3.1.1"
+    },
+    "amphp/http": {
+        "version": "v1.6.3"
+    },
+    "amphp/http-client": {
+        "version": "v4.6.2"
+    },
+    "amphp/parser": {
+        "version": "v1.0.0"
+    },
+    "amphp/process": {
+        "version": "v1.1.3"
+    },
+    "amphp/serialization": {
+        "version": "v1.0.0"
+    },
+    "amphp/socket": {
+        "version": "v1.2.0"
+    },
+    "amphp/sync": {
+        "version": "v1.4.2"
+    },
+    "amphp/windows-registry": {
+        "version": "v0.3.3"
+    },
+    "composer/pcre": {
+        "version": "3.0.0"
+    },
+    "composer/semver": {
+        "version": "3.3.2"
+    },
+    "composer/xdebug-handler": {
+        "version": "3.0.3"
+    },
+    "daverandom/libdns": {
+        "version": "v2.0.2"
+    },
     "doctrine/annotations": {
         "version": "1.13",
         "recipe": {
@@ -20,6 +71,9 @@
     "doctrine/common": {
         "version": "3.3.0"
     },
+    "doctrine/data-fixtures": {
+        "version": "1.5.3"
+    },
     "doctrine/dbal": {
         "version": "3.3.6"
     },
@@ -38,6 +92,18 @@
             "./config/packages/doctrine.yaml",
             "./src/Entity/.gitignore",
             "./src/Repository/.gitignore"
+        ]
+    },
+    "doctrine/doctrine-fixtures-bundle": {
+        "version": "3.4",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "main",
+            "version": "3.0",
+            "ref": "1f5514cfa15b947298df4d771e694e578d4c204d"
+        },
+        "files": [
+            "./src/DataFixtures/AppFixtures.php"
         ]
     },
     "doctrine/doctrine-migrations-bundle": {
@@ -80,11 +146,44 @@
     "egulias/email-validator": {
         "version": "3.1.2"
     },
+    "fakerphp/faker": {
+        "version": "v1.20.0"
+    },
+    "friendsofphp/php-cs-fixer": {
+        "version": "3.8",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "main",
+            "version": "3.0",
+            "ref": "be2103eb4a20942e28a6dd87736669b757132435"
+        },
+        "files": [
+            "./.php-cs-fixer.dist.php"
+        ]
+    },
     "friendsofphp/proxy-manager-lts": {
         "version": "v1.0.12"
     },
+    "kelunik/certificate": {
+        "version": "v1.1.2"
+    },
+    "knplabs/knp-components": {
+        "version": "v3.5.0"
+    },
+    "knplabs/knp-paginator-bundle": {
+        "version": "v5.8.0"
+    },
     "laminas/laminas-code": {
         "version": "4.5.1"
+    },
+    "league/uri": {
+        "version": "6.5.0"
+    },
+    "league/uri-interfaces": {
+        "version": "2.3.0"
+    },
+    "league/uri-parser": {
+        "version": "1.4.1"
     },
     "monolog/monolog": {
         "version": "2.6.0"
@@ -100,6 +199,9 @@
     },
     "phar-io/version": {
         "version": "3.2.1"
+    },
+    "php-cs-fixer/diff": {
+        "version": "v2.0.2"
     },
     "phpdocumentor/reflection-common": {
         "version": "2.2.0"
@@ -153,6 +255,9 @@
     },
     "psr/event-dispatcher": {
         "version": "1.0.0"
+    },
+    "psr/http-message": {
+        "version": "1.0.1"
     },
     "psr/link": {
         "version": "1.1.1"
@@ -578,6 +683,9 @@
     },
     "twig/extra-bundle": {
         "version": "v3.3.8"
+    },
+    "twig/intl-extra": {
+        "version": "v3.4.0"
     },
     "twig/twig": {
         "version": "v3.3.10"

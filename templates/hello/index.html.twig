@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Hello
+{% endblock %}
+
+{% block body %}
+    <p>
+        Uwaga! Strona w budowie! :)
+        <br>Logowanie - brak
+        <br>Tagi - brak
+        <br>Kategorie - są na razie dla tasków, będą dla notatek
+	<br><a href="{{ path('note_index') }}">Notatki</a>
+	<br><a href="{{ path('task_index') }}">Taski</a>
+	
+    </p>
+{% endblock %}

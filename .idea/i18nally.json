@@ -1,0 +1,49 @@
+{
+  "version" : "1.2",
+  "profiles" : [ {
+    "id" : "0e4ad36b-6a92-4f72-ad2a-87cc3822c893",
+    "name" : "Symfony (PHP, TWIG)",
+    "keyNamingPattern" : "SNAKE_CASE_PATTERN",
+    "sink" : {
+      "id" : "fbf8e5b8-ffdb-48b7-b179-edf57d92ba4f",
+      "type" : "namespaced",
+      "translationsDirectory" : "$PROJECT_DIR$/translations",
+      "fileType" : "xliff/xlf",
+      "defaultLocale" : "pl",
+      "namespaces" : [ "messages" ],
+      "outputFilenameTemplate" : "%namespace%.%locale%.xlf",
+      "nestingType" : "DISABLED",
+      "placeholderFormatterName" : "SYMFONY_REPLACEMENT"
+    },
+    "sources" : [ {
+      "id" : "4ac5197f-dbf6-421d-8b14-41f8f9ee878c",
+      "type" : "php",
+      "scopeName" : "i18n Ally: Symfony/PHP source",
+      "scopePattern" : "file[todo-app-2022]:src//*&&!file[todo-app-2022]:src/DataFixtures//*",
+      "defaultReplacementTemplate" : "$this->translator->trans('%key%', %map%, '%namespace%')",
+      "recognizedReplacementTemplates" : [ ],
+      "skipDefaultNamespace" : true,
+      "sprintfMode" : false
+    }, {
+      "id" : "351f9796-4a07-4aa2-8891-a68402d39be2",
+      "type" : "twig",
+      "scopeName" : "i18n Ally: Symfony/Twig templates",
+      "scopePattern" : "file[todo-app-2022]:templates//*",
+      "defaultReplacementTemplate" : "trans(%map%, '%namespace%')",
+      "attributeReplacementTemplate" : "",
+      "inlineTagsReplacementTemplate" : "trans(%map%, '%namespace%')|raw",
+      "recognizedReplacementTemplates" : [ ],
+      "inlineTagNames" : [ "a", "abbr", "acronym", "b", "bdi", "bdo", "big", "br", "cite", "code", "data", "del", "dfn", "em", "i", "img", "input", "ins", "kbd", "label", "mark", "meter", "output", "progress", "q", "ruby", "s", "samp", "slot", "small", "span", "strong", "sub", "sup", "time", "u", "tt", "var", "wbr" ],
+      "translatableAttributeNames" : [ "title", "alt", "placeholder", "label", "aria-label" ],
+      "skipDefaultNamespace" : true
+    } ]
+  } ],
+  "ignores" : {
+    "valuesInProject" : [ "use strict" ],
+    "valuesInFile" : { },
+    "filesInProject" : [ ],
+    "unignoredFunctionNames" : [ ],
+    "unignoredFunctionArguments" : { },
+    "ignoredArrayKeys" : [ "class", "selector", "template", "middleware", "layout", "el", "component", "type", "name", "id", "key", "sql", "query", "dateFormat", "date", "condition" ]
+  }
+}

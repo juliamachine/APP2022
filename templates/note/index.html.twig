@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ 'title.note_list'|trans }}
+{% endblock %}
+
+{% block body %}
+    <h1>{{ 'title.note_list'|trans }}</h1>
+    {% if pagination is defined and pagination.items|length %}
+
+        <div class="navigation text-center">
+            {{ knp_pagination_render(pagination) }}
+        </div>
+
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>{{ knp_pagination_sortable(pagination, 'label.id'|trans, 'note.id') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'label.created_at'|trans, 'note.createdAt') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'label.updated_at'|trans, 'note.updatedAt') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'label.title'|trans, 'note.title') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'label.content'|trans, 'note.content') }}</th>
+                <th>{{ 'label.actions'|trans }}</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for note in pagination.items %}
+                <tr>
+                    <td>{{ note.id }}</td>
+                    <td>{{ note.createdAt|format_date('long') }}</td>
+                    <td>{{ note.updatedAt|format_date('long') }}</td>
+                    <td>{{ note.title }}</td>
+                    <td>{{ note.content }}</td>
+                    <td>
+                        <a href="{{ url('task_show', {id: note.id}) }}" title="{{ 'action.show'|trans }}">
+                            {{ 'action.show'|trans }}
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="navigation text-center">
+            {{ knp_pagination_render(pagination) }}
+        </div>
+
+    {% else %}
+        <p>
+            {{ 'message.empty_list'|trans }}
+        </p>
+    {% endif %}
+{% endblock %}

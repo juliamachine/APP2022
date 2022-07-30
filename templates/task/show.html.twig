@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ 'title.task_details'|trans({'%id%': task.id|default('')}) }}
+{% endblock %}
+
+{% block body %}
+    <h1>{{ 'title.task_details'|trans({'%id%': task.id|default('')}) }}</h1>
+    {% if task is defined and task|length %}
+        <dl class="dl-horizontal">
+            <dt>{{ 'label.id'|trans }}</dt>
+            <dd>{{ task.id }}</dd>
+            <dt>{{ 'label.created_at'|trans }}</dt>
+            <dd>{{ task.createdAt|format_date('long') }}</dd>
+            <dt>{{ 'label.updated_at'|trans }}</dt>
+            <dd>{{ task.updatedAt|format_date('long') }}</dd>
+            <dt>{{ 'label.title'|trans }}</dt>
+            <dd>{{  task.title }}</dd>
+            <dt>{{ 'label.category'|trans }}</dt>
+            <dd>{{  task.category.title }}</dd>
+        </dl>
+        <p>
+            <a href="{{ url('task_index') }}" title="{{ 'action.back_to_list'|trans }}">
+                {{ 'action.back_to_list'|trans }}
+            </a>
+        </p>
+    {% else %}
+        <p>
+            {{ 'message.record_not_found'|trans }}
+        </p>
+    {% endif %}
+{% endblock %}

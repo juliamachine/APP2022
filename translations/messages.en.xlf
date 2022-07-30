@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en" datatype="plaintext" original="file.ext">
+    <body>
+      <trans-unit id="label.actions">
+        <source>label.actions</source>
+        <target>Actions</target>
+      </trans-unit>
+      <trans-unit id="label.id">
+        <source>label.id</source>
+        <target>Id</target>
+      </trans-unit>
+      <trans-unit id="label.title">
+        <source>label.title</source>
+        <target>Title</target>
+      </trans-unit>
+      <trans-unit id="label.content">
+        <source>label.content</source>
+        <target>Content</target>
+      </trans-unit>
+      <trans-unit id="label.tags">
+        <source>label.tags</source>
+        <target>Tags</target>
+      </trans-unit>
+      <trans-unit id="message.empty_list">
+        <source>message.empty_list</source>
+        <target>List is empty.</target>
+      </trans-unit>
+      <trans-unit id="message.record_not_found">
+        <source>message.record_not_found</source>
+        <target>Record not found.</target>
+      </trans-unit>
+      <trans-unit id="title.record_list">
+        <source>title.record_list</source>
+        <target>Records list</target>
+      </trans-unit>
+      <trans-unit id="title.record_view">
+        <source>title.record_view</source>
+        <target>Record view #%id%</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
