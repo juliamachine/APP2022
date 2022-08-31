@@ -124,4 +124,9 @@ class Category
     {
         $this->title = $title;
     }
+
+    public function __toString() 
+    {
+        return (string) $this->title; 
+    }
 }

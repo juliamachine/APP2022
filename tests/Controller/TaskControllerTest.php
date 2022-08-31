@@ -36,25 +36,29 @@ class TaskControllerTest extends WebTestCase
 
     public function testNew(): void
     {
+        $originalNumObjectsInRepository = count($this->repository->findAll());
+
         $this->markTestIncomplete();
         $this->client->request('GET', sprintf('%snew', $this->path));
 
         self::assertResponseStatusCodeSame(200);
 
         $this->client->submitForm('Save', [
-            'task[name]' => 'Testing',
+            'task[title]' => 'Testing',
+            'task[category]' => 'Testing',
         ]);
 
-        self::assertResponseRedirects('/sweet/food/');
+        self::assertResponseRedirects('/task/');
 
-        self::assertSame(1, $this->repository->count([]));
+        self::assertSame($originalNumObjectsInRepository + 1, count($this->repository->findAll()));
     }
 
     public function testShow(): void
     {
         $this->markTestIncomplete();
         $fixture = new Task();
-        $fixture->setName('My Title');
+        $fixture->setTitle('My Title');
+        $fixture->setCategory('My Title');
 
         $this->repository->add($fixture, true);
 
@@ -70,35 +74,44 @@ class TaskControllerTest extends WebTestCase
     {
         $this->markTestIncomplete();
         $fixture = new Task();
-        $fixture->setName('My Title');
+        $fixture->setTitle('My Title');
+        $fixture->setCategory('My Title');
 
         $this->repository->add($fixture, true);
 
         $this->client->request('GET', sprintf('%s%s/edit', $this->path, $fixture->getId()));
 
         $this->client->submitForm('Update', [
-            'task[name]' => 'Something New',
+            'task[title]' => 'Something New',
+            'task[category]' => 'Something New',
         ]);
 
         self::assertResponseRedirects('/task/');
 
         $fixture = $this->repository->findAll();
 
-        self::assertSame('Something New', $fixture[0]->getName());
+        self::assertSame('Something New', $fixture[0]->getTitle());
+        self::assertSame('Something New', $fixture[0]->getCategory());
     }
 
     public function testRemove(): void
     {
         $this->markTestIncomplete();
+
+        $originalNumObjectsInRepository = count($this->repository->findAll());
+
         $fixture = new Task();
-        $fixture->setName('My Title');
+        $fixture->setTitle('My Title');
+        $fixture->setCategory('My Title');
 
         $this->repository->add($fixture, true);
+
+        self::assertSame($originalNumObjectsInRepository + 1, count($this->repository->findAll()));
 
         $this->client->request('GET', sprintf('%s%s', $this->path, $fixture->getId()));
         $this->client->submitForm('Delete');
 
+        self::assertSame($originalNumObjectsInRepository, count($this->repository->findAll()));
         self::assertResponseRedirects('/task/');
-        self::assertSame(0, $this->repository->count([]));
     }
 }

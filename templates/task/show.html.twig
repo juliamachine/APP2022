@@ -20,7 +20,7 @@
             <dd>{{  task.category.title }}</dd>
         </dl>
         <p>
-            <a href="{{ url('task_index') }}" title="{{ 'action.back_to_list'|trans }}">
+            <a href="{{ url('app_task_index') }}" title="{{ 'action.back_to_list'|trans }}">
                 {{ 'action.back_to_list'|trans }}
             </a>
         </p>
@@ -29,4 +29,8 @@
             {{ 'message.record_not_found'|trans }}
         </p>
     {% endif %}
+
+    <a href="{{ path('app_task_edit', {'id': task.id}) }}">edit</a>
+
+    {{ include('task/_delete_form.html.twig') }}
 {% endblock %}

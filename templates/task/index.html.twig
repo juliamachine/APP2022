@@ -32,8 +32,14 @@
                     <td>{{ task.title }}</td>
                     <td>{{ task.category.title }}</td>
                     <td>
-                        <a href="{{ url('task_show', {id: task.id}) }}" title="{{ 'action.show'|trans }}">
+                        <a href="{{ url('app_task_show', {id: task.id}) }}" title="{{ 'action.show'|trans }}">
                             {{ 'action.show'|trans }}
+                        </a>
+                        <a href="{{ url('app_task_edit', {id: task.id}) }}" title="{{ 'action.edit'|trans }}">
+                            {{ 'action.edit'|trans }}
+                        </a>
+                        <a href="{{ url('app_task_delete', {id: task.id}) }}" title="{{ 'action.delete'|trans }}">
+                            {{ 'action.delete'|trans }}
                         </a>
                     </td>
                 </tr>
@@ -50,4 +56,6 @@
             {{ 'message.empty_list'|trans }}
         </p>
     {% endif %}
+
+     <a href="{{ path('app_task_new') }}">Create new</a>
 {% endblock %}
