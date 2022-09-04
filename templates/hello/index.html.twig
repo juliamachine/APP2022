@@ -6,8 +6,9 @@
 
 {% block body %}
     <p>
-    Uwaga! Strona w budowie! :)
 	<br><a href="{{ path('note_index') }}">Notatki</a>
-	<br><a href="{{ path('task_index') }}">Taski</a>
+	<br><a href="{{ path('app_task_index') }}">Taski</a>
+    <br><a href="{{ path('app_tag_index') }}">Tagi</a>
+    <br><a href="{{ path('app_category_index') }}">Kategorie</a>
     </p>
 {% endblock %}
