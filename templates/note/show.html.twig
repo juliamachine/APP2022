@@ -1,32 +1,38 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}
-    {{ 'title.note_details'|trans({'%id%': note.id|default('')}) }}
-{% endblock %}
+{% block title %}Note{% endblock %}
 
 {% block body %}
-    <h1>{{ 'title.note_details'|trans({'%id%': note.id|default('')}) }}</h1>
-    {% if note is defined and note|length %}
-        <dl class="dl-horizontal">
-            <dt>{{ 'label.id'|trans }}</dt>
-            <dd>{{ note.id }}</dd>
-            <dt>{{ 'label.created_at'|trans }}</dt>
-            <dd>{{ note.createdAt|format_date('long') }}</dd>
-            <dt>{{ 'label.updated_at'|trans }}</dt>
-            <dd>{{ note.updatedAt|format_date('long') }}</dd>
-            <dt>{{ 'label.title'|trans }}</dt>
-            <dd>{{  note.title }}</dd>
-            <dt>{{ 'label.category'|trans }}</dt>
-            <dd>{{  note.category.title }}</dd>
-        </dl>
-        <p>
-            <a href="{{ url('note_index') }}" title="{{ 'action.back_to_list'|trans }}">
-                {{ 'action.back_to_list'|trans }}
-            </a>
-        </p>
-    {% else %}
-        <p>
-            {{ 'message.record_not_found'|trans }}
-        </p>
-    {% endif %}
+    <h1>Note</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ note.id }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ note.title }}</td>
+            </tr>
+            <tr>
+                <th>Content</th>
+                <td>{{ note.content }}</td>
+            </tr>
+            <tr>
+                <th>CreatedAt</th>
+                <td>{{ note.createdAt ? note.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>UpdatedAt</th>
+                <td>{{ note.updatedAt ? note.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_note_index') }}">back to list</a>
+
+    <a href="{{ path('app_note_edit', {'id': note.id}) }}">edit</a>
+
+    {{ include('note/_delete_form.html.twig') }}
 {% endblock %}

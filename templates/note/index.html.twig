@@ -1,8 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}
-    {{ 'title.note_list'|trans }}
-{% endblock %}
+{% block title %}{{ 'title.note_list'|trans }}{% endblock %}
 
 {% block body %}
     <h1>{{ 'title.note_list'|trans }}</h1>
@@ -16,10 +14,10 @@
             <thead>
             <tr>
                 <th>{{ knp_pagination_sortable(pagination, 'label.id'|trans, 'note.id') }}</th>
-                <th>{{ knp_pagination_sortable(pagination, 'label.created_at'|trans, 'note.createdAt') }}</th>
-                <th>{{ knp_pagination_sortable(pagination, 'label.updated_at'|trans, 'note.updatedAt') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'label.title'|trans, 'note.title') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'label.content'|trans, 'note.content') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'label.created_at'|trans, 'note.createdAt') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'label.updated_at'|trans, 'note.updatedAt') }}</th>
                 <th>{{ 'label.category'|trans }}</th>
                 <th>{{ 'label.actions'|trans }}</th>
             </tr>
@@ -28,15 +26,22 @@
             {% for note in pagination.items %}
                 <tr>
                     <td>{{ note.id }}</td>
-                    <td>{{ note.createdAt|format_date('long') }}</td>
-                    <td>{{ note.updatedAt|format_date('long') }}</td>
                     <td>{{ note.title }}</td>
                     <td>{{ note.content }}</td>
+                    <td>{{ note.createdAt|format_date('long') }}</td>
+                    <td>{{ note.updatedAt|format_date('long') }}</td>
                     <td>{{ note.category.title }}</td>
                     <td>
-                        <a href="{{ url('note_show', {id: note.id}) }}" title="{{ 'action.show'|trans }}">
+                        <a href="{{ url('app_note_show', {id: note.id}) }}" title="{{ 'action.show'|trans }}">
                             {{ 'action.show'|trans }}
                         </a>
+                        <a href="{{ url('app_note_edit', {id: note.id}) }}" title="{{ 'action.edit'|trans }}">
+                            {{ 'action.edit'|trans }}
+                        </a>
+                        <a href="{{ url('app_note_delete', {id: note.id}) }}" title="{{ 'action.delete'|trans }}">
+                            {{ 'action.delete'|trans }}
+                        </a>
+
                     </td>
                 </tr>
             {% endfor %}
@@ -52,4 +57,6 @@
             {{ 'message.empty_list'|trans }}
         </p>
     {% endif %}
+
+    <a href="{{ path('app_note_new') }}">Create new</a>
 {% endblock %}
