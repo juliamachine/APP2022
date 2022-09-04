@@ -25,30 +25,31 @@ class TagControllerTest extends WebTestCase
 
     public function testIndex(): void
     {
-        $crawler = $this->client->request('GET', $this->path);
+        $this->client->request('GET', $this->path);
+
+        $fixture = new Tag();
+        $fixture->setCreatedAt(new \DateTimeImmutable());
+        $fixture->setUpdatedAt(new \DateTimeImmutable());
+        $fixture->setTitle('My Tag');
+
+        $this->repository->add($fixture, true);
+
+        $this->client->request('GET', $this->path);
 
         self::assertResponseStatusCodeSame(200);
-        self::assertPageTitleContains('Tag index');
-
-        // Use the $crawler to perform additional assertions e.g.
-        // self::assertSame('Some text on the page', $crawler->filter('.p')->first());
+        self::assertSelectorTextContains("table", "My Tag");
     }
 
     public function testNew(): void
     {
         $originalNumObjectsInRepository = count($this->repository->findAll());
 
-        $this->markTestIncomplete();
         $this->client->request('GET', sprintf('%snew', $this->path));
 
         self::assertResponseStatusCodeSame(200);
 
         $this->client->submitForm('Save', [
-            'tag[createdAt]' => 'Testing',
-            'tag[updatedAt]' => 'Testing',
             'tag[title]' => 'Testing',
-            'tag[tasks]' => 'Testing',
-            'tag[notes]' => 'Testing',
         ]);
 
         self::assertResponseRedirects('/tag/');
@@ -58,69 +59,49 @@ class TagControllerTest extends WebTestCase
 
     public function testShow(): void
     {
-        $this->markTestIncomplete();
         $fixture = new Tag();
-        $fixture->setCreatedAt('My Title');
-        $fixture->setUpdatedAt('My Title');
-        $fixture->setTitle('My Title');
-        $fixture->setTasks('My Title');
-        $fixture->setNotes('My Title');
+        $fixture->setCreatedAt(new \DateTimeImmutable());
+        $fixture->setUpdatedAt(new \DateTimeImmutable());
+        $fixture->setTitle('My Tag');
 
         $this->repository->add($fixture, true);
 
         $this->client->request('GET', sprintf('%s%s', $this->path, $fixture->getId()));
 
         self::assertResponseStatusCodeSame(200);
-        self::assertPageTitleContains('Tag');
-
-        // Use assertions to check that the properties are properly displayed.
+        self::assertSelectorTextContains("table", "My Tag");
     }
 
     public function testEdit(): void
     {
-        $this->markTestIncomplete();
         $fixture = new Tag();
-        $fixture->setCreatedAt('My Title');
-        $fixture->setUpdatedAt('My Title');
-        $fixture->setTitle('My Title');
-        $fixture->setTasks('My Title');
-        $fixture->setNotes('My Title');
+        $fixture->setCreatedAt(new \DateTimeImmutable());
+        $fixture->setUpdatedAt(new \DateTimeImmutable());
+        $fixture->setTitle('My Tag');
 
         $this->repository->add($fixture, true);
 
         $this->client->request('GET', sprintf('%s%s/edit', $this->path, $fixture->getId()));
 
         $this->client->submitForm('Update', [
-            'tag[createdAt]' => 'Something New',
-            'tag[updatedAt]' => 'Something New',
-            'tag[title]' => 'Something New',
-            'tag[tasks]' => 'Something New',
-            'tag[notes]' => 'Something New',
+            'tag[title]' => 'My New Tag',
         ]);
 
         self::assertResponseRedirects('/tag/');
 
         $fixture = $this->repository->findAll();
 
-        self::assertSame('Something New', $fixture[0]->getCreatedAt());
-        self::assertSame('Something New', $fixture[0]->getUpdatedAt());
-        self::assertSame('Something New', $fixture[0]->getTitle());
-        self::assertSame('Something New', $fixture[0]->getTasks());
-        self::assertSame('Something New', $fixture[0]->getNotes());
+        self::assertSame('My New Tag', $fixture[0]->getTitle());
     }
 
     public function testRemove(): void
     {
-        $this->markTestIncomplete();
-
         $originalNumObjectsInRepository = count($this->repository->findAll());
 
         $fixture = new Tag();
-        $fixture->setCreatedAt('My Title');
-        $fixture->setUpdatedAt('My Title');
-        $fixture->setTitle('My Title');
-        $fixture->setTasks('My Title');
-        $fixture->setNotes('My Title');
+        $fixture->setCreatedAt(new \DateTimeImmutable());
+        $fixture->setUpdatedAt(new \DateTimeImmutable());
+        $fixture->setTitle('My Tag');
 
         $this->repository->add($fixture, true);
 
