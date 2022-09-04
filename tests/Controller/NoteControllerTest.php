@@ -3,6 +3,7 @@
 namespace App\Test\Controller;
 
 use App\Entity\Note;
+use App\Entity\Category;
 use App\Repository\NoteRepository;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
@@ -11,34 +12,53 @@ class NoteControllerTest extends WebTestCase
 {
     private KernelBrowser $client;
     private NoteRepository $repository;
+    private Category $category;
     private string $path = '/note/';
 
     protected function setUp(): void
     {
         $this->client = static::createClient();
         $this->repository = (static::getContainer()->get('doctrine'))->getRepository(Note::class);
+        $this->categoryRepository = (static::getContainer()->get('doctrine'))->getRepository(Category::class);
 
         foreach ($this->repository->findAll() as $object) {
             $this->repository->remove($object, true);
         }
+
+        foreach ($this->categoryRepository->findAll() as $object) {
+            $this->categoryRepository->remove($object, true);
+        }
+
+        $this->category = new Category();
+        $this->category->setCreatedAt(new \DateTimeImmutable());
+        $this->category->setUpdatedAt(new \DateTimeImmutable());
+        $this->category->setTitle('My Category');
+        $this->categoryRepository->add($this->category, true);
     }
 
     public function testIndex(): void
     {
-        $crawler = $this->client->request('GET', $this->path);
+        $this->client->request('GET', $this->path);
+
+        $fixture = new Note();
+        $fixture->setCreatedAt(new \DateTimeImmutable());
+        $fixture->setUpdatedAt(new \DateTimeImmutable());
+        $fixture->setTitle('My Note');
+        $fixture->setContent('My Note Content');
+        $fixture->setCategory($this->category);
+
+        $this->repository->add($fixture, true);
+
+        $this->client->request('GET', $this->path);
 
         self::assertResponseStatusCodeSame(200);
-        self::assertPageTitleContains('Note index');
-
-        // Use the $crawler to perform additional assertions e.g.
-        // self::assertSame('Some text on the page', $crawler->filter('.p')->first());
+        self::assertSelectorTextContains("table", "My Note");
     }
 
     public function testNew(): void
     {
         $originalNumObjectsInRepository = count($this->repository->findAll());
 
-        $this->markTestIncomplete();
         $this->client->request('GET', sprintf('%snew', $this->path));
 
         self::assertResponseStatusCodeSame(200);
@@ -46,10 +66,7 @@ class NoteControllerTest extends WebTestCase
         $this->client->submitForm('Save', [
             'note[title]' => 'Testing',
             'note[content]' => 'Testing',
-            'note[createdAt]' => 'Testing',
-            'note[updatedAt]' => 'Testing',
-            'note[category]' => 'Testing',
-            'note[tags]' => 'Testing',
+            'note[category]' => $this->category->getId(),
         ]);
 
         self::assertResponseRedirects('/note/');
@@ -59,83 +76,67 @@ class NoteControllerTest extends WebTestCase
 
     public function testShow(): void
     {
-        $this->markTestIncomplete();
         $fixture = new Note();
-        $fixture->setTitle('My Title');
-        $fixture->setContent('My Title');
-        $fixture->setCreatedAt('My Title');
-        $fixture->setUpdatedAt('My Title');
-        $fixture->setCategory('My Title');
-        $fixture->setTags('My Title');
+        $fixture->setCreatedAt(new \DateTimeImmutable());
+        $fixture->setUpdatedAt(new \DateTimeImmutable());
+        $fixture->setTitle('My Note');
+        $fixture->setContent('My Note Content');
+        $fixture->setCategory($this->category);
 
         $this->repository->add($fixture, true);
 
-        $this->client->request('GET', sprintf('%s%s', $this->path, $fixture->getId()));
+        $this->client->request('GET', sprintf('%s%d', $this->path, $fixture->getId()));
 
         self::assertResponseStatusCodeSame(200);
-        self::assertPageTitleContains('Note');
-
-        // Use assertions to check that the properties are properly displayed.
+        self::assertSelectorTextContains("table", "My Note");
     }
 
     public function testEdit(): void
     {
-        $this->markTestIncomplete();
         $fixture = new Note();
-        $fixture->setTitle('My Title');
-        $fixture->setContent('My Title');
-        $fixture->setCreatedAt('My Title');
-        $fixture->setUpdatedAt('My Title');
-        $fixture->setCategory('My Title');
-        $fixture->setTags('My Title');
+        $fixture->setCreatedAt(new \DateTimeImmutable());
+        $fixture->setUpdatedAt(new \DateTimeImmutable());
+        $fixture->setTitle('My Note');
+        $fixture->setContent('My Note Content');
+        $fixture->setCategory($this->category);
 
         $this->repository->add($fixture, true);
 
-        $this->client->request('GET', sprintf('%s%s/edit', $this->path, $fixture->getId()));
+        $this->client->request('GET', sprintf('%s%d/edit', $this->path, $fixture->getId()));
+
+        self::assertResponseStatusCodeSame(200);
 
         $this->client->submitForm('Update', [
-            'note[title]' => 'Something New',
-            'note[content]' => 'Something New',
-            'note[createdAt]' => 'Something New',
-            'note[updatedAt]' => 'Something New',
-            'note[category]' => 'Something New',
-            'note[tags]' => 'Something New',
+            'note[title]' => 'Testing',
+            'note[content]' => 'Testing',
         ]);
 
         self::assertResponseRedirects('/note/');
 
-        $fixture = $this->repository->findAll();
+        $notes = $this->repository->findAll();
 
-        self::assertSame('Something New', $fixture[0]->getTitle());
-        self::assertSame('Something New', $fixture[0]->getContent());
-        self::assertSame('Something New', $fixture[0]->getCreatedAt());
-        self::assertSame('Something New', $fixture[0]->getUpdatedAt());
-        self::assertSame('Something New', $fixture[0]->getCategory());
-        self::assertSame('Something New', $fixture[0]->getTags());
+        self::assertSame('Testing', $notes[0]->getTitle());
     }
 
-    public function testRemove(): void
+    public function testDelete(): void
     {
-        $this->markTestIncomplete();
-
-        $originalNumObjectsInRepository = count($this->repository->findAll());
-
         $fixture = new Note();
-        $fixture->setTitle('My Title');
-        $fixture->setContent('My Title');
-        $fixture->setCreatedAt('My Title');
-        $fixture->setUpdatedAt('My Title');
-        $fixture->setCategory('My Title');
-        $fixture->setTags('My Title');
+        $fixture->setCreatedAt(new \DateTimeImmutable());
+        $fixture->setUpdatedAt(new \DateTimeImmutable());
+        $fixture->setTitle('My Note');
+        $fixture->setContent('My Note Content');
+        $fixture->setCategory($this->category);
 
         $this->repository->add($fixture, true);
 
-        self::assertSame($originalNumObjectsInRepository + 1, count($this->repository->findAll()));
+        $originalNumObjectsInRepository = count($this->repository->findAll());
 
-        $this->client->request('GET', sprintf('%s%s', $this->path, $fixture->getId()));
+        $this->client->request('GET', sprintf('%s%d', $this->path, $fixture->getId()));
+
         $this->client->submitForm('Delete');
 
-        self::assertSame($originalNumObjectsInRepository, count($this->repository->findAll()));
         self::assertResponseRedirects('/note/');
+
+        self::assertSame($originalNumObjectsInRepository - 1, count($this->repository->findAll()));
     }
 }
