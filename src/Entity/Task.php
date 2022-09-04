@@ -59,6 +59,7 @@ class Task
     private ?string $title = null;
 
     #[ORM\ManyToOne]
+    #[ORM\JoinColumn(nullable: false)]
     private ?Category $category = null;
 
     #[ORM\ManyToMany(targetEntity: Tag::class, inversedBy: 'tasks')]
