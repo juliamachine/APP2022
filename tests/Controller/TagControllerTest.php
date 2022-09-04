@@ -3,24 +3,32 @@
 namespace App\Test\Controller;
 
 use App\Entity\Tag;
+use App\Entity\User;
 use App\Repository\TagRepository;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Hautelook\AliceBundle\PhpUnit\ReloadDatabaseTrait;
 
 class TagControllerTest extends WebTestCase
 {
+    use ReloadDatabaseTrait;
+
     private KernelBrowser $client;
     private TagRepository $repository;
     private string $path = '/tag/';
+    private User $user;
 
     protected function setUp(): void
     {
         $this->client = static::createClient();
         $this->repository = (static::getContainer()->get('doctrine'))->getRepository(Tag::class);
 
-        foreach ($this->repository->findAll() as $object) {
-            $this->repository->remove($object, true);
-        }
+        $user = new User();
+        $user->setEmail('admin@localhost');
+        $user->setPassword('admin');
+        $userRepository = (static::getContainer()->get('doctrine'))->getRepository(User::class);
+        $userRepository->add($user, true);
+        $this->user = $user;
     }
 
     public function testIndex(): void
@@ -42,6 +50,8 @@ class TagControllerTest extends WebTestCase
 
     public function testNew(): void
     {
+        $this->client->loginUser($this->user);
+
         $originalNumObjectsInRepository = count($this->repository->findAll());
 
         $this->client->request('GET', sprintf('%snew', $this->path));
@@ -74,6 +84,8 @@ class TagControllerTest extends WebTestCase
 
     public function testEdit(): void
     {
+        $this->client->loginUser($this->user);
+
         $fixture = new Tag();
         $fixture->setCreatedAt(new \DateTimeImmutable());
         $fixture->setUpdatedAt(new \DateTimeImmutable());
@@ -96,6 +108,8 @@ class TagControllerTest extends WebTestCase
 
     public function testRemove(): void
     {
+        $this->client->loginUser($this->user);
+
         $originalNumObjectsInRepository = count($this->repository->findAll());
 
         $fixture = new Tag();

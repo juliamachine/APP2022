@@ -4,16 +4,21 @@ namespace App\Test\Controller;
 
 use App\Entity\Task;
 use App\Entity\Category;
+use App\Entity\User;
 use App\Repository\TaskRepository;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Hautelook\AliceBundle\PhpUnit\ReloadDatabaseTrait;
 
 class TaskControllerTest extends WebTestCase
 {
+    use ReloadDatabaseTrait;
+
     private KernelBrowser $client;
     private TaskRepository $repository;
     private Category $category;
     private string $path = '/task/';
+    private User $user;
 
     protected function setUp(): void
     {
@@ -21,19 +26,18 @@ class TaskControllerTest extends WebTestCase
         $this->repository = (static::getContainer()->get('doctrine'))->getRepository(Task::class);
         $this->categoryRepository = (static::getContainer()->get('doctrine'))->getRepository(Category::class);
 
-        foreach ($this->repository->findAll() as $object) {
-            $this->repository->remove($object, true);
-        }
-
-        foreach ($this->categoryRepository->findAll() as $object) {
-            $this->categoryRepository->remove($object, true);
-        }
-
         $this->category = new Category();
         $this->category->setCreatedAt(new \DateTimeImmutable());
         $this->category->setUpdatedAt(new \DateTimeImmutable());
         $this->category->setTitle('My Category');
         $this->categoryRepository->add($this->category, true);
+
+        $user = new User();
+        $user->setEmail('admin@localhost');
+        $user->setPassword('admin');
+        $userRepository = (static::getContainer()->get('doctrine'))->getRepository(User::class);
+        $userRepository->add($user, true);
+        $this->user = $user;
     }
 
     public function testIndex(): void
@@ -56,6 +60,8 @@ class TaskControllerTest extends WebTestCase
 
     public function testNew(): void
     {
+        $this->client->loginUser($this->user);
+
         $originalNumObjectsInRepository = count($this->repository->findAll());
 
         $this->client->request('GET', sprintf('%snew', $this->path));
@@ -90,6 +96,8 @@ class TaskControllerTest extends WebTestCase
 
     public function testEdit(): void
     {
+        $this->client->loginUser($this->user);
+
         $fixture = new Task();
         $fixture->setCreatedAt(new \DateTimeImmutable());
         $fixture->setUpdatedAt(new \DateTimeImmutable());
@@ -115,6 +123,8 @@ class TaskControllerTest extends WebTestCase
 
     public function testDelete(): void
     {
+        $this->client->loginUser($this->user);
+
         $fixture = new Task();
         $fixture->setCreatedAt(new \DateTimeImmutable());
         $fixture->setUpdatedAt(new \DateTimeImmutable());

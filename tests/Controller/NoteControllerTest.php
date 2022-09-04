@@ -4,16 +4,21 @@ namespace App\Test\Controller;
 
 use App\Entity\Note;
 use App\Entity\Category;
+use App\Entity\User;
 use App\Repository\NoteRepository;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Hautelook\AliceBundle\PhpUnit\ReloadDatabaseTrait;
 
 class NoteControllerTest extends WebTestCase
 {
+    use ReloadDatabaseTrait;
+
     private KernelBrowser $client;
     private NoteRepository $repository;
     private Category $category;
     private string $path = '/note/';
+    private User $user;
 
     protected function setUp(): void
     {
@@ -21,19 +26,18 @@ class NoteControllerTest extends WebTestCase
         $this->repository = (static::getContainer()->get('doctrine'))->getRepository(Note::class);
         $this->categoryRepository = (static::getContainer()->get('doctrine'))->getRepository(Category::class);
 
-        foreach ($this->repository->findAll() as $object) {
-            $this->repository->remove($object, true);
-        }
-
-        foreach ($this->categoryRepository->findAll() as $object) {
-            $this->categoryRepository->remove($object, true);
-        }
-
         $this->category = new Category();
         $this->category->setCreatedAt(new \DateTimeImmutable());
         $this->category->setUpdatedAt(new \DateTimeImmutable());
         $this->category->setTitle('My Category');
         $this->categoryRepository->add($this->category, true);
+
+        $user = new User();
+        $user->setEmail('admin@localhost');
+        $user->setPassword('admin');
+        $userRepository = (static::getContainer()->get('doctrine'))->getRepository(User::class);
+        $userRepository->add($user, true);
+        $this->user = $user;
     }
 
     public function testIndex(): void
@@ -57,6 +61,8 @@ class NoteControllerTest extends WebTestCase
 
     public function testNew(): void
     {
+        $this->client->loginUser($this->user);
+
         $originalNumObjectsInRepository = count($this->repository->findAll());
 
         $this->client->request('GET', sprintf('%snew', $this->path));
@@ -93,6 +99,8 @@ class NoteControllerTest extends WebTestCase
 
     public function testEdit(): void
     {
+        $this->client->loginUser($this->user);
+
         $fixture = new Note();
         $fixture->setCreatedAt(new \DateTimeImmutable());
         $fixture->setUpdatedAt(new \DateTimeImmutable());
@@ -120,6 +128,8 @@ class NoteControllerTest extends WebTestCase
 
     public function testDelete(): void
     {
+        $this->client->loginUser($this->user);
+
         $fixture = new Note();
         $fixture->setCreatedAt(new \DateTimeImmutable());
         $fixture->setUpdatedAt(new \DateTimeImmutable());

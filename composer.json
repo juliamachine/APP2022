@@ -50,6 +50,7 @@
         "doctrine/doctrine-fixtures-bundle": "^3.4",
         "fakerphp/faker": "^1.20",
         "friendsofphp/php-cs-fixer": "^3.8",
+        "hautelook/alice-bundle": "^2.11",
         "phpunit/phpunit": "^9.5",
         "symfony/browser-kit": "5.4.*",
         "symfony/css-selector": "5.4.*",
