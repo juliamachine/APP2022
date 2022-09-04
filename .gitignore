@@ -25,3 +25,4 @@
 ###< friendsofphp/php-cs-fixer ###
 
 /app
+coverage
