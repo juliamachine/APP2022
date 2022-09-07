@@ -7,7 +7,11 @@
 
     {{ include('note/_form.html.twig', {'button_label': 'Update'}) }}
 
-    <a href="{{ path('app_note_index') }}">back to list</a>
+    <br>
+
+    <a class="btn btn-secondary" role="button" href="{{ url('app_note_index') }}" title="{{ 'action.back_to_list'|trans }}">
+        {{ 'action.back_to_list'|trans }}
+    </a> <br> <br>
 
     {{ include('note/_delete_form.html.twig') }}
 {% endblock %}

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="pl" target-language="pl" datatype="plaintext" original="file.ext">
+    <header>
+      <tool tool-id="symfony" tool-name="Symfony"/>
+    </header>
+    <body>
+      <trans-unit id="Rmxwd1D" resname="action.back_to_list">
+        <source>action.back_to_list</source>
+        <target>__action.back_to_list</target>
+      </trans-unit>
+      <trans-unit id="tiEQuJ_" resname="title.category_list">
+        <source>title.category_list</source>
+        <target>__title.category_list</target>
+      </trans-unit>
+      <trans-unit id="txRonia" resname="label.id">
+        <source>label.id</source>
+        <target>__label.id</target>
+      </trans-unit>
+      <trans-unit id="UrRn8xj" resname="label.title">
+        <source>label.title</source>
+        <target>__label.title</target>
+      </trans-unit>
+      <trans-unit id="v5SWCuI" resname="label.created_at">
+        <source>label.created_at</source>
+        <target>__label.created_at</target>
+      </trans-unit>
+      <trans-unit id="YgvLzSx" resname="label.updated_at">
+        <source>label.updated_at</source>
+        <target>__label.updated_at</target>
+      </trans-unit>
+      <trans-unit id="zldXQq6" resname="label.actions">
+        <source>label.actions</source>
+        <target>Akcje</target>
+      </trans-unit>
+      <trans-unit id="Ffi98jp" resname="action.show">
+        <source>action.show</source>
+        <target>__action.show</target>
+      </trans-unit>
+      <trans-unit id="ovKkXwU" resname="action.edit">
+        <source>action.edit</source>
+        <target>__action.edit</target>
+      </trans-unit>
+      <trans-unit id="lmR1Zvq" resname="message.empty_list">
+        <source>message.empty_list</source>
+        <target>__message.empty_list</target>
+      </trans-unit>
+      <trans-unit id="hUP6xiV" resname="title.note_list">
+        <source>title.note_list</source>
+        <target>__title.note_list</target>
+      </trans-unit>
+      <trans-unit id="qqpGLJl" resname="label.content">
+        <source>label.content</source>
+        <target>__label.content</target>
+      </trans-unit>
+      <trans-unit id="A9JlQ5K" resname="label.category">
+        <source>label.category</source>
+        <target>__label.category</target>
+      </trans-unit>
+      <trans-unit id="UC262bF" resname="title.record_list">
+        <source>title.record_list</source>
+        <target>__title.record_list</target>
+      </trans-unit>
+      <trans-unit id="zaoUJYU" resname="title.tag_list">
+        <source>title.tag_list</source>
+        <target>__title.tag_list</target>
+      </trans-unit>
+      <trans-unit id="majOCC5" resname="title.task_list">
+        <source>title.task_list</source>
+        <target>__title.task_list</target>
+      </trans-unit>
+      <trans-unit id="y3fdhxw" resname="title.task_details">
+        <source>title.task_details</source>
+        <target>__title.task_details</target>
+      </trans-unit>
+      <trans-unit id="nOItC56" resname="message.record_not_found">
+        <source>message.record_not_found</source>
+        <target>__message.record_not_found</target>
+      </trans-unit>
+      <trans-unit id="5eKwWZ_" resname="menu.notes">
+        <source>menu.notes</source>
+        <target>__menu.notes</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

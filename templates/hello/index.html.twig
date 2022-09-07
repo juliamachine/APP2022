@@ -6,9 +6,9 @@
 
 {% block body %}
     <p>
-	<br><a href="{{ path('app_note_index') }}">Notatki</a>
-	<br><a href="{{ path('app_task_index') }}">Taski</a>
-    <br><a href="{{ path('app_tag_index') }}">Tagi</a>
-    <br><a href="{{ path('app_category_index') }}">Kategorie</a>
+	<br><a class="btn btn-outline-primary" role="button" href="{{ path('app_note_index') }}">Zobacz notatki</a><br>
+	<br><a class="btn btn-outline-primary" role="button" href="{{ path('app_task_index') }}">Zobacz taski</a><br>
+    <br><a class="btn btn-outline-primary" role="button" href="{{ path('app_tag_index') }}">Zobacz tagi</a><br>
+    <br><a class="btn btn-outline-primary" role="button" href="{{ path('app_category_index') }}">Zobacz kategorie</a>
     </p>
 {% endblock %}

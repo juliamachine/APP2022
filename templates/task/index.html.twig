@@ -19,7 +19,7 @@
                 <th>{{ knp_pagination_sortable(pagination, 'label.created_at'|trans, 'task.createdAt') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'label.updated_at'|trans, 'task.updatedAt') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'label.title'|trans, 'task.title') }}</th>
-                <th>{{ 'label.category'|trans }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'label.category'|trans, 'note.category') }}</th>
                 <th>{{ 'label.actions'|trans }}</th>
             </tr>
             </thead>
@@ -54,5 +54,5 @@
         </p>
     {% endif %}
 
-     <a href="{{ path('app_task_new') }}">Create new</a>
+     <a class="btn btn-primary" role="button" href="{{ path('app_task_new') }}">{{ 'action.create'|trans }}</a>
 {% endblock %}

@@ -20,7 +20,7 @@
             <dd>{{  task.category.title }}</dd>
         </dl>
         <p>
-            <a href="{{ url('app_task_index') }}" title="{{ 'action.back_to_list'|trans }}">
+            <a class="btn btn-secondary" role="button" href="{{ url('app_task_index') }}" title="{{ 'action.back_to_list'|trans }}">
                 {{ 'action.back_to_list'|trans }}
             </a>
         </p>
@@ -30,7 +30,9 @@
         </p>
     {% endif %}
 
-    <a href="{{ path('app_task_edit', {'id': task.id}) }}">edit</a>
-
+<a class="btn btn-primary" role="button"href="{{ url('app_task_edit', {id: task.id}) }}" title="{{ 'action.edit'|trans }}">
+    {{ 'action.edit'|trans }} </a>
+    <br>
+    <br>
     {{ include('task/_delete_form.html.twig') }}
 {% endblock %}
