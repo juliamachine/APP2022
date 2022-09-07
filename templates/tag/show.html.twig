@@ -8,19 +8,19 @@
     <table class="table">
         <tbody>
             <tr>
-                <th>Id</th>
+                <th>{{ 'label.id'|trans }}</th>
                 <td>{{ tag.id }}</td>
             </tr>
             <tr>
-                <th>CreatedAt</th>
+                <th>{{ 'label.created_at'|trans }}</th>
                 <td>{{ tag.createdAt ? tag.createdAt|date('Y-m-d H:i:s') : '' }}</td>
             </tr>
             <tr>
-                <th>UpdatedAt</th>
+                <th>{{ 'label.updated_at'|trans }}</th>
                 <td>{{ tag.updatedAt ? tag.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
             </tr>
             <tr>
-                <th>Title</th>
+                <th>{{ 'label.tag'|trans }}</th>
                 <td>{{ tag.title }}</td>
             </tr>
         </tbody>

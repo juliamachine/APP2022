@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Category{% endblock %}
+{% block title %}{{ 'category.new'|trans }}{% endblock %}
 
 {% block body %}
-    <h1>Create new Category</h1>
+    <h1>{{ 'category.new'|trans }}</h1>
 
     {{ include('category/_form.html.twig', {'button_label': t('action.save')}) }}
 

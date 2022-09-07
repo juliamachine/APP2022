@@ -1,26 +1,26 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Category{% endblock %}
+{% block title %}{{ 'category.title'|trans }}{% endblock %}
 
 {% block body %}
-    <h1>Category</h1>
+    <h1>{{ 'category.title'|trans }}</h1>
 
     <table class="table">
         <tbody>
             <tr>
-                <th>Id</th>
+                <th>{{ 'label.id'|trans }}</th>
                 <td>{{ category.id }}</td>
             </tr>
             <tr>
-                <th>CreatedAt</th>
+                <th>{{ 'label.created_at'|trans }}</th>
                 <td>{{ category.createdAt ? category.createdAt|date('Y-m-d H:i:s') : '' }}</td>
             </tr>
             <tr>
-                <th>UpdatedAt</th>
+                <th>{{ 'label.updated_at'|trans }}</th>
                 <td>{{ category.updatedAt ? category.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
             </tr>
             <tr>
-                <th>Title</th>
+                <th>{{ 'label.category'|trans }}</th>
                 <td>{{ category.title }}</td>
             </tr>
         </tbody>

@@ -1,11 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Note{% endblock %}
+{% block title %}{{ 'note.edit'|trans }}{% endblock %}
 
 {% block body %}
-    <h1>Edit Note</h1>
+    <h1>{{ 'note.edit'|trans }}</h1>
 
-    {{ include('note/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('note/_form.html.twig', {'button_label': t('action.update')}) }}
 
     <br>
 

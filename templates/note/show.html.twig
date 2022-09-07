@@ -8,24 +8,24 @@
     <table class="table">
         <tbody>
             <tr>
-                <th>Id</th>
+                <th>{{ 'label.id'|trans }}</th>
                 <td>{{ note.id }}</td>
             </tr>
             <tr>
-                <th>Title</th>
-                <td>{{ note.title }}</td>
-            </tr>
-            <tr>
-                <th>Content</th>
-                <td>{{ note.content }}</td>
-            </tr>
-            <tr>
-                <th>CreatedAt</th>
+                <th>{{ 'label.created_at'|trans }}</th>
                 <td>{{ note.createdAt ? note.createdAt|date('Y-m-d H:i:s') : '' }}</td>
             </tr>
             <tr>
-                <th>UpdatedAt</th>
+                <th>{{ 'label.updated_at'|trans }}</th>
                 <td>{{ note.updatedAt ? note.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>{{ 'label.note'|trans }}</th>
+                <td>{{ note.title }}</td>
+            </tr>
+            <tr>
+                <th>{{ 'label.content'|trans }}</th>
+                <td>{{ note.content }}</td>
             </tr>
         </tbody>
     </table>
