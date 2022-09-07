@@ -5,7 +5,7 @@
 {% block body %}
     <h1>Create new Task</h1>
 
-    {{ include('task/_form.html.twig') }}
+    {{ include('task/_form.html.twig', {'button_label': t('action.save')}) }}
     <br>
-    <a class="btn btn-secondary" role="button" href="{{ path('app_task_index') }}">Back to list</a>
+    <a class="btn btn-secondary" role="button" href="{{ path('app_task_index') }}">{{ 'action.back_to_list'|trans }}</a>
 {% endblock %}
