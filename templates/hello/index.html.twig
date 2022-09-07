@@ -6,9 +6,9 @@
 
 {% block body %}
     <p>
-	<br><a class="btn btn-outline-primary" role="button" href="{{ path('app_note_index') }}">Zobacz notatki</a><br>
-	<br><a class="btn btn-outline-primary" role="button" href="{{ path('app_task_index') }}">Zobacz taski</a><br>
-    <br><a class="btn btn-outline-primary" role="button" href="{{ path('app_tag_index') }}">Zobacz tagi</a><br>
-    <br><a class="btn btn-outline-primary" role="button" href="{{ path('app_category_index') }}">Zobacz kategorie</a>
+	<br><a class="btn btn-outline-primary" role="button" href="{{ path('app_note_index') }}">{{ 'home.view_notes'|trans }}</a><br>
+	<br><a class="btn btn-outline-primary" role="button" href="{{ path('app_task_index') }}">{{ 'home.view_tasks'|trans }}</a><br>
+    <br><a class="btn btn-outline-primary" role="button" href="{{ path('app_tag_index') }}">{{ 'home.view_tags'|trans }}</a><br>
+    <br><a class="btn btn-outline-primary" role="button" href="{{ path('app_category_index') }}">{{ 'home.view_categories'|trans }}</a>
     </p>
 {% endblock %}

@@ -7,27 +7,27 @@
     <body>
       <trans-unit id="Rmxwd1D" resname="action.back_to_list">
         <source>action.back_to_list</source>
-        <target>__action.back_to_list</target>
+        <target>Powrót do listy</target>
       </trans-unit>
       <trans-unit id="tiEQuJ_" resname="title.category_list">
         <source>title.category_list</source>
-        <target>__title.category_list</target>
+        <target>Kategorie</target>
       </trans-unit>
       <trans-unit id="txRonia" resname="label.id">
         <source>label.id</source>
-        <target>__label.id</target>
+        <target>ID</target>
       </trans-unit>
       <trans-unit id="UrRn8xj" resname="label.title">
         <source>label.title</source>
-        <target>__label.title</target>
+        <target>Tytuł</target>
       </trans-unit>
       <trans-unit id="v5SWCuI" resname="label.created_at">
         <source>label.created_at</source>
-        <target>__label.created_at</target>
+        <target>Stworzono</target>
       </trans-unit>
       <trans-unit id="YgvLzSx" resname="label.updated_at">
         <source>label.updated_at</source>
-        <target>__label.updated_at</target>
+        <target>Zaktualizowano</target>
       </trans-unit>
       <trans-unit id="zldXQq6" resname="label.actions">
         <source>label.actions</source>
@@ -35,51 +35,163 @@
       </trans-unit>
       <trans-unit id="Ffi98jp" resname="action.show">
         <source>action.show</source>
-        <target>__action.show</target>
+        <target>Wyświetl</target>
       </trans-unit>
       <trans-unit id="ovKkXwU" resname="action.edit">
         <source>action.edit</source>
-        <target>__action.edit</target>
+        <target>Edytuj</target>
       </trans-unit>
       <trans-unit id="lmR1Zvq" resname="message.empty_list">
         <source>message.empty_list</source>
-        <target>__message.empty_list</target>
+        <target>Pusta lista</target>
       </trans-unit>
       <trans-unit id="hUP6xiV" resname="title.note_list">
         <source>title.note_list</source>
-        <target>__title.note_list</target>
+        <target>Notatki</target>
       </trans-unit>
       <trans-unit id="qqpGLJl" resname="label.content">
         <source>label.content</source>
-        <target>__label.content</target>
+        <target>Zawartość</target>
       </trans-unit>
       <trans-unit id="A9JlQ5K" resname="label.category">
         <source>label.category</source>
-        <target>__label.category</target>
+        <target>Kategoria</target>
       </trans-unit>
       <trans-unit id="UC262bF" resname="title.record_list">
         <source>title.record_list</source>
-        <target>__title.record_list</target>
+        <target>Rekordy</target>
       </trans-unit>
       <trans-unit id="zaoUJYU" resname="title.tag_list">
         <source>title.tag_list</source>
-        <target>__title.tag_list</target>
+        <target>Tagi</target>
       </trans-unit>
       <trans-unit id="majOCC5" resname="title.task_list">
         <source>title.task_list</source>
-        <target>__title.task_list</target>
+        <target>Taski</target>
       </trans-unit>
       <trans-unit id="y3fdhxw" resname="title.task_details">
         <source>title.task_details</source>
-        <target>__title.task_details</target>
+        <target>Szczegóły taska</target>
       </trans-unit>
       <trans-unit id="nOItC56" resname="message.record_not_found">
         <source>message.record_not_found</source>
-        <target>__message.record_not_found</target>
+        <target>Nie znaleziono rekordu</target>
       </trans-unit>
       <trans-unit id="5eKwWZ_" resname="menu.notes">
         <source>menu.notes</source>
-        <target>__menu.notes</target>
+        <target>Notatki</target>
+      </trans-unit>
+      <trans-unit id="9pvowqn" resname="label.password">
+        <source>label.password</source>
+        <target>Hasło</target>
+      </trans-unit>
+      <trans-unit id="hTKWQ6g" resname="action.delete">
+        <source>action.delete</source>
+        <target>Usuń</target>
+      </trans-unit>
+      <trans-unit id="U0lOATg" resname="note.edit">
+        <source>note.edit</source>
+        <target>Edytuj</target>
+      </trans-unit>
+      <trans-unit id="LymQtOk" resname="action.update">
+        <source>action.update</source>
+        <target>Zaktualizuj</target>
+      </trans-unit>
+      <trans-unit id="ipddRmB" resname="note.new">
+        <source>note.new</source>
+        <target>Dodaj notatkę</target>
+      </trans-unit>
+      <trans-unit id="HLtdhYw" resname="action.save">
+        <source>action.save</source>
+        <target>Zapisz</target>
+      </trans-unit>
+      <trans-unit id="i.eloDM" resname="action.create">
+        <source>action.create</source>
+        <target>Stwórz</target>
+      </trans-unit>
+      <trans-unit id="mQs59HX" resname="label.note">
+        <source>label.note</source>
+        <target>Notatka</target>
+      </trans-unit>
+      <trans-unit id="2StxxSU" resname="menu.tasks">
+        <source>menu.tasks</source>
+        <target>Taski</target>
+      </trans-unit>
+      <trans-unit id="yo4f8Kh" resname="menu.tags">
+        <source>menu.tags</source>
+        <target>Tagi</target>
+      </trans-unit>
+      <trans-unit id="2IF6qMR" resname="menu.categories">
+        <source>menu.categories</source>
+        <target>Kategorie</target>
+      </trans-unit>
+      <trans-unit id="Sw1YADx" resname="menu.change_password">
+        <source>menu.change_password</source>
+        <target>Zmień hasło</target>
+      </trans-unit>
+      <trans-unit id="wBTFKFR" resname="menu.logout">
+        <source>menu.logout</source>
+        <target>Wyloguj</target>
+      </trans-unit>
+      <trans-unit id="mMdg0uH" resname="menu.login">
+        <source>menu.login</source>
+        <target>Zaloguj</target>
+      </trans-unit>
+      <trans-unit id="eL_giUu" resname="category.edit">
+        <source>category.edit</source>
+        <target>Edytuj kategorię</target>
+      </trans-unit>
+      <trans-unit id="AT4wfK_" resname="category.new">
+        <source>category.new</source>
+        <target>Dodaj kategorię</target>
+      </trans-unit>
+      <trans-unit id="AITuZlO" resname="category.title">
+        <source>category.title</source>
+        <target>Kategoria</target>
+      </trans-unit>
+      <trans-unit id="Wt.vn0L" resname="task.edit">
+        <source>task.edit</source>
+        <target>Edytuj taska</target>
+      </trans-unit>
+      <trans-unit id="cp0NIgi" resname="task.new">
+        <source>task.new</source>
+        <target>Dodaj taska</target>
+      </trans-unit>
+      <trans-unit id="VNCQ7YU" resname="label.tag">
+        <source>label.tag</source>
+        <target>Tag</target>
+      </trans-unit>
+      <trans-unit id="D2N6_cP" resname="label.email">
+        <source>label.email</source>
+        <target>Email</target>
+      </trans-unit>
+      <trans-unit id="uJxPe9E" resname="action.login">
+        <source>action.login</source>
+        <target>Zaloguj</target>
+      </trans-unit>
+      <trans-unit id="eCfenhH" resname="home.view_notes">
+        <source>home.view_notes</source>
+        <target>Zobacz notatki</target>
+      </trans-unit>
+      <trans-unit id="8QVnx7P" resname="home.view_tasks">
+        <source>home.view_tasks</source>
+        <target>Zobacz taski</target>
+      </trans-unit>
+      <trans-unit id="YL3Wvc0" resname="home.view_tags">
+        <source>home.view_tags</source>
+        <target>Zobacz tagi</target>
+      </trans-unit>
+      <trans-unit id="jYvcqMG" resname="home.view_categories">
+        <source>home.view_categories</source>
+        <target>Zobacz kategorie</target>
+      </trans-unit>
+      <trans-unit id="d73OxmD" resname="tag.new">
+        <source>tag.new</source>
+        <target>Dodaj taga</target>
+      </trans-unit>
+      <trans-unit id="ju.x8dg" resname="tag.edit">
+        <source>tag.edit</source>
+        <target>Edytuj taga</target>
       </trans-unit>
     </body>
   </file>
