@@ -69,7 +69,7 @@ class NoteControllerTest extends WebTestCase
 
         self::assertResponseStatusCodeSame(200);
 
-        $this->client->submitForm('Save', [
+        $this->client->submitForm('submit', [
             'note[title]' => 'Testing',
             'note[content]' => 'Testing',
             'note[category]' => $this->category->getId(),
@@ -114,7 +114,7 @@ class NoteControllerTest extends WebTestCase
 
         self::assertResponseStatusCodeSame(200);
 
-        $this->client->submitForm('Update', [
+        $this->client->submitForm('submit', [
             'note[title]' => 'Testing',
             'note[content]' => 'Testing',
         ]);
@@ -143,7 +143,7 @@ class NoteControllerTest extends WebTestCase
 
         $this->client->request('GET', sprintf('%s%d', $this->path, $fixture->getId()));
 
-        $this->client->submitForm('Delete');
+        $this->client->submitForm('delete');
 
         self::assertResponseRedirects('/note/');
 
