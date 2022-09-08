@@ -15,6 +15,14 @@ use Doctrine\ORM\EntityManagerInterface;
 #[Route('/task')]
 class TaskController extends AbstractController
 {
+    /**
+     * Index function of task.
+     *
+     * @param Request $request
+     * @param TaskRepository $taskRepository
+     * @param PaginatorInterface $paginator
+     * @return Response
+     */
     #[Route('/', name: 'app_task_index', methods: ['GET'])]
     public function index(Request $request, TaskRepository $taskRepository, PaginatorInterface $paginator): Response
     {
@@ -27,11 +35,17 @@ class TaskController extends AbstractController
         return $this->render('task/index.html.twig', ['pagination' => $pagination]);
     }
 
+    /**
+     * Creating new task.
+     *
+     * @param Request $request
+     * @param EntityManagerInterface $entityManager
+     * @return Response
+     */
     #[Route('/new', name: 'app_task_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
-        
         $task = new Task();
         $form = $this->createForm(TaskType::class, $task);
         $form->handleRequest($request);
@@ -51,6 +65,12 @@ class TaskController extends AbstractController
         ]);
     }
 
+    /**
+     * Function for showing task.
+     *
+     * @param Task $task
+     * @return Response
+     */
     #[Route('/{id}', name: 'app_task_show', methods: ['GET'])]
     public function show(Task $task): Response
     {
@@ -59,6 +79,14 @@ class TaskController extends AbstractController
         ]);
     }
 
+    /**
+     * Edit task.
+     *
+     * @param Request $request
+     * @param Task $task
+     * @param EntityManagerInterface $entityManager
+     * @return Response
+     */
     #[Route('/{id}/edit', name: 'app_task_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Task $task, EntityManagerInterface $entityManager): Response
     {
@@ -80,6 +108,14 @@ class TaskController extends AbstractController
         ]);
     }
 
+    /**
+     * Remove task.
+     *
+     * @param Request $request
+     * @param Task $task
+     * @param EntityManagerInterface $entityManager
+     * @return Response
+     */
     #[Route('/{id}', name: 'app_task_delete', methods: ['POST'])]
     public function delete(Request $request, Task $task, EntityManagerInterface $entityManager): Response
     {

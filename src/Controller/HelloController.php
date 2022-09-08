@@ -2,7 +2,6 @@
 /**
  * Hello controller.
  */
-
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -37,6 +36,12 @@ class HelloController extends AbstractController
         );
     }
 
+    /**
+     * Log out.
+     *
+     * @return mixed
+     * @throws \Exception
+     */
     #[Route('/logout', name: 'app_logout', methods: ['GET'])]
     public function logout()
     {
