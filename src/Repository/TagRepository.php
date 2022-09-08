@@ -28,11 +28,23 @@ class TagRepository extends ServiceEntityRepository
      */
     public const PAGINATOR_ITEMS_PER_PAGE = 10;
 
+    /**
+     * Constructor function of Tag.
+     *
+     * @param ManagerRegistry $registry
+     */
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Tag::class);
     }
 
+    /**
+     * Adds new tag.
+     *
+     * @param Tag $entity
+     * @param bool $flush
+     * @return void
+     */
     public function add(Tag $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
@@ -42,6 +54,13 @@ class TagRepository extends ServiceEntityRepository
         }
     }
 
+    /**
+     * Removes tag.
+     *
+     * @param Tag $entity
+     * @param bool $flush
+     * @return void
+     */
     public function remove(Tag $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);

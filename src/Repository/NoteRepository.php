@@ -43,6 +43,13 @@ class NoteRepository extends ServiceEntityRepository
         parent::__construct($registry, Note::class);
     }
 
+    /**
+     * Adds note.
+     *
+     * @param Note $entity
+     * @param bool $flush
+     * @return void
+     */
     public function add(Note $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
@@ -52,6 +59,13 @@ class NoteRepository extends ServiceEntityRepository
         }
     }
 
+    /**
+     * Removes note.
+     *
+     * @param Note $entity
+     * @param bool $flush
+     * @return void
+     */
     public function remove(Note $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
