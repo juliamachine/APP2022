@@ -201,15 +201,15 @@
         <source>tag.edit</source>
         <target>Edit tag</target>
       </trans-unit>
-      <trans-unit id="dgs6d5sg" resname="Category">
+      <trans-unit id="KSwG8AR" resname="Category">
         <source>Category</source>
         <target>Category</target>
       </trans-unit>
-      <trans-unit id="sha6d5s" resname="Tags">
+      <trans-unit id="EzEnW8U" resname="Tags">
         <source>Tags</source>
         <target>Tags</target>
       </trans-unit>
-      <trans-unit id="x7dhs6dtg" resname="password_changed">
+      <trans-unit id="tOuDbJR" resname="password_changed">
         <source>password_changed</source>
         <target>Your password has been changed.</target>
       </trans-unit>

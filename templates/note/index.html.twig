@@ -18,7 +18,8 @@
                 <th>{{ knp_pagination_sortable(pagination, 'label.content'|trans, 'note.content') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'label.created_at'|trans, 'note.createdAt') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'label.updated_at'|trans, 'note.updatedAt') }}</th>
-                <th>{{ knp_pagination_sortable(pagination, 'label.category'|trans, 'note.category') }}</th>
+                <th>{{ 'label.category'|trans }}</th>
+                <th>{{ 'label.tags'|trans }}</th>
                 <th>{{ 'label.actions'|trans }}</th>
             </tr>
             </thead>
@@ -31,6 +32,7 @@
                     <td>{{ note.createdAt|format_date('long') }}</td>
                     <td>{{ note.updatedAt|format_date('long') }}</td>
                     <td>{{ note.category.title }}</td>
+                    <td>{{ note.tags|join(', ') }}</td>
                     <td>
                         <a href="{{ url('app_note_show', {id: note.id}) }}" title="{{ 'action.show'|trans }}">
                             {{ 'action.show'|trans }}

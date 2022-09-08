@@ -18,6 +18,8 @@
             <dd>{{  task.title }}</dd>
             <dt>{{ 'label.category'|trans }}</dt>
             <dd>{{  task.category.title }}</dd>
+            <dt>{{ 'label.tags'|trans }}</dt>
+            <dd>{{  task.tags|join(', ') }}</dd>
         </dl>
         <p>
             <a class="btn btn-secondary" role="button" href="{{ url('app_task_index') }}" title="{{ 'action.back_to_list'|trans }}">

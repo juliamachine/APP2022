@@ -27,12 +27,16 @@
                 <th>{{ 'label.content'|trans }}</th>
                 <td>{{ note.content }}</td>
             </tr>
+            <tr>
+                <th>{{ 'label.tags'|trans }}</th>
+                <td>{{ note.tags|join(', ') }}</td>
+            </tr>
         </tbody>
     </table>
-
     <a class="btn btn-secondary" role="button" href="{{ url('app_note_index') }}" title="{{ 'action.back_to_list'|trans }}">
         {{ 'action.back_to_list'|trans }}
-    </a> <br> <br>
+    </a>
+     <br> <br>
 
     <a class="btn btn-primary" role="button"href="{{ url('app_note_edit', {id: note.id}) }}" title="{{ 'action.edit'|trans }}">
         {{ 'action.edit'|trans }} </a>

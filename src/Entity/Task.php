@@ -65,6 +65,9 @@ class Task
     #[ORM\ManyToMany(targetEntity: Tag::class, inversedBy: 'tasks')]
     private Collection $tags;
 
+    /**
+     * Constructs task.
+     */
     public function __construct()
     {
         $this->tags = new ArrayCollection();
@@ -152,6 +155,12 @@ class Task
         return $this->category;
     }
 
+    /**
+     * Setting category for Task.
+     *
+     * @param Category|null $category
+     * @return $this
+     */
     public function setCategory(?Category $category): self
     {
         $this->category = $category;
@@ -167,6 +176,12 @@ class Task
         return $this->tags;
     }
 
+    /**
+     * Adds tag(s) to task.
+     *
+     * @param Tag $tag
+     * @return $this
+     */
     public function addTag(Tag $tag): self
     {
         if (!$this->tags->contains($tag)) {
@@ -176,6 +191,12 @@ class Task
         return $this;
     }
 
+    /**
+     * Removes tag from task.
+     *
+     * @param Tag $tag
+     * @return $this
+     */
     public function removeTag(Tag $tag): self
     {
         $this->tags->removeElement($tag);
@@ -183,6 +204,11 @@ class Task
         return $this;
     }
 
+    /**
+     * Returns the string content that is directly in the element.
+     *
+     * @return string
+     */
     public function __toString() 
     {
         return (string) $this->title; 
