@@ -7,6 +7,7 @@ use App\Form\CategoryType;
 use App\Repository\CategoryRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -81,15 +82,56 @@ class CategoryController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_category_delete', methods: ['POST'])]
+    /**
+     * Delete action.
+     *
+     * @param Request  $request  HTTP request
+     * @param Category $category Category entity
+     * @param CategoryRepository $categoryRepository Category Repository
+     *
+     * @return Response HTTP response
+     */
+    #[Route('/{id}/delete', name: 'app_category_delete', requirements: ['id' => '[1-9]\d*'], methods: ['GET', 'POST'])]
     public function delete(Request $request, Category $category, CategoryRepository $categoryRepository): Response
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
-        if ($this->isCsrfTokenValid('delete'.$category->getId(), $request->request->get('_token'))) {
+        $form = $this->createForm(FormType::class, $category, [
+            'action' => $this->generateUrl('app_category_delete', ['id' => $category->getId()]),
+        ]);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            if ($form->isSubmitted() && $form->isValid()) {
+
+                if ($category->getNotes()->count() > 0 || $category->getTasks()->count() > 0) {
+                    $this->addFlash('error', 'Cannot delete category with notes or tasks.');
+                    return $this->render(
+                        'category/delete.html.twig',
+                        [
+                            'form' => $form->createView(),
+                            'category' => $category,
+                        ]
+                    );
+                }
+
+                $categoryRepository->remove($category, true);
+
+                return $this->redirectToRoute('app_category_index');
+            }
+
             $categoryRepository->remove($category, true);
+
+            return $this->redirectToRoute('app_category_index');
         }
 
-        return $this->redirectToRoute('app_category_index', [], Response::HTTP_SEE_OTHER);
+        return $this->render(
+            'category/delete.html.twig',
+            [
+                'form' => $form->createView(),
+                'category' => $category,
+            ]
+        );
     }
 }

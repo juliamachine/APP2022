@@ -209,6 +209,10 @@
         <source>label.tags</source>
         <target>Tagi</target>
       </trans-unit>
+      <trans-unit id="_jHQZcf" resname="title.category_delete">
+        <source>title.category_delete</source>
+        <target>Czy na pewno chcesz usunąć kategorię?</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

@@ -7,6 +7,8 @@ namespace App\Entity;
 
 use App\Repository\CategoryRepository;
 use DateTimeImmutable;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
@@ -54,6 +56,18 @@ class Category
      */
     #[ORM\Column(type: 'string', length: 255)]
     private ?string $title;
+
+    #[ORM\OneToMany(targetEntity: Note::class, mappedBy: 'category')]
+    private Collection $notes;
+
+    #[ORM\OneToMany(targetEntity: Task::class, mappedBy: 'category')]
+    private Collection $tasks;
+
+    public function __construct()
+    {
+        $this->notes = new ArrayCollection();
+        $this->tasks = new ArrayCollection();
+    }
 
     /**
      * Getter for Id.
@@ -128,5 +142,21 @@ class Category
     public function __toString() 
     {
         return (string) $this->title; 
+    }
+
+    /**
+     * @return Collection<int, Note>
+     */
+    public function getNotes(): Collection
+    {
+        return $this->notes;
+    }
+
+    /**
+     * @return Collection<int, Note>
+     */
+    public function getTasks(): Collection
+    {
+        return $this->tasks;
     }
 }

@@ -213,6 +213,10 @@
         <source>password_changed</source>
         <target>Your password has been changed.</target>
       </trans-unit>
+      <trans-unit id="_jHQZcf" resname="title.category_delete">
+        <source>title.category_delete</source>
+        <target>__title.category_delete</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
