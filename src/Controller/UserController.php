@@ -10,12 +10,15 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
+
+use function Symfony\Component\Translation\t;
 
 #[Route('/user')]
 class UserController extends AbstractController
 {
     #[Route('/change_password', name: 'app_user_edit', methods: ['GET', 'POST'])]
-    public function change_password(Request $request, UserRepository $userRepository, UserPasswordHasherInterface $hasher): Response
+    public function change_password(Request $request, UserRepository $userRepository, UserPasswordHasherInterface $hasher, TranslatorInterface $translator): Response
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
@@ -31,7 +34,7 @@ class UserController extends AbstractController
 
             return $this->renderForm('user/change_password.html.twig', [
                 'form' => $form,
-                'info' => 'Your password has been changed.',
+                'info' => $translator->trans('password_changed'),
             ]);
         }
 

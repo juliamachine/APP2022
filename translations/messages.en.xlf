@@ -201,6 +201,18 @@
         <source>tag.edit</source>
         <target>Edit tag</target>
       </trans-unit>
+      <trans-unit id="dgs6d5sg" resname="Category">
+        <source>Category</source>
+        <target>Category</target>
+      </trans-unit>
+      <trans-unit id="sha6d5s" resname="Tags">
+        <source>Tags</source>
+        <target>Tags</target>
+      </trans-unit>
+      <trans-unit id="x7dhs6dtg" resname="password_changed">
+        <source>password_changed</source>
+        <target>Your password has been changed.</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

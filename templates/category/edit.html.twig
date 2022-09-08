@@ -5,7 +5,7 @@
 {% block body %}
     <h1>{{ 'category.new'|trans }}</h1>
 
-    {{ include('category/_form.html.twig', {'button_label': t('action.update')}) }}
+    {{ include('category/_form.html.twig', {'button_label': 'action.update'|trans}) }}
     <br>
     <a class="btn btn-secondary" role="button" href="{{ url('app_category_index') }}" title="{{ 'action.back_to_list'|trans }}">
         {{ 'action.back_to_list'|trans }}

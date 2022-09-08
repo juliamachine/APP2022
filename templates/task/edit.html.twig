@@ -5,7 +5,7 @@
 {% block body %}
     <h1>{{ 'task.edit'|trans }}</h1>
 
-    {{ include('task/_form.html.twig', {'button_label': t('action.update')}) }}
+    {{ include('task/_form.html.twig', {'button_label': 'action.update'|trans}) }}
     <br>
     <a class="btn btn-secondary" role="button" href="{{ path('app_task_index') }}">{{ 'action.back_to_list'|trans }}</a>
     <br><br>

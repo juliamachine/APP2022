@@ -5,7 +5,7 @@
 {% block body %}
     <h1>{{ 'note.new'|trans }}</h1>
 
-    {{ include('note/_form.html.twig', {'button_label': t('action.save')}) }}
+    {{ include('note/_form.html.twig', {'button_label': 'action.save'|trans}) }}
     <br>
     <a class="btn btn-secondary" role="button" href="{{ path('app_note_index') }}">{{ 'action.back_to_list'|trans }}</a>
 {% endblock %}
