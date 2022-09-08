@@ -11,6 +11,13 @@ use function Symfony\Component\Translation\t;
 
 class TaskType extends AbstractType
 {
+    /**
+     * Building form of task.
+     *
+     * @param FormBuilderInterface $builder
+     * @param array $options
+     * @return void
+     */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
