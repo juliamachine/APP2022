@@ -6,6 +6,7 @@ use App\Repository\TagRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: TagRepository::class)]
 class Tag
@@ -22,6 +23,8 @@ class Tag
     private ?\DateTimeImmutable $updatedAt = null;
 
     #[ORM\Column(length: 64)]
+    #[Assert\Type('string')]
+    #[Assert\NotBlank]
     private ?string $title = null;
 
     #[ORM\ManyToMany(targetEntity: Task::class, mappedBy: 'tags')]
