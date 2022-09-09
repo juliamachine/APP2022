@@ -101,9 +101,7 @@ class NoteController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
             if ($form->isSubmitted() && $form->isValid()) {
-
                 $noteRepository->remove($note, true);
 
                 return $this->redirectToRoute('app_note_index');

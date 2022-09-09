@@ -1,7 +1,9 @@
 <?php
+
 /**
  * Hello controller.
  */
+
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -21,19 +23,10 @@ class HelloController extends AbstractController
      *
      * @return Response HTTP response
      */
-    #[Route(
-        '/',
-        name: 'hello_index',
-        requirements: ['name' => '[a-zA-Z]+'],
-        defaults: ['name' => 'World'],
-        methods: 'GET'
-    )]
+    #[Route('/', name: 'hello_index', requirements: ['name' => '[a-zA-Z]+'], defaults: ['name' => 'World'], methods: 'GET')]
     public function index(string $name): Response
     {
-        return $this->render(
-            'hello/index.html.twig',
-            ['name' => $name]
-        );
+        return $this->render('hello/index.html.twig', ['name' => $name]);
     }
 
     /**
@@ -48,5 +41,4 @@ class HelloController extends AbstractController
         // controller can be blank: it will never be called!
         throw new \Exception('Don\'t forget to activate logout in security.yaml');
     }
-
 }

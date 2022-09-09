@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Task entity.
  */
@@ -29,8 +30,7 @@ class Task
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
     private ?int $id = null;
-
-    /**
+/**
      * Created at.
      *
      * @var DateTimeImmutable|null
@@ -39,8 +39,7 @@ class Task
      */
     #[ORM\Column(type: 'datetime_immutable')]
     private ?DateTimeImmutable $createdAt;
-
-    /**
+/**
      * Updated at.
      *
      * @var DateTimeImmutable|null
@@ -49,23 +48,19 @@ class Task
      */
     #[ORM\Column(type: 'datetime_immutable')]
     private ?DateTimeImmutable $updatedAt;
-
-    /**
+/**
      * Title.
      *
      * @var string|null
      */
     #[ORM\Column(type: 'string', length: 255)]
     private ?string $title = null;
-
     #[ORM\ManyToOne(targetEntity: Category::class, inversedBy: 'tasks')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Category $category = null;
-
     #[ORM\ManyToMany(targetEntity: Tag::class, inversedBy: 'tasks')]
     private Collection $tags;
-
-    /**
+/**
      * Constructs task.
      */
     public function __construct()
@@ -164,7 +159,6 @@ class Task
     public function setCategory(?Category $category): self
     {
         $this->category = $category;
-
         return $this;
     }
 
@@ -200,7 +194,6 @@ class Task
     public function removeTag(Tag $tag): self
     {
         $this->tags->removeElement($tag);
-
         return $this;
     }
 
@@ -209,8 +202,8 @@ class Task
      *
      * @return string
      */
-    public function __toString() 
+    public function __toString()
     {
-        return (string) $this->title; 
+        return (string) $this->title;
     }
 }

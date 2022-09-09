@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Task repository.
  */
@@ -34,8 +35,7 @@ class TaskRepository extends ServiceEntityRepository
      * @constant int
      */
     public const PAGINATOR_ITEMS_PER_PAGE = 10;
-
-    /**
+/**
      * Constructor.
      *
      * @param ManagerRegistry $registry Manager registry
@@ -55,7 +55,6 @@ class TaskRepository extends ServiceEntityRepository
     public function add(Task $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
-
         if ($flush) {
             $this->getEntityManager()->flush();
         }
@@ -71,7 +70,6 @@ class TaskRepository extends ServiceEntityRepository
     public function remove(Task $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
-
         if ($flush) {
             $this->getEntityManager()->flush();
         }

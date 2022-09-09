@@ -99,9 +99,7 @@ class TagController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
             if ($form->isSubmitted() && $form->isValid()) {
-
                 $tagRepository->remove($tag, true);
 
                 return $this->redirectToRoute('app_tag_index');

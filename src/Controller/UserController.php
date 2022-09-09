@@ -18,8 +18,12 @@ use function Symfony\Component\Translation\t;
 class UserController extends AbstractController
 {
     #[Route('/change_password', name: 'app_user_edit', methods: ['GET', 'POST'])]
-    public function change_password(Request $request, UserRepository $userRepository, UserPasswordHasherInterface $hasher, TranslatorInterface $translator): Response
-    {
+    public function change_password(
+        Request $request,
+        UserRepository $userRepository,
+        UserPasswordHasherInterface $hasher,
+        TranslatorInterface $translator
+    ): Response {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
         $user = new User();

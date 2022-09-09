@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Base fixtures.
  */
@@ -23,20 +24,17 @@ abstract class AbstractBaseFixtures extends Fixture
      * Faker.
      */
     protected ?Generator $faker = null;
-
-    /**
+/**
      * Persistence object manager.
      */
     protected ?ObjectManager $manager = null;
-
-    /**
+/**
      * Object reference index.
      *
      * @var array<string, array<int, array-key>>
      */
     private array $referencesIndex = [];
-
-    /**
+/**
      * Load.
      *
      * @param ObjectManager $manager Persistence object manager
@@ -74,16 +72,14 @@ abstract class AbstractBaseFixtures extends Fixture
     protected function createMany(int $count, string $groupName, callable $factory): void
     {
         for ($i = 0; $i < $count; ++$i) {
-            /** @var object|null $entity */
+/** @var object|null $entity */
             $entity = $factory($i);
-
             if (null === $entity) {
                 throw new LogicException('Did you forget to return the entity object from your callback to BaseFixture::createMany()?');
             }
 
             $this->manager->persist($entity);
-
-            // store for usage later than groupName_#COUNT#
+// store for usage later than groupName_#COUNT#
             $this->addReference(sprintf('%s_%d', $groupName, $i), $entity);
         }
     }
@@ -102,9 +98,8 @@ abstract class AbstractBaseFixtures extends Fixture
     {
         if (!isset($this->referencesIndex[$groupName])) {
             $this->referencesIndex[$groupName] = [];
-
             foreach ($this->referenceRepository->getReferences() as $key => $reference) {
-                if (str_starts_with((string) $key, $groupName.'_')) {
+                if (str_starts_with((string) $key, $groupName . '_')) {
                     $this->referencesIndex[$groupName][] = $key;
                 }
             }
@@ -115,7 +110,6 @@ abstract class AbstractBaseFixtures extends Fixture
         }
 
         $randomReferenceKey = (string) $this->faker->randomElement($this->referencesIndex[$groupName]);
-
         return $this->getReference($randomReferenceKey);
     }
 

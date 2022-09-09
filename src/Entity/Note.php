@@ -1,7 +1,9 @@
 <?php
+
 /**
  * Note entity.
  */
+
 namespace App\Entity;
 
 use App\Repository\NoteRepository;
@@ -10,6 +12,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+
 /**
  * Class Note.
  *
@@ -191,8 +194,8 @@ class Note
         return $this;
     }
 
-    public function __toString() 
+    public function __toString()
     {
-        return (string) $this->title; 
+        return (string) $this->title;
     }
 }

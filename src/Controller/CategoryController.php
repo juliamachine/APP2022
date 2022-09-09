@@ -16,8 +16,11 @@ use Symfony\Component\Routing\Annotation\Route;
 class CategoryController extends AbstractController
 {
     #[Route('/', name: 'app_category_index', methods: ['GET'])]
-    public function index(Request $request, CategoryRepository $categoryRepository, PaginatorInterface $paginator): Response
-    {
+    public function index(
+        Request $request,
+        CategoryRepository $categoryRepository,
+        PaginatorInterface $paginator
+    ): Response {
         $pagination = $paginator->paginate(
             $categoryRepository->queryAll(),
             $request->query->getInt('page', 1),
@@ -102,9 +105,7 @@ class CategoryController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
             if ($form->isSubmitted() && $form->isValid()) {
-
                 if ($category->getNotes()->count() > 0 || $category->getTasks()->count() > 0) {
                     $this->addFlash('error', 'Cannot delete category with notes or tasks.');
                     return $this->render(

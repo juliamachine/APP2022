@@ -129,9 +129,7 @@ class TaskController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
             if ($form->isSubmitted() && $form->isValid()) {
-
                 $taskRepository->remove($task, true);
 
                 return $this->redirectToRoute('app_task_index');

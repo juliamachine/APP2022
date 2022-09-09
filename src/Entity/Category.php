@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Category entity.
  */
@@ -32,37 +33,31 @@ class Category
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
     private ?int $id = null;
-
-    /**
+/**
      * Created at.
      *
      * @var DateTimeImmutable|null
      */
     #[ORM\Column(type: 'datetime_immutable')]
     private ?DateTimeImmutable $createdAt;
-
-    /**
+/**
      * Updated at.
      *
      * @var DateTimeImmutable|null
      */
     #[ORM\Column(type: 'datetime_immutable')]
     private ?DateTimeImmutable $updatedAt;
-
-    /**
+/**
      * Title.
      *
      * @var string|null
      */
     #[ORM\Column(type: 'string', length: 255)]
     private ?string $title;
-
     #[ORM\OneToMany(targetEntity: Note::class, mappedBy: 'category')]
     private Collection $notes;
-
     #[ORM\OneToMany(targetEntity: Task::class, mappedBy: 'category')]
     private Collection $tasks;
-
     public function __construct()
     {
         $this->notes = new ArrayCollection();
@@ -139,9 +134,9 @@ class Category
         $this->title = $title;
     }
 
-    public function __toString() 
+    public function __toString()
     {
-        return (string) $this->title; 
+        return (string) $this->title;
     }
 
     /**

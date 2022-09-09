@@ -1,7 +1,9 @@
 <?php
+
 /**
  * Note repository.
  */
+
 namespace App\Repository;
 
 use App\Entity\Note;
@@ -32,8 +34,7 @@ class NoteRepository extends ServiceEntityRepository
      * @constant int
      */
     public const PAGINATOR_ITEMS_PER_PAGE = 10;
-
-    /**
+/**
      * Constructor.
      *
      * @param ManagerRegistry $registry Manager registry
@@ -53,7 +54,6 @@ class NoteRepository extends ServiceEntityRepository
     public function add(Note $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
-
         if ($flush) {
             $this->getEntityManager()->flush();
         }
@@ -69,7 +69,6 @@ class NoteRepository extends ServiceEntityRepository
     public function remove(Note $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
-
         if ($flush) {
             $this->getEntityManager()->flush();
         }
