@@ -37,8 +37,16 @@ class NoteFixtures extends AbstractBaseFixtures implements DependentFixtureInter
             $note = new Note();
             $note->setTitle($this->faker->sentence);
             $note->setContent($this->faker->sentence);
-            $note->setCreatedAt(DateTimeImmutable::createFromMutable($this->faker->dateTimeBetween('-100 days', '-1 days')));
-            $note->setUpdatedAt(DateTimeImmutable::createFromMutable($this->faker->dateTimeBetween('-100 days', '-1 days')));
+            $note->setCreatedAt(
+                DateTimeImmutable::createFromMutable(
+                    $this->faker->dateTimeBetween('-100 days', '-1 days')
+                )
+            );
+            $note->setUpdatedAt(
+                DateTimeImmutable::createFromMutable(
+                    $this->faker->dateTimeBetween('-100 days', '-1 days')
+                )
+            );
 /** @var Category $category */
             $category = $this->getRandomReference('categories');
             $note->setCategory($category);
