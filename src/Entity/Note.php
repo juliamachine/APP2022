@@ -55,7 +55,7 @@ class Note
     #[ORM\Column(type: 'datetime_immutable')]
     private ?\DateTimeImmutable $updatedAt = null;
 
-    #[ORM\ManyToOne]
+    #[ORM\ManyToOne(targetEntity: Category::class, inversedBy: 'notes')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Category $category = null;
 

@@ -58,7 +58,7 @@ class Task
     #[ORM\Column(type: 'string', length: 255)]
     private ?string $title = null;
 
-    #[ORM\ManyToOne]
+    #[ORM\ManyToOne(targetEntity: Category::class, inversedBy: 'tasks')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Category $category = null;
 
