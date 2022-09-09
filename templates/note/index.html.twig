@@ -40,6 +40,9 @@
                         <a href="{{ url('app_note_edit', {id: note.id}) }}" title="{{ 'action.edit'|trans }}">
                             {{ 'action.edit'|trans }}
                         </a>
+                        <a href="{{ url('app_note_delete', {id: note.id}) }}" title="{{ 'action.delete'|trans }}">
+                            {{ 'action.delete'|trans }}
+                        </a>
                     </td>
                 </tr>
             {% endfor %}

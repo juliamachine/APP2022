@@ -213,6 +213,10 @@
         <source>title.category_delete</source>
         <target>Czy na pewno chcesz usunąć kategorię?</target>
       </trans-unit>
+      <trans-unit id="B.QwmmP" resname="title.task_delete">
+        <source>title.task_delete</source>
+        <target>Czy na pewno chcesz usunąć taska?</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

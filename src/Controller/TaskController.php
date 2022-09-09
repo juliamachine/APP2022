@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\Form\Extension\Core\Type\FormType;
 
 #[Route('/task')]
 class TaskController extends AbstractController
@@ -109,23 +110,44 @@ class TaskController extends AbstractController
     }
 
     /**
-     * Remove task.
+     * Delete action.
      *
-     * @param Request $request
-     * @param Task $task
-     * @param EntityManagerInterface $entityManager
-     * @return Response
+     * @param Request  $request  HTTP request
+     * @param Task $task Task entity
+     * @param TaskRepository $taskRepository Task Repository
+     *
+     * @return Response HTTP response
      */
-    #[Route('/{id}', name: 'app_task_delete', methods: ['POST'])]
-    public function delete(Request $request, Task $task, EntityManagerInterface $entityManager): Response
+    #[Route('/{id}/delete', name: 'app_task_delete', requirements: ['id' => '[1-9]\d*'], methods: ['GET', 'POST'])]
+    public function delete(Request $request, Task $task, TaskRepository $taskRepository): Response
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
-        if ($this->isCsrfTokenValid('delete'.$task->getId(), $request->request->get('_token'))) {
-            $entityManager->remove($task);
-            $entityManager->flush();
+        $form = $this->createForm(FormType::class, $task, [
+            'action' => $this->generateUrl('app_task_delete', ['id' => $task->getId()]),
+        ]);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            if ($form->isSubmitted() && $form->isValid()) {
+
+                $taskRepository->remove($task, true);
+
+                return $this->redirectToRoute('app_task_index');
+            }
+
+            $taskRepository->remove($task, true);
+
+            return $this->redirectToRoute('app_task_index');
         }
 
-        return $this->redirectToRoute('app_task_index', [], Response::HTTP_SEE_OTHER);
+        return $this->render(
+            'task/delete.html.twig',
+            [
+                'form' => $form->createView(),
+                'task' => $task,
+            ]
+        );
     }
 }
