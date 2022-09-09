@@ -217,6 +217,10 @@
         <source>title.task_delete</source>
         <target>Czy na pewno chcesz usunąć taska?</target>
       </trans-unit>
+      <trans-unit id="6Ci3i5r" resname="title.note_delete">
+        <source>title.note_delete</source>
+        <target>Czy na pewno chcesz usunąć notatkę?</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

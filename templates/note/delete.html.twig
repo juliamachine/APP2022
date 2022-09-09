@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ 'title.note_delete'|trans({'name': note.name|default('')}) }}
+{% endblock %}
+
+{% block body %}
+    <h1>{{ 'title.note_delete'|trans({'name': note.name|default('')}) }}</h1>
+
+    {% for message in app.flashes('error') %}
+        <div class="flash-error">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <div class="form-group row float-sm-right">
+        <input type="submit" name="submit" value="{{ 'action.delete'|trans }}" class="btn btn-primary" />
+    </div> <br>
+    <div class="form-group row float-sm-left">
+        <a class="btn btn-secondary" role="button" href="{{ url('app_note_index') }}">
+            {{ 'action.back_to_list'|trans }}
+        </a>
+    </div>
+    {{ form_end(form) }}
+{% endblock %}

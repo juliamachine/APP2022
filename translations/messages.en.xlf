@@ -215,11 +215,15 @@
       </trans-unit>
       <trans-unit id="_jHQZcf" resname="title.category_delete">
         <source>title.category_delete</source>
-        <target>Delete category</target>
+        <target>Delete category?</target>
       </trans-unit>
       <trans-unit id="B.QwmmP" resname="title.task_delete">
         <source>title.task_delete</source>
-        <target>Delete task</target>
+        <target>Delete task?</target>
+      </trans-unit>
+      <trans-unit id="6Ci3i5r" resname="title.note_delete">
+        <source>title.note_delete</source>
+        <target>Delete note?</target>
       </trans-unit>
     </body>
   </file>

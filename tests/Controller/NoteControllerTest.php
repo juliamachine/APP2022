@@ -141,9 +141,8 @@ class NoteControllerTest extends WebTestCase
 
         $originalNumObjectsInRepository = count($this->repository->findAll());
 
-        $this->client->request('GET', sprintf('%s%d', $this->path, $fixture->getId()));
-
-        $this->client->submitForm('delete');
+        $this->client->request('GET', sprintf('%s%s/delete', $this->path, $fixture->getId()));
+        $this->client->submitForm('submit');
 
         self::assertResponseRedirects('/note/');
 

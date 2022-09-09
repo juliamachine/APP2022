@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\Form\Extension\Core\Type\FormType;
 
 #[Route('/note')]
 class NoteController extends AbstractController
@@ -80,16 +81,45 @@ class NoteController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_note_delete', methods: ['POST'])]
-    public function delete(Request $request, Note $note, EntityManagerInterface $entityManager): Response
+    /**
+     * Delete action.
+     *
+     * @param Request  $request  HTTP request
+     * @param Note $note Note entity
+     * @param NoteRepository $noteRepository Note Repository
+     *
+     * @return Response HTTP response
+     */
+    #[Route('/{id}/delete', name: 'app_note_delete', requirements: ['id' => '[1-9]\d*'], methods: ['GET', 'POST'])]
+    public function delete(Request $request, Note $note, NoteRepository $noteRepository): Response
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
-        if ($this->isCsrfTokenValid('delete'.$note->getId(), $request->request->get('_token'))) {
-            $entityManager->remove($note);
-            $entityManager->flush();
+        $form = $this->createForm(FormType::class, $note, [
+            'action' => $this->generateUrl('app_note_delete', ['id' => $note->getId()]),
+        ]);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            if ($form->isSubmitted() && $form->isValid()) {
+
+                $noteRepository->remove($note, true);
+
+                return $this->redirectToRoute('app_note_index');
+            }
+
+            $noteRepository->remove($note, true);
+
+            return $this->redirectToRoute('app_note_index');
         }
 
-        return $this->redirectToRoute('app_note_index', [], Response::HTTP_SEE_OTHER);
+        return $this->render(
+            'note/delete.html.twig',
+            [
+                'form' => $form->createView(),
+                'note' => $note,
+            ]
+        );
     }
 }
