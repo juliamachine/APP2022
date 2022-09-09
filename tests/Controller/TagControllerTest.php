@@ -121,8 +121,8 @@ class TagControllerTest extends WebTestCase
 
         self::assertSame($originalNumObjectsInRepository + 1, count($this->repository->findAll()));
 
-        $this->client->request('GET', sprintf('%s%s', $this->path, $fixture->getId()));
-        $this->client->submitForm('delete');
+        $this->client->request('GET', sprintf('%s%s/delete', $this->path, $fixture->getId()));
+        $this->client->submitForm('submit');
 
         self::assertSame($originalNumObjectsInRepository, count($this->repository->findAll()));
         self::assertResponseRedirects('/tag/');

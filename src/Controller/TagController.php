@@ -10,6 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Form\Extension\Core\Type\FormType;
 
 #[Route('/tag')]
 class TagController extends AbstractController
@@ -78,15 +79,45 @@ class TagController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_tag_delete', methods: ['POST'])]
+    /**
+     * Delete action.
+     *
+     * @param Request  $request  HTTP request
+     * @param Tag $tag Tag entity
+     * @param TagRepository $tagRepository Tag Repository
+     *
+     * @return Response HTTP response
+     */
+    #[Route('/{id}/delete', name: 'app_tag_delete', requirements: ['id' => '[1-9]\d*'], methods: ['GET', 'POST'])]
     public function delete(Request $request, Tag $tag, TagRepository $tagRepository): Response
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
-        if ($this->isCsrfTokenValid('delete'.$tag->getId(), $request->request->get('_token'))) {
+        $form = $this->createForm(FormType::class, $tag, [
+            'action' => $this->generateUrl('app_tag_delete', ['id' => $tag->getId()]),
+        ]);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            if ($form->isSubmitted() && $form->isValid()) {
+
+                $tagRepository->remove($tag, true);
+
+                return $this->redirectToRoute('app_tag_index');
+            }
+
             $tagRepository->remove($tag, true);
+
+            return $this->redirectToRoute('app_tag_index');
         }
 
-        return $this->redirectToRoute('app_tag_index', [], Response::HTTP_SEE_OTHER);
+        return $this->render(
+            'tag/delete.html.twig',
+            [
+                'form' => $form->createView(),
+                'tag' => $tag,
+            ]
+        );
     }
 }

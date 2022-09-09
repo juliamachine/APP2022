@@ -225,6 +225,10 @@
         <source>title.note_delete</source>
         <target>Delete note?</target>
       </trans-unit>
+      <trans-unit id=".Pf3agp" resname="title.tag_delete">
+        <source>title.tag_delete</source>
+        <target>Delete tag?</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

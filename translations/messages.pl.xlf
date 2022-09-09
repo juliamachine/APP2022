@@ -221,6 +221,10 @@
         <source>title.note_delete</source>
         <target>Czy na pewno chcesz usunąć notatkę?</target>
       </trans-unit>
+      <trans-unit id=".Pf3agp" resname="title.tag_delete">
+        <source>title.tag_delete</source>
+        <target>Czy na pewno chcesz usunąć taga?</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
