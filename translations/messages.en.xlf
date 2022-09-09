@@ -229,6 +229,14 @@
         <source>title.tag_delete</source>
         <target>Delete tag?</target>
       </trans-unit>
+      <trans-unit id="d5sudh8" resname="Tasks">
+        <source>Tasks</source>
+        <target>Tasks</target>
+      </trans-unit>
+      <trans-unit id="76ghsgd" resname="Notes">
+        <source>Notes</source>
+        <target>Notes</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
