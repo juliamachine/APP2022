@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * Category Repository.
+ */
+
 namespace App\Repository;
 
 use App\Entity\Category;
@@ -43,6 +47,7 @@ class CategoryRepository extends ServiceEntityRepository
      *
      * @param Category $entity
      * @param bool $flush
+     *
      * @return void
      */
     public function add(Category $entity, bool $flush = false): void
@@ -59,6 +64,7 @@ class CategoryRepository extends ServiceEntityRepository
      *
      * @param Category $entity
      * @param bool $flush
+     *
      * @return void
      */
     public function remove(Category $entity, bool $flush = false): void

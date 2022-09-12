@@ -8,7 +8,6 @@ namespace App\Controller;
 
 use App\Entity\Note;
 use App\Form\NoteType;
-use App\Repository\NoteRepository;
 use App\Service\NoteService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -25,11 +24,15 @@ class NoteController extends AbstractController
 {
     /**
      * Note service.
+     *
+     * @param NoteService $noteService
      */
     private NoteService $noteService;
 
     /**
      * Constructor.
+     *
+     * @param NoteService $noteService
      */
     public function __construct(NoteService $noteService)
     {
@@ -40,6 +43,7 @@ class NoteController extends AbstractController
      * Index function for note.
      *
      * @param Request $request
+     *
      * @return Response
      */
     #[Route('/', name: 'app_note_index', methods: ['GET'])]
@@ -57,6 +61,7 @@ class NoteController extends AbstractController
      *
      * @param Request $request
      * @param EntityManagerInterface $entityManager
+     *
      * @return Response
      */
     #[Route('/new', name: 'app_note_new', methods: ['GET', 'POST'])]
@@ -88,6 +93,7 @@ class NoteController extends AbstractController
      * Show note action.
      *
      * @param Note $note
+     *
      * @return Response
      */
     #[Route('/{id}', name: 'app_note_show', methods: ['GET'])]
@@ -104,6 +110,7 @@ class NoteController extends AbstractController
      * @param Request $request
      * @param Note $note
      * @param EntityManagerInterface $entityManager
+     *
      * @return Response
      */
     #[Route('/{id}/edit', name: 'app_note_edit', methods: ['GET', 'POST'])]
@@ -131,7 +138,6 @@ class NoteController extends AbstractController
      *
      * @param Request  $request  HTTP request
      * @param Note $note Note entity
-     * @param NoteRepository $noteRepository Note Repository
      *
      * @return Response HTTP response
      */

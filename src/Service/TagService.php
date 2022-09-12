@@ -32,8 +32,11 @@ class TagService
      * @param PaginatorInterface $paginator      Paginator
      */
     private EntityManagerInterface $entityManager;
-    public function __construct(TagRepository $tagRepository, PaginatorInterface $paginator, EntityManagerInterface $entityManager)
-    {
+    public function __construct(
+        TagRepository $tagRepository,
+        PaginatorInterface $paginator,
+        EntityManagerInterface $entityManager
+    ) {
         $this->tagRepository = $tagRepository;
         $this->paginator = $paginator;
         $this->entityManager = $entityManager;
@@ -48,7 +51,11 @@ class TagService
      */
     public function getPaginatedList(int $page): PaginationInterface
     {
-        return $this->paginator->paginate($this->tagRepository->queryAll(), $page, TagRepository::PAGINATOR_ITEMS_PER_PAGE);
+        return $this->paginator->paginate(
+            $this->tagRepository->queryAll(),
+            $page,
+            TagRepository::PAGINATOR_ITEMS_PER_PAGE
+        );
     }
 
     /**
@@ -82,5 +89,4 @@ class TagService
             $this->entityManager->flush();
         }
     }
-
 }

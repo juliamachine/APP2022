@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * Tag Repository.
+ */
+
 namespace App\Repository;
 
 use App\Entity\Tag;
@@ -43,6 +47,7 @@ class TagRepository extends ServiceEntityRepository
      *
      * @param Tag $entity
      * @param bool $flush
+     *
      * @return void
      */
     public function add(Tag $entity, bool $flush = false): void
@@ -59,6 +64,7 @@ class TagRepository extends ServiceEntityRepository
      *
      * @param Tag $entity
      * @param bool $flush
+     *
      * @return void
      */
     public function remove(Tag $entity, bool $flush = false): void

@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * User entity.
+ */
+
 namespace App\Entity;
 
 use App\Repository\UserRepository;
@@ -7,6 +11,9 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
+/**
+ * User class.
+ */
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
@@ -27,16 +34,33 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?string $password = null;
 
+    /**
+     * Getter for ID.
+     *
+     * @return int|null
+     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
+    /**
+     * Getter for email.
+     *
+     * @return string|null
+     */
     public function getEmail(): ?string
     {
         return $this->email;
     }
 
+    /**
+     * Setter for email.
+     *
+     * @param string $email
+     *
+     * @return $this
+     */
     public function setEmail(string $email): self
     {
         $this->email = $email;
@@ -45,6 +69,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
+     * Getter for User Identifier.
+     *
      * A visual identifier that represents this user.
      *
      * @see UserInterface
@@ -55,6 +81,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
+     * Getter for username.
+     *
      * @deprecated since Symfony 5.3, use getUserIdentifier instead
      */
     public function getUsername(): string
@@ -63,6 +91,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
+     * Getter for roles.
+     *
      * @see UserInterface
      */
     public function getRoles(): array
@@ -74,6 +104,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return array_unique($roles);
     }
 
+    /**
+     * Setter for roles.
+     *
+     * @param array $roles
+     *
+     * @return $this
+     */
     public function setRoles(array $roles): self
     {
         $this->roles = $roles;
@@ -82,6 +119,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
+     * Getter for password.
+     *
      * @see PasswordAuthenticatedUserInterface
      */
     public function getPassword(): string
@@ -89,6 +128,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->password;
     }
 
+    /**
+     * Setter for password.
+     *
+     * @param string $password
+     *
+     * @return $this
+     */
     public function setPassword(string $password): self
     {
         $this->password = $password;

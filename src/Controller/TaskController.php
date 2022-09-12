@@ -26,11 +26,15 @@ class TaskController extends AbstractController
 {
     /**
      * Task service.
+     *
+     * @param TaskService $taskService
      */
     private TaskService $taskService;
 
     /**
      * Constructor.
+     *
+     * @param TaskService $taskService
      */
     public function __construct(TaskService $taskService)
     {
@@ -41,6 +45,7 @@ class TaskController extends AbstractController
      * Index function of task.
      *
      * @param Request $request
+     *
      * @return Response
      */
     #[Route('/', name: 'app_task_index', methods: ['GET'])]
@@ -58,6 +63,7 @@ class TaskController extends AbstractController
      *
      * @param Request $request
      * @param EntityManagerInterface $entityManager
+     *
      * @return Response
      */
     #[Route('/new', name: 'app_task_new', methods: ['GET', 'POST'])]
@@ -87,6 +93,7 @@ class TaskController extends AbstractController
      * Function for showing task.
      *
      * @param Task $task
+     *
      * @return Response
      */
     #[Route('/{id}', name: 'app_task_show', methods: ['GET'])]
@@ -103,6 +110,7 @@ class TaskController extends AbstractController
      * @param Request $request
      * @param Task $task
      * @param EntityManagerInterface $entityManager
+     *
      * @return Response
      */
     #[Route('/{id}/edit', name: 'app_task_edit', methods: ['GET', 'POST'])]
@@ -131,6 +139,7 @@ class TaskController extends AbstractController
      *
      * @param Request  $request  HTTP request
      * @param Task $task Task entity
+     *
      * @return Response HTTP response
      */
     #[Route('/{id}/delete', name: 'app_task_delete', requirements: ['id' => '[1-9]\d*'], methods: ['GET', 'POST'])]

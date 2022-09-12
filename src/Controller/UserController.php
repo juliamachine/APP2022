@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * User Controller.
+ */
+
 namespace App\Controller;
 
 use App\Entity\User;
@@ -12,11 +16,21 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
-use function Symfony\Component\Translation\t;
-
+/**
+ * UserController class.
+ */
 #[Route('/user')]
 class UserController extends AbstractController
 {
+    /**
+     * Change password function.
+     *
+     * @param Request $request
+     * @param UserRepository $userRepository
+     * @param UserPasswordHasherInterface $hasher
+     * @param TranslatorInterface $translator
+     * @return Response
+     */
     #[Route('/change_password', name: 'app_user_edit', methods: ['GET', 'POST'])]
     public function change_password(
         Request $request,

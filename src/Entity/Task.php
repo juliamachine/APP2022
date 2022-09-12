@@ -11,6 +11,7 @@ use DateTimeImmutable;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use JetBrains\PhpStorm\Pure;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -31,29 +32,29 @@ class Task
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
     private ?int $id = null;
-/**
-     * Created at.
-     *
-     * @var DateTimeImmutable|null
-     *
-     * @psalm-suppress PropertyNotSetInConstructor
-     */
+    /**
+         * Created at.
+         *
+         * @var DateTimeImmutable|null
+         *
+         * @psalm-suppress PropertyNotSetInConstructor
+         */
     #[ORM\Column(type: 'datetime_immutable')]
     private ?DateTimeImmutable $createdAt;
-/**
-     * Updated at.
-     *
-     * @var DateTimeImmutable|null
-     *
-     * @psalm-suppress PropertyNotSetInConstructor
-     */
+    /**
+         * Updated at.
+         *
+         * @var DateTimeImmutable|null
+         *
+         * @psalm-suppress PropertyNotSetInConstructor
+         */
     #[ORM\Column(type: 'datetime_immutable')]
     private ?DateTimeImmutable $updatedAt;
-/**
-     * Title.
-     *
-     * @var string|null
-     */
+    /**
+         * Title.
+         *
+         * @var string|null
+         */
     #[ORM\Column(length: 255)]
     #[Assert\Type('string')]
     #[Assert\NotBlank]
@@ -64,10 +65,10 @@ class Task
     private ?Category $category = null;
     #[ORM\ManyToMany(targetEntity: Tag::class, inversedBy: 'tasks')]
     private Collection $tags;
-/**
-     * Constructs task.
-     */
-    public function __construct()
+    /**
+         * Constructs task.
+         */
+    #[Pure] public function __construct()
     {
         $this->tags = new ArrayCollection();
     }
@@ -145,7 +146,7 @@ class Task
     /**
      * Category.
      *
-     * @var Category
+     * @return Category|null
      */
     #[ORM\ManyToOne(targetEntity: Category::class)]
     #[ORM\JoinColumn(nullable: false)]
@@ -158,6 +159,7 @@ class Task
      * Setting category for Task.
      *
      * @param Category|null $category
+     *
      * @return $this
      */
     public function setCategory(?Category $category): self
@@ -167,6 +169,8 @@ class Task
     }
 
     /**
+     * Getter for tags.
+     *
      * @return Collection<int, Tag>
      */
     public function getTags(): Collection
@@ -178,6 +182,7 @@ class Task
      * Adds tag(s) to task.
      *
      * @param Tag $tag
+     *
      * @return $this
      */
     public function addTag(Tag $tag): self
@@ -193,11 +198,13 @@ class Task
      * Removes tag from task.
      *
      * @param Tag $tag
+     *
      * @return $this
      */
     public function removeTag(Tag $tag): self
     {
         $this->tags->removeElement($tag);
+
         return $this;
     }
 

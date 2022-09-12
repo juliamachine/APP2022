@@ -12,6 +12,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use JetBrains\PhpStorm\Pure;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -54,7 +55,7 @@ class Note
      * @psalm-suppress PropertyNotSetInConstructor
      */
     #[ORM\Column(type: 'datetime_immutable')]
-    private ?\DateTimeImmutable $createdAt = null;
+    private ?DateTimeImmutable $createdAt = null;
 
     /**
      * Updated at.
@@ -64,7 +65,7 @@ class Note
      * @psalm-suppress PropertyNotSetInConstructor
      */
     #[ORM\Column(type: 'datetime_immutable')]
-    private ?\DateTimeImmutable $updatedAt = null;
+    private ?DateTimeImmutable $updatedAt = null;
 
     #[ORM\ManyToOne(targetEntity: Category::class, inversedBy: 'notes')]
     #[ORM\JoinColumn(nullable: false)]
@@ -73,7 +74,10 @@ class Note
     #[ORM\ManyToMany(targetEntity: Tag::class, inversedBy: 'notes')]
     private Collection $tags;
 
-    public function __construct()
+    /**
+     * Constructor.
+     */
+    #[Pure] public function __construct()
     {
         $this->tags = new ArrayCollection();
     }
@@ -91,7 +95,7 @@ class Note
     /**
      * Getter for title.
      *
-     * @param string|null $title Title
+     * @return string|null
      */
     public function getTitle(): ?string
     {
@@ -101,7 +105,9 @@ class Note
     /**
      * Setter for title.
      *
-     * @param string|null $title Title
+     * @param string $title Title
+     *
+     * @return Note
      */
     public function setTitle(string $title): self
     {
@@ -110,11 +116,23 @@ class Note
         return $this;
     }
 
+    /**
+     * Get content function.
+     *
+     * @return string|null
+     */
     public function getContent(): ?string
     {
         return $this->content;
     }
 
+    /**
+     * Setter for content.
+     *
+     * @param string $content
+     *
+     * @return $this
+     */
     public function setContent(string $content): self
     {
         $this->content = $content;
@@ -127,7 +145,7 @@ class Note
      *
      * @return DateTimeImmutable|null Created at
      */
-    public function getCreatedAt(): ?\DateTimeImmutable
+    public function getCreatedAt(): ?DateTimeImmutable
     {
         return $this->createdAt;
     }
@@ -135,9 +153,11 @@ class Note
     /**
      * Setter for created at.
      *
-     * @param DateTimeImmutable|null $createdAt Created at
+     * @param DateTimeImmutable $createdAt Created at
+     *
+     * @return Note
      */
-    public function setCreatedAt(\DateTimeImmutable $createdAt): self
+    public function setCreatedAt(DateTimeImmutable $createdAt): self
     {
         $this->createdAt = $createdAt;
 
@@ -149,7 +169,7 @@ class Note
      *
      * @return DateTimeImmutable|null Updated at
      */
-    public function getUpdatedAt(): ?\DateTimeImmutable
+    public function getUpdatedAt(): ?DateTimeImmutable
     {
         return $this->updatedAt;
     }
@@ -157,20 +177,34 @@ class Note
     /**
      * Setter for updated at.
      *
-     * @param DateTimeImmutable|null $updatedAt Updated at
+     * @param DateTimeImmutable $updatedAt Updated at
+     *
+     * @return Note
      */
-    public function setUpdatedAt(\DateTimeImmutable $updatedAt): self
+    public function setUpdatedAt(DateTimeImmutable $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
 
         return $this;
     }
 
+    /**
+     * Getter for category.
+     *
+     * @return Category|null
+     */
     public function getCategory(): ?Category
     {
         return $this->category;
     }
 
+    /**
+     * Setter for category.
+     *
+     * @param Category|null $category
+     *
+     * @return $this
+     */
     public function setCategory(?Category $category): self
     {
         $this->category = $category;
@@ -179,6 +213,8 @@ class Note
     }
 
     /**
+     * Getter for tags.
+     *
      * @return Collection<int, Tag>
      */
     public function getTags(): Collection
@@ -186,6 +222,13 @@ class Note
         return $this->tags;
     }
 
+    /**
+     * Adding tag.
+     *
+     * @param Tag $tag
+     *
+     * @return $this
+     */
     public function addTag(Tag $tag): self
     {
         if (!$this->tags->contains($tag)) {
@@ -195,6 +238,13 @@ class Note
         return $this;
     }
 
+    /**
+     * Removing tag.
+     *
+     * @param Tag $tag
+     *
+     * @return $this
+     */
     public function removeTag(Tag $tag): self
     {
         $this->tags->removeElement($tag);
@@ -202,6 +252,11 @@ class Note
         return $this;
     }
 
+    /**
+     * ToString function.
+     *
+     * @return string
+     */
     public function __toString()
     {
         return (string) $this->title;

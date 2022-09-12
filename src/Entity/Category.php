@@ -11,6 +11,7 @@ use DateTimeImmutable;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use JetBrains\PhpStorm\Pure;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -34,25 +35,25 @@ class Category
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
     private ?int $id = null;
-/**
-     * Created at.
-     *
-     * @var DateTimeImmutable|null
-     */
+    /**
+         * Created at.
+         *
+         * @var DateTimeImmutable|null
+         */
     #[ORM\Column(type: 'datetime_immutable')]
     private ?DateTimeImmutable $createdAt;
-/**
-     * Updated at.
-     *
-     * @var DateTimeImmutable|null
-     */
+    /**
+         * Updated at.
+         *
+         * @var DateTimeImmutable|null
+         */
     #[ORM\Column(type: 'datetime_immutable')]
     private ?DateTimeImmutable $updatedAt;
-/**
-     * Title.
-     *
-     * @var string|null
-     */
+    /**
+         * Title.
+         *
+         * @var string|null
+         */
     #[ORM\Column(length: 255)]
     #[Assert\Type('string')]
     #[Assert\NotBlank]
@@ -62,7 +63,11 @@ class Category
     private Collection $notes;
     #[ORM\OneToMany(targetEntity: Task::class, mappedBy: 'category')]
     private Collection $tasks;
-    public function __construct()
+
+    /**
+     * Constructor.
+     */
+    #[Pure] public function __construct()
     {
         $this->notes = new ArrayCollection();
         $this->tasks = new ArrayCollection();
@@ -138,6 +143,11 @@ class Category
         $this->title = $title;
     }
 
+    /**
+     * ToString function.
+     *
+     * @return string
+     */
     public function __toString()
     {
         return (string) $this->title;

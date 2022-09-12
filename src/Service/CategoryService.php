@@ -32,8 +32,11 @@ class CategoryService
      * @param PaginatorInterface $paginator      Paginator
      */
     private EntityManagerInterface $entityManager;
-    public function __construct(CategoryRepository $categoryRepository, PaginatorInterface $paginator, EntityManagerInterface $entityManager)
-    {
+    public function __construct(
+        CategoryRepository $categoryRepository,
+        PaginatorInterface $paginator,
+        EntityManagerInterface $entityManager
+    ) {
         $this->categoryRepository = $categoryRepository;
         $this->paginator = $paginator;
         $this->entityManager = $entityManager;
@@ -48,7 +51,11 @@ class CategoryService
      */
     public function getPaginatedList(int $page): PaginationInterface
     {
-        return $this->paginator->paginate($this->categoryRepository->queryAll(), $page, CategoryRepository::PAGINATOR_ITEMS_PER_PAGE);
+        return $this->paginator->paginate(
+            $this->categoryRepository->queryAll(),
+            $page,
+            CategoryRepository::PAGINATOR_ITEMS_PER_PAGE
+        );
     }
 
     /**

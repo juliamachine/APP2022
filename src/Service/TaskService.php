@@ -41,8 +41,11 @@ class TaskService
      * @param PaginatorInterface $paginator      Paginator
      */
     private EntityManagerInterface $entityManager;
-    public function __construct(TaskRepository $taskRepository, PaginatorInterface $paginator, EntityManagerInterface $entityManager)
-    {
+    public function __construct(
+        TaskRepository $taskRepository,
+        PaginatorInterface $paginator,
+        EntityManagerInterface $entityManager
+    ) {
         $this->taskRepository = $taskRepository;
         $this->paginator = $paginator;
         $this->entityManager = $entityManager;

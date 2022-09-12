@@ -50,6 +50,7 @@ class TaskRepository extends ServiceEntityRepository
      *
      * @param Task $entity
      * @param bool $flush
+     *
      * @return void
      */
     public function add(Task $entity, bool $flush = false): void
@@ -65,6 +66,7 @@ class TaskRepository extends ServiceEntityRepository
      *
      * @param Task $entity
      * @param bool $flush
+     *
      * @return void
      */
     public function remove(Task $entity, bool $flush = false): void

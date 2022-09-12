@@ -18,6 +18,7 @@ use Doctrine\Persistence\ManagerRegistry;
  * @method Note|null findOneBy(array $criteria, array $orderBy = null)
  * @method Note[]    findAll()
  * @method Note[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ *
  * @extends ServiceEntityRepository<Note>
  *
  * @psalm-suppress LessSpecificImplementedReturnType
@@ -34,7 +35,7 @@ class NoteRepository extends ServiceEntityRepository
      * @constant int
      */
     public const PAGINATOR_ITEMS_PER_PAGE = 10;
-/**
+    /**
      * Constructor.
      *
      * @param ManagerRegistry $registry Manager registry
@@ -49,6 +50,7 @@ class NoteRepository extends ServiceEntityRepository
      *
      * @param Note $entity
      * @param bool $flush
+     *
      * @return void
      */
     public function add(Note $entity, bool $flush = false): void
@@ -64,6 +66,7 @@ class NoteRepository extends ServiceEntityRepository
      *
      * @param Note $entity
      * @param bool $flush
+     *
      * @return void
      */
     public function remove(Note $entity, bool $flush = false): void

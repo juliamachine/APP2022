@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * User Type.
+ */
+
 namespace App\Form;
 
 use App\Entity\User;
@@ -10,6 +14,9 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 use function Symfony\Component\Translation\t;
 
+/**
+ * UserType class.
+ */
 class UserType extends AbstractType
 {
     /**
@@ -17,6 +24,7 @@ class UserType extends AbstractType
      *
      * @param FormBuilderInterface $builder
      * @param array $options
+     *
      * @return void
      */
     public function buildForm(FormBuilderInterface $builder, array $options): void
@@ -30,6 +38,7 @@ class UserType extends AbstractType
 
     /**
      * @param OptionsResolver $resolver
+     *
      * @return void
      */
     public function configureOptions(OptionsResolver $resolver): void
