@@ -1,10 +1,15 @@
 <?php
 
+/**
+ * Category Controller.
+ */
+
 namespace App\Controller;
 
 use App\Entity\Category;
 use App\Form\CategoryType;
 use App\Repository\CategoryRepository;
+use App\Service\CategoryService;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
@@ -12,19 +17,36 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+/**
+ * Category Controller class.
+ */
 #[Route('/category')]
 class CategoryController extends AbstractController
 {
+    /**
+     * Category service.
+     */
+    private CategoryService $categoryService;
+
+    /**
+     * Constructor.
+     */
+    public function __construct(CategoryService $categoryService)
+    {
+        $this->categoryService = $categoryService;
+    }
+
+    /**
+     * Index function.
+     *
+     * @param Request $request
+     * @return Response
+     */
     #[Route('/', name: 'app_category_index', methods: ['GET'])]
-    public function index(
-        Request $request,
-        CategoryRepository $categoryRepository,
-        PaginatorInterface $paginator
-    ): Response {
-        $pagination = $paginator->paginate(
-            $categoryRepository->queryAll(),
+    public function index(Request $request): Response
+    {
+        $pagination = $this->categoryService->getPaginatedList(
             $request->query->getInt('page', 1),
-            CategoryRepository::PAGINATOR_ITEMS_PER_PAGE
         );
 
         return $this->render('category/index.html.twig', [
@@ -32,8 +54,14 @@ class CategoryController extends AbstractController
         ]);
     }
 
+    /**
+     * Create new function.
+     *
+     * @param Request $request
+     * @return Response
+     */
     #[Route('/new', name: 'app_category_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, CategoryRepository $categoryRepository): Response
+    public function new(Request $request): Response
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
@@ -45,7 +73,7 @@ class CategoryController extends AbstractController
             $category->setCreatedAt(new \DateTimeImmutable());
             $category->setUpdatedAt(new \DateTimeImmutable());
 
-            $categoryRepository->add($category, true);
+            $this->categoryService->add($category, true);
 
             return $this->redirectToRoute('app_category_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -56,6 +84,12 @@ class CategoryController extends AbstractController
         ]);
     }
 
+    /**
+     * Show category action.
+     *
+     * @param Category $category
+     * @return Response
+     */
     #[Route('/{id}', name: 'app_category_show', methods: ['GET'])]
     public function show(Category $category): Response
     {
@@ -64,8 +98,15 @@ class CategoryController extends AbstractController
         ]);
     }
 
+    /**
+     * Edit category action.
+     *
+     * @param Request $request
+     * @param Category $category
+     * @return Response
+     */
     #[Route('/{id}/edit', name: 'app_category_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Category $category, CategoryRepository $categoryRepository): Response
+    public function edit(Request $request, Category $category): Response
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
@@ -74,7 +115,7 @@ class CategoryController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $category->setUpdatedAt(new \DateTimeImmutable());
-            $categoryRepository->add($category, true);
+            $this->categoryService->add($category, true);
 
             return $this->redirectToRoute('app_category_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -90,12 +131,11 @@ class CategoryController extends AbstractController
      *
      * @param Request  $request  HTTP request
      * @param Category $category Category entity
-     * @param CategoryRepository $categoryRepository Category Repository
      *
      * @return Response HTTP response
      */
     #[Route('/{id}/delete', name: 'app_category_delete', requirements: ['id' => '[1-9]\d*'], methods: ['GET', 'POST'])]
-    public function delete(Request $request, Category $category, CategoryRepository $categoryRepository): Response
+    public function delete(Request $request, Category $category): Response
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
@@ -117,12 +157,12 @@ class CategoryController extends AbstractController
                     );
                 }
 
-                $categoryRepository->remove($category, true);
+                $this->categoryService->remove($category, true);
 
                 return $this->redirectToRoute('app_category_index');
             }
 
-            $categoryRepository->remove($category, true);
+            $this->categoryService->remove($category, true);
 
             return $this->redirectToRoute('app_category_index');
         }

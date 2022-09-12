@@ -1,11 +1,15 @@
 <?php
 
+/**
+ * Note Controller.
+ */
+
 namespace App\Controller;
 
 use App\Entity\Note;
 use App\Form\NoteType;
 use App\Repository\NoteRepository;
-use Knp\Component\Pager\PaginatorInterface;
+use App\Service\NoteService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -13,21 +17,48 @@ use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 
+/**
+ * Class NoteController.
+ */
 #[Route('/note')]
 class NoteController extends AbstractController
 {
-    #[Route('/', name: 'app_note_index', methods: ['GET'])]
-    public function index(Request $request, NoteRepository $noteRepository, PaginatorInterface $paginator): Response
+    /**
+     * Note service.
+     */
+    private NoteService $noteService;
+
+    /**
+     * Constructor.
+     */
+    public function __construct(NoteService $noteService)
     {
-        $pagination = $paginator->paginate(
-            $noteRepository->queryAll(),
+        $this->noteService = $noteService;
+    }
+
+    /**
+     * Index function for note.
+     *
+     * @param Request $request
+     * @return Response
+     */
+    #[Route('/', name: 'app_note_index', methods: ['GET'])]
+    public function index(Request $request): Response
+    {
+        $pagination = $this->noteService->getPaginatedList(
             $request->query->getInt('page', 1),
-            NoteRepository::PAGINATOR_ITEMS_PER_PAGE
         );
 
         return $this->render('note/index.html.twig', ['pagination' => $pagination]);
     }
 
+    /**
+     * Adding new note.
+     *
+     * @param Request $request
+     * @param EntityManagerInterface $entityManager
+     * @return Response
+     */
     #[Route('/new', name: 'app_note_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
@@ -53,6 +84,12 @@ class NoteController extends AbstractController
         ]);
     }
 
+    /**
+     * Show note action.
+     *
+     * @param Note $note
+     * @return Response
+     */
     #[Route('/{id}', name: 'app_note_show', methods: ['GET'])]
     public function show(Note $note): Response
     {
@@ -61,6 +98,14 @@ class NoteController extends AbstractController
         ]);
     }
 
+    /**
+     * Editing function.
+     *
+     * @param Request $request
+     * @param Note $note
+     * @param EntityManagerInterface $entityManager
+     * @return Response
+     */
     #[Route('/{id}/edit', name: 'app_note_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Note $note, EntityManagerInterface $entityManager): Response
     {
@@ -91,7 +136,7 @@ class NoteController extends AbstractController
      * @return Response HTTP response
      */
     #[Route('/{id}/delete', name: 'app_note_delete', requirements: ['id' => '[1-9]\d*'], methods: ['GET', 'POST'])]
-    public function delete(Request $request, Note $note, NoteRepository $noteRepository): Response
+    public function delete(Request $request, Note $note): Response
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
@@ -102,12 +147,12 @@ class NoteController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             if ($form->isSubmitted() && $form->isValid()) {
-                $noteRepository->remove($note, true);
+                $this->noteService->remove($note, true);
 
                 return $this->redirectToRoute('app_note_index');
             }
 
-            $noteRepository->remove($note, true);
+            $this->noteService->remove($note, true);
 
             return $this->redirectToRoute('app_note_index');
         }

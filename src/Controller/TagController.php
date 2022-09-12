@@ -1,10 +1,15 @@
 <?php
 
+/**
+ * Tag Controller.
+ */
+
 namespace App\Controller;
 
 use App\Entity\Tag;
 use App\Form\TagType;
 use App\Repository\TagRepository;
+use App\Service\TagService;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -12,23 +17,49 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 
+/**
+ * TagController class.
+ */
 #[Route('/tag')]
 class TagController extends AbstractController
 {
-    #[Route('/', name: 'app_tag_index', methods: ['GET'])]
-    public function index(Request $request, TagRepository $tagRepository, PaginatorInterface $paginator): Response
+    /**
+     * Tag service.
+     */
+    private TagService $tagService;
+
+    /**
+     * Constructor.
+     */
+    public function __construct(TagService $tagService)
     {
-        $pagination = $paginator->paginate(
-            $tagRepository->queryAll(),
+        $this->tagService = $tagService;
+    }
+
+    /**
+     * Index action.
+     *
+     * @param Request $request
+     * @return Response
+     */
+    #[Route('/', name: 'app_tag_index', methods: ['GET'])]
+    public function index(Request $request): Response
+    {
+        $pagination = $this->tagService->getPaginatedList(
             $request->query->getInt('page', 1),
-            TagRepository::PAGINATOR_ITEMS_PER_PAGE
         );
 
         return $this->render('tag/index.html.twig', ['pagination' => $pagination]);
     }
 
+    /**
+     * New tag action.
+     *
+     * @param Request $request
+     * @return Response
+     */
     #[Route('/new', name: 'app_tag_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, TagRepository $tagRepository): Response
+    public function new(Request $request): Response
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
@@ -39,7 +70,7 @@ class TagController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $tag->setCreatedAt(new \DateTimeImmutable());
             $tag->setUpdatedAt(new \DateTimeImmutable());
-            $tagRepository->add($tag, true);
+            $this->tagService->add($tag, true);
 
             return $this->redirectToRoute('app_tag_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -50,6 +81,12 @@ class TagController extends AbstractController
         ]);
     }
 
+    /**
+     * Show tag action.
+     *
+     * @param Tag $tag
+     * @return Response
+     */
     #[Route('/{id}', name: 'app_tag_show', methods: ['GET'])]
     public function show(Tag $tag): Response
     {
@@ -58,8 +95,15 @@ class TagController extends AbstractController
         ]);
     }
 
+    /**
+     * Edit tag action.
+     *
+     * @param Request $request
+     * @param Tag $tag
+     * @return Response
+     */
     #[Route('/{id}/edit', name: 'app_tag_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Tag $tag, TagRepository $tagRepository): Response
+    public function edit(Request $request, Tag $tag): Response
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
@@ -68,7 +112,7 @@ class TagController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $tag->setUpdatedAt(new \DateTimeImmutable());
-            $tagRepository->add($tag, true);
+            $this->tagService->add($tag, true);
 
             return $this->redirectToRoute('app_tag_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -84,12 +128,11 @@ class TagController extends AbstractController
      *
      * @param Request  $request  HTTP request
      * @param Tag $tag Tag entity
-     * @param TagRepository $tagRepository Tag Repository
      *
      * @return Response HTTP response
      */
     #[Route('/{id}/delete', name: 'app_tag_delete', requirements: ['id' => '[1-9]\d*'], methods: ['GET', 'POST'])]
-    public function delete(Request $request, Tag $tag, TagRepository $tagRepository): Response
+    public function delete(Request $request, Tag $tag): Response
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
@@ -100,12 +143,12 @@ class TagController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             if ($form->isSubmitted() && $form->isValid()) {
-                $tagRepository->remove($tag, true);
+                $this->tagService->remove($tag, true);
 
                 return $this->redirectToRoute('app_tag_index');
             }
 
-            $tagRepository->remove($tag, true);
+            $this->tagService->remove($tag, true);
 
             return $this->redirectToRoute('app_tag_index');
         }

@@ -1,8 +1,13 @@
 <?php
 
+/**
+ * Task controller.
+ */
+
 namespace App\Controller;
 
 use App\Entity\Task;
+use App\Service\TaskService;
 use App\Form\TaskType;
 use App\Repository\TaskRepository;
 use Knp\Component\Pager\PaginatorInterface;
@@ -13,24 +18,36 @@ use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 
+/**
+ * Class TaskController
+ */
 #[Route('/task')]
 class TaskController extends AbstractController
 {
     /**
+     * Task service.
+     */
+    private TaskService $taskService;
+
+    /**
+     * Constructor.
+     */
+    public function __construct(TaskService $taskService)
+    {
+        $this->taskService = $taskService;
+    }
+
+    /**
      * Index function of task.
      *
      * @param Request $request
-     * @param TaskRepository $taskRepository
-     * @param PaginatorInterface $paginator
      * @return Response
      */
     #[Route('/', name: 'app_task_index', methods: ['GET'])]
-    public function index(Request $request, TaskRepository $taskRepository, PaginatorInterface $paginator): Response
+    public function index(Request $request): Response
     {
-        $pagination = $paginator->paginate(
-            $taskRepository->queryAll(),
-            $request->query->getInt('page', 1),
-            TaskRepository::PAGINATOR_ITEMS_PER_PAGE
+        $pagination = $this->taskService->getPaginatedList(
+            $request->query->getInt('page', 1)
         );
 
         return $this->render('task/index.html.twig', ['pagination' => $pagination]);
@@ -114,12 +131,10 @@ class TaskController extends AbstractController
      *
      * @param Request  $request  HTTP request
      * @param Task $task Task entity
-     * @param TaskRepository $taskRepository Task Repository
-     *
      * @return Response HTTP response
      */
     #[Route('/{id}/delete', name: 'app_task_delete', requirements: ['id' => '[1-9]\d*'], methods: ['GET', 'POST'])]
-    public function delete(Request $request, Task $task, TaskRepository $taskRepository): Response
+    public function delete(Request $request, Task $task): Response
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
@@ -130,12 +145,12 @@ class TaskController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             if ($form->isSubmitted() && $form->isValid()) {
-                $taskRepository->remove($task, true);
+                $this->taskService->remove($task, true);
 
                 return $this->redirectToRoute('app_task_index');
             }
 
-            $taskRepository->remove($task, true);
+            $this->taskService->remove($task, true);
 
             return $this->redirectToRoute('app_task_index');
         }
