@@ -32,7 +32,7 @@ class UserController extends AbstractController
      * @return Response
      */
     #[Route('/change_password', name: 'app_user_edit', methods: ['GET', 'POST'])]
-    public function change_password(
+    public function changePassword(
         Request $request,
         UserRepository $userRepository,
         UserPasswordHasherInterface $hasher,
