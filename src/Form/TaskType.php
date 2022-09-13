@@ -21,6 +21,9 @@ class TaskType extends AbstractType
 {
     /**
      * Building form of task.
+     *
+     * @param FormBuilderInterface $builder
+     * @param array                $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -35,6 +38,8 @@ class TaskType extends AbstractType
 
     /**
      * Configure options.
+     *
+     * @param OptionsResolver $resolver
      */
     public function configureOptions(OptionsResolver $resolver): void
     {

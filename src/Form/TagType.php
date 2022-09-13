@@ -21,6 +21,9 @@ class TagType extends AbstractType
 {
     /**
      * Building form of tag.
+     *
+     * @param FormBuilderInterface $builder
+     * @param array                $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -35,6 +38,8 @@ class TagType extends AbstractType
 
     /**
      * Configure options.
+     *
+     * @param OptionsResolver $resolver
      */
     public function configureOptions(OptionsResolver $resolver): void
     {

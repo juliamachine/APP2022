@@ -36,6 +36,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * Getter for ID.
+     *
+     * @return int|null
      */
     public function getId(): ?int
     {
@@ -44,6 +46,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * Getter for email.
+     *
+     * @return string|null
      */
     public function getEmail(): ?string
     {
@@ -52,6 +56,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * Setter for email.
+     *
+     * @param string $email
      *
      * @return $this
      */
@@ -67,6 +73,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      *
      * A visual identifier that represents this user.
      *
+     * @return string
+     *
      * @see UserInterface
      */
     public function getUserIdentifier(): string
@@ -77,6 +85,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * Getter for username.
      *
+     * @return string
+     *
      * @deprecated since Symfony 5.3, use getUserIdentifier instead
      */
     public function getUsername(): string
@@ -86,6 +96,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * Getter for roles.
+     *
+     * @return array
      *
      * @see UserInterface
      */
@@ -101,6 +113,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * Setter for roles.
      *
+     * @param array $roles
+     *
      * @return $this
      */
     public function setRoles(array $roles): self
@@ -113,6 +127,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * Getter for password.
      *
+     * @return string
+     *
      * @see PasswordAuthenticatedUserInterface
      */
     public function getPassword(): string
@@ -122,6 +138,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * Setter for password.
+     *
+     * @param string $password
      *
      * @return $this
      */
@@ -135,6 +153,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * Returning a salt is only needed, if you are not using a modern
      * hashing algorithm (e.g. bcrypt or sodium) in your security.yaml.
+     *
+     * @return string|null
      *
      * @see UserInterface
      */

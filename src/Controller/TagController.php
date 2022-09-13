@@ -31,6 +31,8 @@ class TagController extends AbstractController
 
     /**
      * Constructor.
+     *
+     * @param TagServiceInterface $tagService
      */
     public function __construct(TagServiceInterface $tagService)
     {
@@ -39,6 +41,10 @@ class TagController extends AbstractController
 
     /**
      * Index action.
+     *
+     * @param Request $request
+     *
+     * @return Response
      */
     #[Route('/', name: 'app_tag_index', methods: ['GET'])]
     public function index(Request $request): Response
@@ -52,6 +58,10 @@ class TagController extends AbstractController
 
     /**
      * New tag action.
+     *
+     * @param Request $request
+     *
+     * @return Response
      */
     #[Route('/new', name: 'app_tag_new', methods: ['GET', 'POST'])]
     public function new(Request $request): Response
@@ -78,6 +88,10 @@ class TagController extends AbstractController
 
     /**
      * Show tag action.
+     *
+     * @param Tag $tag
+     *
+     * @return Response
      */
     #[Route('/{id}', name: 'app_tag_show', methods: ['GET'])]
     public function show(Tag $tag): Response
@@ -89,6 +103,11 @@ class TagController extends AbstractController
 
     /**
      * Edit tag action.
+     *
+     * @param Request $request
+     * @param Tag     $tag
+     *
+     * @return Response
      */
     #[Route('/{id}/edit', name: 'app_tag_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Tag $tag): Response

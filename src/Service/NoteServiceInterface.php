@@ -25,6 +25,9 @@ interface NoteServiceInterface
 
     /**
      * Removes note.
+     *
+     * @param Note $entity
+     * @param bool $flush
      */
     public function remove(Note $entity, bool $flush = false): void;
 }

@@ -137,9 +137,11 @@ class Task
         $this->title = $title;
     }
 
-       /**
-        * Category.
-        */
+    /**
+     * Category.
+     *
+     * @return Category|null
+     */
        #[ORM\ManyToOne(targetEntity: Category::class)]
        #[ORM\JoinColumn(nullable: false)]
     public function getCategory(): ?Category
@@ -149,6 +151,8 @@ class Task
 
     /**
      * Setting category for Task.
+     *
+     * @param Category|null $category
      *
      * @return $this
      */
@@ -172,6 +176,8 @@ class Task
     /**
      * Adds tag(s) to task.
      *
+     * @param Tag $tag
+     *
      * @return $this
      */
     public function addTag(Tag $tag): self
@@ -185,6 +191,8 @@ class Task
 
     /**
      * Removes tag from task.
+     *
+     * @param Tag $tag
      *
      * @return $this
      */

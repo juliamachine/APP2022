@@ -19,6 +19,14 @@ use function Symfony\Component\Translation\t;
  */
 class CategoryType extends AbstractType
 {
+    /**
+     * Builder.
+     *
+     * @param FormBuilderInterface $builder
+     * @param array                $options
+     *
+     * @return void
+     */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
@@ -30,6 +38,8 @@ class CategoryType extends AbstractType
 
     /**
      * Building form of category.
+     *
+     * @param OptionsResolver $resolver
      */
     public function configureOptions(OptionsResolver $resolver): void
     {

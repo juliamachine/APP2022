@@ -34,6 +34,13 @@ class NoteService implements NoteServiceInterface
      */
     private EntityManagerInterface $entityManager;
 
+    /**
+     * Construct function.
+     *
+     * @param NoteRepository         $noteRepository
+     * @param PaginatorInterface     $paginator
+     * @param EntityManagerInterface $entityManager
+     */
     public function __construct(NoteRepository $noteRepository, PaginatorInterface $paginator, EntityManagerInterface $entityManager)
     {
         $this->noteRepository = $noteRepository;
@@ -59,6 +66,9 @@ class NoteService implements NoteServiceInterface
 
     /**
      * Removes note.
+     *
+     * @param Note $entity
+     * @param bool $flush
      */
     public function remove(Note $entity, bool $flush = false): void
     {

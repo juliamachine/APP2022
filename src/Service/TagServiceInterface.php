@@ -25,11 +25,17 @@ interface TagServiceInterface
 
     /**
      * Adds new tag.
+     *
+     * @param Tag  $entity
+     * @param bool $flush
      */
     public function add(Tag $entity, bool $flush = false): void;
 
     /**
      * Removes tag.
+     *
+     * @param Tag  $entity
+     * @param bool $flush
      */
     public function remove(Tag $entity, bool $flush = false): void;
 }

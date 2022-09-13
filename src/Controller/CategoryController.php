@@ -31,6 +31,8 @@ class CategoryController extends AbstractController
 
     /**
      * Constructor.
+     *
+     * @param CategoryServiceInterface $categoryService
      */
     public function __construct(CategoryServiceInterface $categoryService)
     {
@@ -39,6 +41,10 @@ class CategoryController extends AbstractController
 
     /**
      * Index function.
+     *
+     * @param Request $request
+     *
+     * @return Response
      */
     #[Route('/', name: 'app_category_index', methods: ['GET'])]
     public function index(Request $request): Response
@@ -54,6 +60,10 @@ class CategoryController extends AbstractController
 
     /**
      * Create new function.
+     *
+     * @param Request $request
+     *
+     * @return Response
      */
     #[Route('/new', name: 'app_category_new', methods: ['GET', 'POST'])]
     public function new(Request $request): Response
@@ -81,6 +91,10 @@ class CategoryController extends AbstractController
 
     /**
      * Show category action.
+     *
+     * @param Category $category
+     *
+     * @return Response
      */
     #[Route('/{id}', name: 'app_category_show', methods: ['GET'])]
     public function show(Category $category): Response
@@ -92,6 +106,11 @@ class CategoryController extends AbstractController
 
     /**
      * Edit category action.
+     *
+     * @param Request  $request
+     * @param Category $category
+     *
+     * @return Response
      */
     #[Route('/{id}/edit', name: 'app_category_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Category $category): Response

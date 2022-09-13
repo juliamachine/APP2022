@@ -48,6 +48,9 @@ class NoteRepository extends ServiceEntityRepository
 
     /**
      * Adds note.
+     *
+     * @param Note $entity
+     * @param bool $flush
      */
     public function add(Note $entity, bool $flush = false): void
     {
@@ -59,6 +62,9 @@ class NoteRepository extends ServiceEntityRepository
 
     /**
      * Removes note.
+     *
+     * @param Note $entity
+     * @param bool $flush
      */
     public function remove(Note $entity, bool $flush = false): void
     {

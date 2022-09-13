@@ -25,6 +25,9 @@ interface TaskServiceInterface
 
     /**
      * Removes task.
+     *
+     * @param Task $entity
+     * @param bool $flush
      */
     public function remove(Task $entity, bool $flush = false): void;
 }

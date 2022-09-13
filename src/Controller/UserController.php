@@ -24,6 +24,13 @@ class UserController extends AbstractController
 {
     /**
      * Change password function.
+     *
+     * @param Request                     $request
+     * @param UserRepository              $userRepository
+     * @param UserPasswordHasherInterface $hasher
+     * @param TranslatorInterface         $translator
+     *
+     * @return Response
      */
     #[Route('/change_password', name: 'app_user_edit', methods: ['GET', 'POST'])]
     public function changePassword(Request $request, UserRepository $userRepository, UserPasswordHasherInterface $hasher, TranslatorInterface $translator): Response

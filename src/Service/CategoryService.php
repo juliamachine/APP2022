@@ -33,6 +33,13 @@ class CategoryService implements CategoryServiceInterface
      */
     private EntityManagerInterface $entityManager;
 
+    /**
+     * Construct function.
+     *
+     * @param CategoryRepository     $categoryRepository
+     * @param PaginatorInterface     $paginator
+     * @param EntityManagerInterface $entityManager
+     */
     public function __construct(CategoryRepository $categoryRepository, PaginatorInterface $paginator, EntityManagerInterface $entityManager)
     {
         $this->categoryRepository = $categoryRepository;
@@ -58,6 +65,9 @@ class CategoryService implements CategoryServiceInterface
 
     /**
      * Adds a new category.
+     *
+     * @param Category $entity
+     * @param bool     $flush
      */
     public function add(Category $entity, bool $flush = false): void
     {
@@ -70,6 +80,9 @@ class CategoryService implements CategoryServiceInterface
 
     /**
      * Removes a category.
+     *
+     * @param Category $entity
+     * @param bool     $flush
      */
     public function remove(Category $entity, bool $flush = false): void
     {
