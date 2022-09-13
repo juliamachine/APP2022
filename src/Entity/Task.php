@@ -67,71 +67,71 @@ class Task
         $this->tags = new ArrayCollection();
     }
 
-       /**
-        * Getter for Id.
-        *
-        * @return int|null Id
-        */
+    /**
+     * Getter for Id.
+     *
+     * @return int|null Id
+     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
-       /**
-        * Getter for created at.
-        *
-        * @return DateTimeImmutable|null Created at
-        */
+    /**
+     * Getter for created at.
+     *
+     * @return DateTimeImmutable|null Created at
+     */
     public function getCreatedAt(): ?DateTimeImmutable
     {
         return $this->createdAt;
     }
 
-       /**
-        * Setter for created at.
-        *
-        * @param DateTimeImmutable|null $createdAt Created at
-        */
+    /**
+     * Setter for created at.
+     *
+     * @param DateTimeImmutable|null $createdAt Created at
+     */
     public function setCreatedAt(?DateTimeImmutable $createdAt): void
     {
         $this->createdAt = $createdAt;
     }
 
-       /**
-        * Getter for updated at.
-        *
-        * @return DateTimeImmutable|null Updated at
-        */
+    /**
+     * Getter for updated at.
+     *
+     * @return DateTimeImmutable|null Updated at
+     */
     public function getUpdatedAt(): ?DateTimeImmutable
     {
         return $this->updatedAt;
     }
 
-       /**
-        * Setter for updated at.
-        *
-        * @param DateTimeImmutable|null $updatedAt Updated at
-        */
+    /**
+     * Setter for updated at.
+     *
+     * @param DateTimeImmutable|null $updatedAt Updated at
+     */
     public function setUpdatedAt(?DateTimeImmutable $updatedAt): void
     {
         $this->updatedAt = $updatedAt;
     }
 
-       /**
-        * Getter for title.
-        *
-        * @return string|null Title
-        */
+    /**
+     * Getter for title.
+     *
+     * @return string|null Title
+     */
     public function getTitle(): ?string
     {
         return $this->title;
     }
 
-       /**
-        * Setter for title.
-        *
-        * @param string|null $title Title
-        */
+    /**
+     * Setter for title.
+     *
+     * @param string|null $title Title
+     */
     public function setTitle(?string $title): void
     {
         $this->title = $title;
@@ -147,11 +147,11 @@ class Task
         return $this->category;
     }
 
-       /**
-        * Setting category for Task.
-        *
-        * @return $this
-        */
+    /**
+     * Setting category for Task.
+     *
+     * @return $this
+     */
     public function setCategory(?Category $category): self
     {
         $this->category = $category;
@@ -159,21 +159,21 @@ class Task
         return $this;
     }
 
-       /**
-        * Getter for tags.
-        *
-        * @return Collection<int, Tag>
-        */
+    /**
+     * Getter for tags.
+     *
+     * @return Collection<int, Tag>
+     */
     public function getTags(): Collection
     {
         return $this->tags;
     }
 
-       /**
-        * Adds tag(s) to task.
-        *
-        * @return $this
-        */
+    /**
+     * Adds tag(s) to task.
+     *
+     * @return $this
+     */
     public function addTag(Tag $tag): self
     {
         if (!$this->tags->contains($tag)) {
@@ -183,11 +183,11 @@ class Task
         return $this;
     }
 
-       /**
-        * Removes tag from task.
-        *
-        * @return $this
-        */
+    /**
+     * Removes tag from task.
+     *
+     * @return $this
+     */
     public function removeTag(Tag $tag): self
     {
         $this->tags->removeElement($tag);
@@ -195,11 +195,11 @@ class Task
         return $this;
     }
 
-       /**
-        * Returns the string content that is directly in the element.
-        *
-        * @return string
-        */
+    /**
+     * Returns the string content that is directly in the element.
+     *
+     * @return string
+     */
     public function __toString()
     {
         return (string) $this->title;
