@@ -36,8 +36,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * Getter for ID.
-     *
-     * @return int|null
      */
     public function getId(): ?int
     {
@@ -46,8 +44,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * Getter for email.
-     *
-     * @return string|null
      */
     public function getEmail(): ?string
     {
@@ -56,8 +52,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * Setter for email.
-     *
-     * @param string $email
      *
      * @return $this
      */
@@ -107,8 +101,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * Setter for roles.
      *
-     * @param array $roles
-     *
      * @return $this
      */
     public function setRoles(array $roles): self
@@ -131,8 +123,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * Setter for password.
      *
-     * @param string $password
-     *
      * @return $this
      */
     public function setPassword(string $password): self
@@ -154,6 +144,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
+     * Erase Credentials.
+     *
+     * @return void
+     *
      * @see UserInterface
      */
     public function eraseCredentials()

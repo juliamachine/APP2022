@@ -20,8 +20,6 @@ class UserFixtures extends Fixture
 
     /**
      * Constructor.
-     *
-     * @param UserPasswordHasherInterface $hasher
      */
     public function __construct(UserPasswordHasherInterface $hasher)
     {
@@ -30,16 +28,12 @@ class UserFixtures extends Fixture
 
     /**
      * Load function.
-     *
-     * @param ObjectManager $manager
-     *
-     * @return void
      */
     public function load(ObjectManager $manager): void
     {
         $user = new User();
-        $user->setEmail("admin@example.com");
-        $user->setPassword($this->hasher->hashPassword($user, "password"));
+        $user->setEmail('admin@example.com');
+        $user->setPassword($this->hasher->hashPassword($user, 'password'));
 
         $manager->persist($user);
         $manager->flush();

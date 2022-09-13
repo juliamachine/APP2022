@@ -15,7 +15,7 @@ use Knp\Component\Pager\PaginatorInterface;
 /**
  * Class NoteService.
  */
-class NoteService
+class NoteService implements NoteServiceInterface
 {
     /**
      * Note repository.
@@ -32,18 +32,10 @@ class NoteService
      * @param NoteRepository     $noteRepository Note repository
      * @param PaginatorInterface $paginator      Paginator
      */
-
-    /**
-     *Constructor.
-     *
-     * @var EntityManagerInterface
-     */
     private EntityManagerInterface $entityManager;
-    public function __construct(
-        NoteRepository $noteRepository,
-        PaginatorInterface $paginator,
-        EntityManagerInterface $entityManager
-    ) {
+
+    public function __construct(NoteRepository $noteRepository, PaginatorInterface $paginator, EntityManagerInterface $entityManager)
+    {
         $this->noteRepository = $noteRepository;
         $this->paginator = $paginator;
         $this->entityManager = $entityManager;
@@ -67,10 +59,6 @@ class NoteService
 
     /**
      * Removes note.
-     *
-     * @param Note $entity
-     * @param bool $flush
-     * @return void
      */
     public function remove(Note $entity, bool $flush = false): void
     {

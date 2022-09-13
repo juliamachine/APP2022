@@ -12,7 +12,7 @@ use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * Class NoteRepository
+ * Class NoteRepository.
  *
  * @method Note|null find($id, $lockMode = null, $lockVersion = null)
  * @method Note|null findOneBy(array $criteria, array $orderBy = null)
@@ -35,6 +35,7 @@ class NoteRepository extends ServiceEntityRepository
      * @constant int
      */
     public const PAGINATOR_ITEMS_PER_PAGE = 10;
+
     /**
      * Constructor.
      *
@@ -47,11 +48,6 @@ class NoteRepository extends ServiceEntityRepository
 
     /**
      * Adds note.
-     *
-     * @param Note $entity
-     * @param bool $flush
-     *
-     * @return void
      */
     public function add(Note $entity, bool $flush = false): void
     {
@@ -63,11 +59,6 @@ class NoteRepository extends ServiceEntityRepository
 
     /**
      * Removes note.
-     *
-     * @param Note $entity
-     * @param bool $flush
-     *
-     * @return void
      */
     public function remove(Note $entity, bool $flush = false): void
     {

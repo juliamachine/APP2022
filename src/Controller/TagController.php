@@ -8,14 +8,13 @@ namespace App\Controller;
 
 use App\Entity\Tag;
 use App\Form\TagType;
-use App\Repository\TagRepository;
 use App\Service\TagService;
-use Knp\Component\Pager\PaginatorInterface;
+use App\Service\TagServiceInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Form\Extension\Core\Type\FormType;
 
 /**
  * TagController class.
@@ -28,24 +27,18 @@ class TagController extends AbstractController
      *
      * @param TagService $tagService
      */
-    private TagService $tagService;
+    private TagServiceInterface $tagService;
 
     /**
      * Constructor.
-     *
-     * @param TagService $tagService
      */
-    public function __construct(TagService $tagService)
+    public function __construct(TagServiceInterface $tagService)
     {
         $this->tagService = $tagService;
     }
 
     /**
      * Index action.
-     *
-     * @param Request $request
-     *
-     * @return Response
      */
     #[Route('/', name: 'app_tag_index', methods: ['GET'])]
     public function index(Request $request): Response
@@ -59,10 +52,6 @@ class TagController extends AbstractController
 
     /**
      * New tag action.
-     *
-     * @param Request $request
-     *
-     * @return Response
      */
     #[Route('/new', name: 'app_tag_new', methods: ['GET', 'POST'])]
     public function new(Request $request): Response
@@ -89,10 +78,6 @@ class TagController extends AbstractController
 
     /**
      * Show tag action.
-     *
-     * @param Tag $tag
-     *
-     * @return Response
      */
     #[Route('/{id}', name: 'app_tag_show', methods: ['GET'])]
     public function show(Tag $tag): Response
@@ -104,11 +89,6 @@ class TagController extends AbstractController
 
     /**
      * Edit tag action.
-     *
-     * @param Request $request
-     * @param Tag $tag
-     *
-     * @return Response
      */
     #[Route('/{id}/edit', name: 'app_tag_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Tag $tag): Response
@@ -134,8 +114,8 @@ class TagController extends AbstractController
     /**
      * Delete action.
      *
-     * @param Request  $request  HTTP request
-     * @param Tag $tag Tag entity
+     * @param Request $request HTTP request
+     * @param Tag     $tag     Tag entity
      *
      * @return Response HTTP response
      */

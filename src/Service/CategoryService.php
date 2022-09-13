@@ -15,7 +15,7 @@ use Knp\Component\Pager\PaginatorInterface;
 /**
  * Class CategoryService.
  */
-class CategoryService
+class CategoryService implements CategoryServiceInterface
 {
     /**
      * Category repository.
@@ -28,15 +28,13 @@ class CategoryService
     /**
      * Constructor.
      *
-     * @param CategoryRepository     $categoryRepository Category repository
-     * @param PaginatorInterface $paginator      Paginator
+     * @param CategoryRepository $categoryRepository Category repository
+     * @param PaginatorInterface $paginator          Paginator
      */
     private EntityManagerInterface $entityManager;
-    public function __construct(
-        CategoryRepository $categoryRepository,
-        PaginatorInterface $paginator,
-        EntityManagerInterface $entityManager
-    ) {
+
+    public function __construct(CategoryRepository $categoryRepository, PaginatorInterface $paginator, EntityManagerInterface $entityManager)
+    {
         $this->categoryRepository = $categoryRepository;
         $this->paginator = $paginator;
         $this->entityManager = $entityManager;
@@ -60,10 +58,6 @@ class CategoryService
 
     /**
      * Adds a new category.
-     *
-     * @param Category $entity
-     * @param bool $flush
-     * @return void
      */
     public function add(Category $entity, bool $flush = false): void
     {
@@ -76,10 +70,6 @@ class CategoryService
 
     /**
      * Removes a category.
-     *
-     * @param Category $entity
-     * @param bool $flush
-     * @return void
      */
     public function remove(Category $entity, bool $flush = false): void
     {

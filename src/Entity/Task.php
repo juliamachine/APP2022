@@ -25,36 +25,28 @@ class Task
 {
     /**
      * Primary key.
-     *
-     * @var int|null
      */
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
     private ?int $id = null;
     /**
-         * Created at.
-         *
-         * @var DateTimeImmutable|null
-         *
-         * @psalm-suppress PropertyNotSetInConstructor
-         */
+     * Created at.
+     *
+     * @psalm-suppress PropertyNotSetInConstructor
+     */
     #[ORM\Column(type: 'datetime_immutable')]
     private ?DateTimeImmutable $createdAt;
     /**
-         * Updated at.
-         *
-         * @var DateTimeImmutable|null
-         *
-         * @psalm-suppress PropertyNotSetInConstructor
-         */
+     * Updated at.
+     *
+     * @psalm-suppress PropertyNotSetInConstructor
+     */
     #[ORM\Column(type: 'datetime_immutable')]
     private ?DateTimeImmutable $updatedAt;
     /**
-         * Title.
-         *
-         * @var string|null
-         */
+     * Title.
+     */
     #[ORM\Column(length: 255)]
     #[Assert\Type('string')]
     #[Assert\NotBlank]
@@ -65,126 +57,123 @@ class Task
     private ?Category $category = null;
     #[ORM\ManyToMany(targetEntity: Tag::class, inversedBy: 'tasks')]
     private Collection $tags;
+
     /**
-         * Constructs task.
-         */
-    #[Pure] public function __construct()
+     * Constructs task.
+     */
+    #[Pure]
+    public function __construct()
     {
         $this->tags = new ArrayCollection();
     }
 
-    /**
-     * Getter for Id.
-     *
-     * @return int|null Id
-     */
+       /**
+        * Getter for Id.
+        *
+        * @return int|null Id
+        */
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    /**
-     * Getter for created at.
-     *
-     * @return DateTimeImmutable|null Created at
-     */
+       /**
+        * Getter for created at.
+        *
+        * @return DateTimeImmutable|null Created at
+        */
     public function getCreatedAt(): ?DateTimeImmutable
     {
         return $this->createdAt;
     }
 
-    /**
-     * Setter for created at.
-     *
-     * @param DateTimeImmutable|null $createdAt Created at
-     */
+       /**
+        * Setter for created at.
+        *
+        * @param DateTimeImmutable|null $createdAt Created at
+        */
     public function setCreatedAt(?DateTimeImmutable $createdAt): void
     {
         $this->createdAt = $createdAt;
     }
 
-    /**
-     * Getter for updated at.
-     *
-     * @return DateTimeImmutable|null Updated at
-     */
+       /**
+        * Getter for updated at.
+        *
+        * @return DateTimeImmutable|null Updated at
+        */
     public function getUpdatedAt(): ?DateTimeImmutable
     {
         return $this->updatedAt;
     }
 
-    /**
-     * Setter for updated at.
-     *
-     * @param DateTimeImmutable|null $updatedAt Updated at
-     */
+       /**
+        * Setter for updated at.
+        *
+        * @param DateTimeImmutable|null $updatedAt Updated at
+        */
     public function setUpdatedAt(?DateTimeImmutable $updatedAt): void
     {
         $this->updatedAt = $updatedAt;
     }
 
-    /**
-     * Getter for title.
-     *
-     * @return string|null Title
-     */
+       /**
+        * Getter for title.
+        *
+        * @return string|null Title
+        */
     public function getTitle(): ?string
     {
         return $this->title;
     }
 
-    /**
-     * Setter for title.
-     *
-     * @param string|null $title Title
-     */
+       /**
+        * Setter for title.
+        *
+        * @param string|null $title Title
+        */
     public function setTitle(?string $title): void
     {
         $this->title = $title;
     }
 
-    /**
-     * Category.
-     *
-     * @return Category|null
-     */
-    #[ORM\ManyToOne(targetEntity: Category::class)]
-    #[ORM\JoinColumn(nullable: false)]
+       /**
+        * Category.
+        */
+       #[ORM\ManyToOne(targetEntity: Category::class)]
+       #[ORM\JoinColumn(nullable: false)]
     public function getCategory(): ?Category
     {
         return $this->category;
     }
 
-    /**
-     * Setting category for Task.
-     *
-     * @param Category|null $category
-     *
-     * @return $this
-     */
+       /**
+        * Setting category for Task.
+        *
+        * @return $this
+        */
     public function setCategory(?Category $category): self
     {
         $this->category = $category;
+
         return $this;
     }
 
-    /**
-     * Getter for tags.
-     *
-     * @return Collection<int, Tag>
-     */
+       /**
+        * Getter for tags.
+        *
+        * @return Collection<int, Tag>
+        */
     public function getTags(): Collection
     {
         return $this->tags;
     }
 
-    /**
-     * Adds tag(s) to task.
-     *
-     * @param Tag $tag
-     *
-     * @return $this
-     */
+       /**
+        * Adds tag(s) to task.
+        *
+        * @return $this
+        */
     public function addTag(Tag $tag): self
     {
         if (!$this->tags->contains($tag)) {
@@ -194,13 +183,11 @@ class Task
         return $this;
     }
 
-    /**
-     * Removes tag from task.
-     *
-     * @param Tag $tag
-     *
-     * @return $this
-     */
+       /**
+        * Removes tag from task.
+        *
+        * @return $this
+        */
     public function removeTag(Tag $tag): self
     {
         $this->tags->removeElement($tag);
@@ -208,11 +195,11 @@ class Task
         return $this;
     }
 
-    /**
-     * Returns the string content that is directly in the element.
-     *
-     * @return string
-     */
+       /**
+        * Returns the string content that is directly in the element.
+        *
+        * @return string
+        */
     public function __toString()
     {
         return (string) $this->title;

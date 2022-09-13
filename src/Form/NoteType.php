@@ -22,20 +22,15 @@ class NoteType extends AbstractType
 {
     /**
      * Building form of note.
-     *
-     * @param FormBuilderInterface $builder
-     * @param array $options
-     *
-     * @return void
      */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('title', TextType::class, [
-                'label' => t('label.title')
+                'label' => t('label.title'),
             ])
             ->add('content', TextareaType::class, [
-                'label' => t('label.content')
+                'label' => t('label.content'),
             ])
             ->add('category')
             ->add('tags')
@@ -44,9 +39,6 @@ class NoteType extends AbstractType
 
     /**
      * Configure Options.
-     * @param OptionsResolver $resolver
-     *
-     * @return void
      */
     public function configureOptions(OptionsResolver $resolver): void
     {

@@ -12,8 +12,8 @@ use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
@@ -24,20 +24,10 @@ class UserController extends AbstractController
 {
     /**
      * Change password function.
-     *
-     * @param Request $request
-     * @param UserRepository $userRepository
-     * @param UserPasswordHasherInterface $hasher
-     * @param TranslatorInterface $translator
-     * @return Response
      */
     #[Route('/change_password', name: 'app_user_edit', methods: ['GET', 'POST'])]
-    public function changePassword(
-        Request $request,
-        UserRepository $userRepository,
-        UserPasswordHasherInterface $hasher,
-        TranslatorInterface $translator
-    ): Response {
+    public function changePassword(Request $request, UserRepository $userRepository, UserPasswordHasherInterface $hasher, TranslatorInterface $translator): Response
+    {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
         $user = new User();
@@ -45,10 +35,10 @@ class UserController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $current_user = $this->getUser();
-            $password = $hasher->hashPassword($current_user, $form->get('password')->getData());
-            $current_user->setPassword($password);
-            $userRepository->add($current_user, true);
+            $currentUser = $this->getUser();
+            $password = $hasher->hashPassword($currentUser, $form->get('password')->getData());
+            $currentUser->setPassword($password);
+            $userRepository->add($currentUser, true);
 
             return $this->renderForm('user/change_password.html.twig', [
                 'form' => $form,

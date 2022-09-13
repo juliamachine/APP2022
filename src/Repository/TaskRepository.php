@@ -35,6 +35,7 @@ class TaskRepository extends ServiceEntityRepository
      * @constant int
      */
     public const PAGINATOR_ITEMS_PER_PAGE = 10;
+
     /**
      * Constructor.
      *
@@ -47,11 +48,6 @@ class TaskRepository extends ServiceEntityRepository
 
     /**
      * Adds task.
-     *
-     * @param Task $entity
-     * @param bool $flush
-     *
-     * @return void
      */
     public function add(Task $entity, bool $flush = false): void
     {
@@ -63,11 +59,6 @@ class TaskRepository extends ServiceEntityRepository
 
     /**
      * Removes task.
-     *
-     * @param Task $entity
-     * @param bool $flush
-     *
-     * @return void
      */
     public function remove(Task $entity, bool $flush = false): void
     {

@@ -9,6 +9,7 @@ namespace App\Controller;
 use App\Entity\Category;
 use App\Form\CategoryType;
 use App\Service\CategoryService;
+use App\Service\CategoryServiceInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\HttpFoundation\Request;
@@ -26,24 +27,18 @@ class CategoryController extends AbstractController
      *
      * @param CategoryService $categoryService
      */
-    private CategoryService $categoryService;
+    private CategoryServiceInterface $categoryService;
 
     /**
      * Constructor.
-     *
-     * @param CategoryService $categoryService
      */
-    public function __construct(CategoryService $categoryService)
+    public function __construct(CategoryServiceInterface $categoryService)
     {
         $this->categoryService = $categoryService;
     }
 
     /**
      * Index function.
-     *
-     * @param Request $request
-     *
-     * @return Response
      */
     #[Route('/', name: 'app_category_index', methods: ['GET'])]
     public function index(Request $request): Response
@@ -59,10 +54,6 @@ class CategoryController extends AbstractController
 
     /**
      * Create new function.
-     *
-     * @param Request $request
-     *
-     * @return Response
      */
     #[Route('/new', name: 'app_category_new', methods: ['GET', 'POST'])]
     public function new(Request $request): Response
@@ -90,10 +81,6 @@ class CategoryController extends AbstractController
 
     /**
      * Show category action.
-     *
-     * @param Category $category
-     *
-     * @return Response
      */
     #[Route('/{id}', name: 'app_category_show', methods: ['GET'])]
     public function show(Category $category): Response
@@ -105,11 +92,6 @@ class CategoryController extends AbstractController
 
     /**
      * Edit category action.
-     *
-     * @param Request $request
-     * @param Category $category
-     *
-     * @return Response
      */
     #[Route('/{id}/edit', name: 'app_category_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Category $category): Response
@@ -154,6 +136,7 @@ class CategoryController extends AbstractController
             if ($form->isSubmitted() && $form->isValid()) {
                 if ($category->getNotes()->count() > 0 || $category->getTasks()->count() > 0) {
                     $this->addFlash('error', 'Cannot delete category with notes or tasks.');
+
                     return $this->render(
                         'category/delete.html.twig',
                         [

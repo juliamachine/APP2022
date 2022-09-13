@@ -21,17 +21,12 @@ class TagType extends AbstractType
 {
     /**
      * Building form of tag.
-     *
-     * @param FormBuilderInterface $builder
-     * @param array $options
-     *
-     * @return void
      */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('title', TextType::class, [
-                'label' => t('label.title')
+                'label' => t('label.title'),
             ])
             ->add('tasks')
             ->add('notes')
@@ -40,10 +35,6 @@ class TagType extends AbstractType
 
     /**
      * Configure options.
-     *
-     * @param OptionsResolver $resolver
-     *
-     * @return void
      */
     public function configureOptions(OptionsResolver $resolver): void
     {

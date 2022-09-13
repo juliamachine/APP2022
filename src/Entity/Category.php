@@ -28,32 +28,24 @@ class Category
 {
     /**
      * Primary key.
-     *
-     * @var int|null
      */
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
     private ?int $id = null;
     /**
-         * Created at.
-         *
-         * @var DateTimeImmutable|null
-         */
+     * Created at.
+     */
     #[ORM\Column(type: 'datetime_immutable')]
     private ?DateTimeImmutable $createdAt;
     /**
-         * Updated at.
-         *
-         * @var DateTimeImmutable|null
-         */
+     * Updated at.
+     */
     #[ORM\Column(type: 'datetime_immutable')]
     private ?DateTimeImmutable $updatedAt;
     /**
-         * Title.
-         *
-         * @var string|null
-         */
+     * Title.
+     */
     #[ORM\Column(length: 255)]
     #[Assert\Type('string')]
     #[Assert\NotBlank]
@@ -67,105 +59,106 @@ class Category
     /**
      * Constructor.
      */
-    #[Pure] public function __construct()
+    #[Pure]
+    public function __construct()
     {
         $this->notes = new ArrayCollection();
         $this->tasks = new ArrayCollection();
     }
 
-    /**
-     * Getter for Id.
-     *
-     * @return int|null Id
-     */
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
+       /**
+        * Getter for Id.
+        *
+        * @return int|null Id
+        */
+       public function getId(): ?int
+       {
+           return $this->id;
+       }
 
-    /**
-     * Getter for created at.
-     *
-     * @return DateTimeImmutable|null Created at
-     */
-    public function getCreatedAt(): ?DateTimeImmutable
-    {
-        return $this->createdAt;
-    }
+       /**
+        * Getter for created at.
+        *
+        * @return DateTimeImmutable|null Created at
+        */
+       public function getCreatedAt(): ?DateTimeImmutable
+       {
+           return $this->createdAt;
+       }
 
-    /**
-     * Setter for created at.
-     *
-     * @param DateTimeImmutable|null $createdAt Created at
-     */
-    public function setCreatedAt(?DateTimeImmutable $createdAt): void
-    {
-        $this->createdAt = $createdAt;
-    }
+       /**
+        * Setter for created at.
+        *
+        * @param DateTimeImmutable|null $createdAt Created at
+        */
+       public function setCreatedAt(?DateTimeImmutable $createdAt): void
+       {
+           $this->createdAt = $createdAt;
+       }
 
-    /**
-     * Getter for updated at.
-     *
-     * @return DateTimeImmutable|null Updated at
-     */
-    public function getUpdatedAt(): ?DateTimeImmutable
-    {
-        return $this->updatedAt;
-    }
+       /**
+        * Getter for updated at.
+        *
+        * @return DateTimeImmutable|null Updated at
+        */
+       public function getUpdatedAt(): ?DateTimeImmutable
+       {
+           return $this->updatedAt;
+       }
 
-    /**
-     * Setter for updated at.
-     *
-     * @param DateTimeImmutable|null $updatedAt Updated at
-     */
-    public function setUpdatedAt(?DateTimeImmutable $updatedAt): void
-    {
-        $this->updatedAt = $updatedAt;
-    }
+       /**
+        * Setter for updated at.
+        *
+        * @param DateTimeImmutable|null $updatedAt Updated at
+        */
+       public function setUpdatedAt(?DateTimeImmutable $updatedAt): void
+       {
+           $this->updatedAt = $updatedAt;
+       }
 
-    /**
-     * Getter for title.
-     *
-     * @return string|null Title
-     */
-    public function getTitle(): ?string
-    {
-        return $this->title;
-    }
+       /**
+        * Getter for title.
+        *
+        * @return string|null Title
+        */
+       public function getTitle(): ?string
+       {
+           return $this->title;
+       }
 
-    /**
-     * Setter for title.
-     *
-     * @param string|null $title Title
-     */
-    public function setTitle(?string $title): void
-    {
-        $this->title = $title;
-    }
+       /**
+        * Setter for title.
+        *
+        * @param string|null $title Title
+        */
+       public function setTitle(?string $title): void
+       {
+           $this->title = $title;
+       }
 
-    /**
-     * ToString function.
-     *
-     * @return string
-     */
-    public function __toString()
-    {
-        return (string) $this->title;
-    }
+       /**
+        * ToString function.
+        *
+        * @return string
+        */
+       public function __toString()
+       {
+           return (string) $this->title;
+       }
 
-    /**
-     * @return Collection<int, Note>
-     */
-    public function getNotes(): Collection
-    {
-        return $this->notes;
-    }
+       /**
+        * @return Collection<int, Note>
+        */
+       public function getNotes(): Collection
+       {
+           return $this->notes;
+       }
 
-    /**
-     * @return Collection<int, Note>
-     */
-    public function getTasks(): Collection
-    {
-        return $this->tasks;
-    }
+       /**
+        * @return Collection<int, Note>
+        */
+       public function getTasks(): Collection
+       {
+           return $this->tasks;
+       }
 }

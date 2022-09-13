@@ -21,26 +21,16 @@ class UserType extends AbstractType
 {
     /**
      * Building form of user.
-     *
-     * @param FormBuilderInterface $builder
-     * @param array $options
-     *
-     * @return void
      */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('password', PasswordType::class, [
-                'label' => t('label.password')
+                'label' => t('label.password'),
             ])
         ;
     }
 
-    /**
-     * @param OptionsResolver $resolver
-     *
-     * @return void
-     */
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([

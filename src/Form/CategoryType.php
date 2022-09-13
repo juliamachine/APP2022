@@ -19,27 +19,17 @@ use function Symfony\Component\Translation\t;
  */
 class CategoryType extends AbstractType
 {
-    /**
-     * @param FormBuilderInterface $builder
-     * @param array $options
-     *
-     * @return void
-     */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('title', TextType::class, [
-                'label' => t('label.title')
+                'label' => t('label.title'),
             ])
         ;
     }
 
     /**
      * Building form of category.
-     *
-     * @param OptionsResolver $resolver
-     *
-     * @return void
      */
     public function configureOptions(OptionsResolver $resolver): void
     {

@@ -7,10 +7,7 @@
 namespace App\DataFixtures;
 
 use App\Entity\Category;
-use App\Entity\Enum\NoteStatus;
-use App\Entity\Tag;
 use App\Entity\Note;
-use App\Entity\User;
 use DateTimeImmutable;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 

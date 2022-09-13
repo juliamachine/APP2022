@@ -1,4 +1,4 @@
-<?php
+<?php /** @noinspection PhpCSValidationInspection */
 
 declare(strict_types=1);
 

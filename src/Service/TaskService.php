@@ -8,12 +8,10 @@ namespace App\Service;
 
 use App\Entity\Task;
 use App\Repository\TaskRepository;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\ORM\QueryBuilder;
-use Doctrine\Persistence\ManagerRegistry;
-use Doctrine\ORM\EntityManagerInterface;
 
 /**
  * Class TaskService.
@@ -22,7 +20,7 @@ use Doctrine\ORM\EntityManagerInterface;
  *
  * @psalm-suppress LessSpecificImplementedReturnType
  */
-class TaskService
+class TaskService implements TaskServiceInterface
 {
     /**
      * Task repository.
@@ -41,11 +39,9 @@ class TaskService
      * @param PaginatorInterface $paginator      Paginator
      */
     private EntityManagerInterface $entityManager;
-    public function __construct(
-        TaskRepository $taskRepository,
-        PaginatorInterface $paginator,
-        EntityManagerInterface $entityManager
-    ) {
+
+    public function __construct(TaskRepository $taskRepository, PaginatorInterface $paginator, EntityManagerInterface $entityManager)
+    {
         $this->taskRepository = $taskRepository;
         $this->paginator = $paginator;
         $this->entityManager = $entityManager;
@@ -69,10 +65,6 @@ class TaskService
 
     /**
      * Removes task.
-     *
-     * @param Task $entity
-     * @param bool $flush
-     * @return void
      */
     public function remove(Task $entity, bool $flush = false): void
     {

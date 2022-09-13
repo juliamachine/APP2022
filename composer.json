@@ -29,6 +29,7 @@
         "symfony/mime": "5.4.*",
         "symfony/monolog-bundle": "^3.1",
         "symfony/notifier": "5.4.*",
+        "symfony/polyfill-php72": "^1.26",
         "symfony/process": "5.4.*",
         "symfony/property-access": "5.4.*",
         "symfony/property-info": "5.4.*",
@@ -48,8 +49,9 @@
     },
     "require-dev": {
         "doctrine/doctrine-fixtures-bundle": "^3.4",
+        "escapestudios/symfony2-coding-standard": "^3.13",
         "fakerphp/faker": "^1.20",
-        "friendsofphp/php-cs-fixer": "^3.8",
+        "friendsofphp/php-cs-fixer": "^3.11",
         "hautelook/alice-bundle": "^2.11",
         "phpstan/phpstan": "^1.8",
         "phpunit/phpunit": "^9.5",

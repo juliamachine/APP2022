@@ -15,7 +15,7 @@ use Knp\Component\Pager\PaginatorInterface;
 /**
  * Class TagService.
  */
-class TagService
+class TagService implements TagServiceInterface
 {
     /**
      * Tag repository.
@@ -28,15 +28,13 @@ class TagService
     /**
      * Constructor.
      *
-     * @param TagRepository     $tagRepository Tag repository
-     * @param PaginatorInterface $paginator      Paginator
+     * @param TagRepository      $tagRepository Tag repository
+     * @param PaginatorInterface $paginator     Paginator
      */
     private EntityManagerInterface $entityManager;
-    public function __construct(
-        TagRepository $tagRepository,
-        PaginatorInterface $paginator,
-        EntityManagerInterface $entityManager
-    ) {
+
+    public function __construct(TagRepository $tagRepository, PaginatorInterface $paginator, EntityManagerInterface $entityManager)
+    {
         $this->tagRepository = $tagRepository;
         $this->paginator = $paginator;
         $this->entityManager = $entityManager;
@@ -60,10 +58,6 @@ class TagService
 
     /**
      * Adds new tag.
-     *
-     * @param Tag $entity
-     * @param bool $flush
-     * @return void
      */
     public function add(Tag $entity, bool $flush = false): void
     {
@@ -76,10 +70,6 @@ class TagService
 
     /**
      * Removes tag.
-     *
-     * @param Tag $entity
-     * @param bool $flush
-     * @return void
      */
     public function remove(Tag $entity, bool $flush = false): void
     {
