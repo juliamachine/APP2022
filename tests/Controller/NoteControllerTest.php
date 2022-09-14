@@ -1,5 +1,9 @@
 <?php
 
+/**
+ *Note controller test.
+ */
+
 namespace App\Test\Controller;
 
 use App\Entity\Note;
@@ -10,6 +14,9 @@ use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Hautelook\AliceBundle\PhpUnit\ReloadDatabaseTrait;
 
+/**
+ * Note controller test.
+ */
 class NoteControllerTest extends WebTestCase
 {
     use ReloadDatabaseTrait;
@@ -20,6 +27,14 @@ class NoteControllerTest extends WebTestCase
     private string $path = '/note/';
     private User $user;
 
+    /**
+     * Set up function.
+     *
+     * @return void
+     *
+     * @throws \Psr\Container\ContainerExceptionInterface
+     * @throws \Psr\Container\NotFoundExceptionInterface
+     */
     protected function setUp(): void
     {
         $this->client = static::createClient();
@@ -40,6 +55,11 @@ class NoteControllerTest extends WebTestCase
         $this->user = $user;
     }
 
+    /**
+     * Test index function.
+     *
+     * @return void
+     */
     public function testIndex(): void
     {
         $this->client->request('GET', $this->path);
@@ -59,6 +79,11 @@ class NoteControllerTest extends WebTestCase
         self::assertSelectorTextContains("table", "My Note");
     }
 
+    /**
+     * Test new function.
+     *
+     * @return void
+     */
     public function testNew(): void
     {
         $this->client->loginUser($this->user);
@@ -80,6 +105,11 @@ class NoteControllerTest extends WebTestCase
         self::assertSame($originalNumObjectsInRepository + 1, count($this->repository->findAll()));
     }
 
+    /**
+     * Test show function.
+     *
+     * @return void
+     */
     public function testShow(): void
     {
         $fixture = new Note();
@@ -97,6 +127,11 @@ class NoteControllerTest extends WebTestCase
         self::assertSelectorTextContains("table", "My Note");
     }
 
+    /**
+     * Test edit function.
+     *
+     * @return void
+     */
     public function testEdit(): void
     {
         $this->client->loginUser($this->user);
@@ -126,6 +161,11 @@ class NoteControllerTest extends WebTestCase
         self::assertSame('Testing', $notes[0]->getTitle());
     }
 
+    /**
+     * Test delete function.
+     *
+     * @return void
+     */
     public function testDelete(): void
     {
         $this->client->loginUser($this->user);

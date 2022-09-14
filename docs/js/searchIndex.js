@@ -823,7 +823,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\Form\\CategoryType\u003A\u003AbuildForm\u0028\u0029",
             "name": "buildForm",
-            "summary": "",
+            "summary": "Builder.",
             "url": "classes/App-Form-CategoryType.html#method_buildForm"
         },                {
             "fqsen": "\\App\\Form\\CategoryType\u003A\u003AconfigureOptions\u0028\u0029",
@@ -888,12 +888,12 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\Form\\UserType\u003A\u003AconfigureOptions\u0028\u0029",
             "name": "configureOptions",
-            "summary": "",
+            "summary": "Configure\u0020options.",
             "url": "classes/App-Form-UserType.html#method_configureOptions"
         },                {
             "fqsen": "\\App\\Kernel",
             "name": "Kernel",
-            "summary": "",
+            "summary": "Class\u0020Kernel.",
             "url": "classes/App-Kernel.html"
         },                {
             "fqsen": "\\App\\Repository\\CategoryRepository",
@@ -1068,7 +1068,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\Service\\CategoryService\u003A\u003A__construct\u0028\u0029",
             "name": "__construct",
-            "summary": "",
+            "summary": "Construct\u0020function.",
             "url": "classes/App-Service-CategoryService.html#method___construct"
         },                {
             "fqsen": "\\App\\Service\\CategoryService\u003A\u003AgetPaginatedList\u0028\u0029",
@@ -1108,7 +1108,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\Service\\NoteService\u003A\u003A__construct\u0028\u0029",
             "name": "__construct",
-            "summary": "",
+            "summary": "Construct\u0020function.",
             "url": "classes/App-Service-NoteService.html#method___construct"
         },                {
             "fqsen": "\\App\\Service\\NoteService\u003A\u003AgetPaginatedList\u0028\u0029",
@@ -1143,7 +1143,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\Service\\TagService\u003A\u003A__construct\u0028\u0029",
             "name": "__construct",
-            "summary": "",
+            "summary": "Construct\u0020function.",
             "url": "classes/App-Service-TagService.html#method___construct"
         },                {
             "fqsen": "\\App\\Service\\TagService\u003A\u003AgetPaginatedList\u0028\u0029",
@@ -1183,7 +1183,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\Service\\TaskService\u003A\u003A__construct\u0028\u0029",
             "name": "__construct",
-            "summary": "",
+            "summary": "Construct\u0020function.",
             "url": "classes/App-Service-TaskService.html#method___construct"
         },                {
             "fqsen": "\\App\\Service\\TaskService\u003A\u003AgetPaginatedList\u0028\u0029",

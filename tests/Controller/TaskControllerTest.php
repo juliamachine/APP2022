@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * Task Controller Test
+ */
+
 namespace App\Test\Controller;
 
 use App\Entity\Task;
@@ -10,6 +14,9 @@ use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Hautelook\AliceBundle\PhpUnit\ReloadDatabaseTrait;
 
+/**
+ * TaskControllerTest class.
+ */
 class TaskControllerTest extends WebTestCase
 {
     use ReloadDatabaseTrait;
@@ -20,6 +27,15 @@ class TaskControllerTest extends WebTestCase
     private string $path = '/task/';
     private User $user;
 
+
+    /**
+     * Set up function.
+     *
+     * @return void
+     *
+     * @throws \Psr\Container\ContainerExceptionInterface
+     * @throws \Psr\Container\NotFoundExceptionInterface
+     */
     protected function setUp(): void
     {
         $this->client = static::createClient();
@@ -40,6 +56,12 @@ class TaskControllerTest extends WebTestCase
         $this->user = $user;
     }
 
+
+    /**
+     * Test Index function.
+     *
+     * @return void
+     */
     public function testIndex(): void
     {
         $this->client->request('GET', $this->path);
@@ -58,6 +80,12 @@ class TaskControllerTest extends WebTestCase
         self::assertSelectorTextContains("table", "My Task");
     }
 
+
+    /**
+     * Test new function.
+     *
+     * @return void
+     */
     public function testNew(): void
     {
         $this->client->loginUser($this->user);
@@ -78,6 +106,11 @@ class TaskControllerTest extends WebTestCase
         self::assertSame($originalNumObjectsInRepository + 1, count($this->repository->findAll()));
     }
 
+    /**
+     * Test show function.
+     *
+     * @return void
+     */
     public function testShow(): void
     {
         $fixture = new Task();
@@ -94,6 +127,12 @@ class TaskControllerTest extends WebTestCase
         self::assertSelectorTextContains("body", "My Task");
     }
 
+
+    /**
+     * Test edit function.
+     *
+     * @return void
+     */
     public function testEdit(): void
     {
         $this->client->loginUser($this->user);
@@ -121,6 +160,12 @@ class TaskControllerTest extends WebTestCase
         self::assertSame('Testing', $tasks[0]->getTitle());
     }
 
+
+    /**
+     * Test delete function.
+     *
+     * @return void
+     */
     public function testDelete(): void
     {
         $this->client->loginUser($this->user);

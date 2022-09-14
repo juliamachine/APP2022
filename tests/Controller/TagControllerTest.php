@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * Tag controller test.
+ */
+
 namespace App\Test\Controller;
 
 use App\Entity\Tag;
@@ -9,6 +13,9 @@ use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Hautelook\AliceBundle\PhpUnit\ReloadDatabaseTrait;
 
+/**
+ * Tag Controller test.
+ */
 class TagControllerTest extends WebTestCase
 {
     use ReloadDatabaseTrait;
@@ -18,6 +25,14 @@ class TagControllerTest extends WebTestCase
     private string $path = '/tag/';
     private User $user;
 
+    /**
+     * Set up function.
+     *
+     * @return void
+     *
+     * @throws \Psr\Container\ContainerExceptionInterface
+     * @throws \Psr\Container\NotFoundExceptionInterface
+     */
     protected function setUp(): void
     {
         $this->client = static::createClient();
@@ -31,6 +46,11 @@ class TagControllerTest extends WebTestCase
         $this->user = $user;
     }
 
+    /**
+     * Test index function.
+     *
+     * @return void
+     */
     public function testIndex(): void
     {
         $this->client->request('GET', $this->path);
@@ -48,6 +68,11 @@ class TagControllerTest extends WebTestCase
         self::assertSelectorTextContains("table", "My Tag");
     }
 
+    /**
+     * Test new function.
+     *
+     * @return void
+     */
     public function testNew(): void
     {
         $this->client->loginUser($this->user);
@@ -67,6 +92,11 @@ class TagControllerTest extends WebTestCase
         self::assertSame($originalNumObjectsInRepository + 1, count($this->repository->findAll()));
     }
 
+    /**
+     * Test show function.
+     *
+     * @return void
+     */
     public function testShow(): void
     {
         $fixture = new Tag();
@@ -82,6 +112,12 @@ class TagControllerTest extends WebTestCase
         self::assertSelectorTextContains("table", "My Tag");
     }
 
+
+    /**
+     * Test edit function.
+     *
+     * @return void
+     */
     public function testEdit(): void
     {
         $this->client->loginUser($this->user);
@@ -106,6 +142,11 @@ class TagControllerTest extends WebTestCase
         self::assertSame('My New Tag', $fixture[0]->getTitle());
     }
 
+    /**
+     * Test remove function.
+     *
+     * @return void
+     */
     public function testRemove(): void
     {
         $this->client->loginUser($this->user);
