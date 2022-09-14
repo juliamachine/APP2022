@@ -26,16 +26,16 @@ interface CategoryServiceInterface
     /**
      * Adds a new category.
      *
-     * @param Category $entity
-     * @param bool     $flush
+     * @param Category $entity Category entity
+     * @param bool     $flush  Flush function
      */
     public function add(Category $entity, bool $flush = false): void;
 
     /**
      * Removes a category.
      *
-     * @param Category $entity
-     * @param bool     $flush
+     * @param Category $entity Category entity
+     * @param bool     $flush  Flush function
      */
     public function remove(Category $entity, bool $flush = false): void;
 }

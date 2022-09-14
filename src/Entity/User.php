@@ -37,7 +37,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * Getter for ID.
      *
-     * @return int|null
+     * @return int|null returns ID
      */
     public function getId(): ?int
     {
@@ -47,7 +47,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * Getter for email.
      *
-     * @return string|null
+     * @return string|null returns string
      */
     public function getEmail(): ?string
     {
@@ -57,9 +57,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * Setter for email.
      *
-     * @param string $email
+     * @param string $email Setting email
      *
-     * @return $this
+     * @return $this returning itself
      */
     public function setEmail(string $email): self
     {
@@ -73,9 +73,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      *
      * A visual identifier that represents this user.
      *
-     * @return string
+     * @return string returns string
      *
-     * @see UserInterface
+     * @see UserInterface Gets user interface.
      */
     public function getUserIdentifier(): string
     {
@@ -85,7 +85,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * Getter for username.
      *
-     * @return string
+     * @return string returns string
      *
      * @deprecated since Symfony 5.3, use getUserIdentifier instead
      */
@@ -97,9 +97,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * Getter for roles.
      *
-     * @return array
+     * @return array returns array
      *
-     * @see UserInterface
+     * @see UserInterface Gets user interface.
      */
     public function getRoles(): array
     {
@@ -113,9 +113,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * Setter for roles.
      *
-     * @param array $roles
+     * @param array $roles setting roles
      *
-     * @return $this
+     * @return $this returns itself
      */
     public function setRoles(array $roles): self
     {
@@ -127,9 +127,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * Getter for password.
      *
-     * @return string
+     * @return string returns string
      *
-     * @see PasswordAuthenticatedUserInterface
+     * @see PasswordAuthenticatedUserInterface Authenticator for user interface.
      */
     public function getPassword(): string
     {
@@ -139,9 +139,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * Setter for password.
      *
-     * @param string $password
+     * @param string $password sets password
      *
-     * @return $this
+     * @return $this returns itself
      */
     public function setPassword(string $password): self
     {
@@ -154,9 +154,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * Returning a salt is only needed, if you are not using a modern
      * hashing algorithm (e.g. bcrypt or sodium) in your security.yaml.
      *
-     * @return string|null
+     * @return string|null returning string
      *
-     * @see UserInterface
+     * @see UserInterface Gets user interface.
      */
     public function getSalt(): ?string
     {
@@ -166,9 +166,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * Erase Credentials.
      *
-     * @return void
+     * @return void void
      *
-     * @see UserInterface
+     * @see UserInterface Gets user interface.
      */
     public function eraseCredentials()
     {

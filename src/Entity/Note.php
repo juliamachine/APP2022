@@ -77,11 +77,11 @@ class Note
         $this->tags = new ArrayCollection();
     }
 
-       /**
-        * Getter for Id.
-        *
-        * @return int|null Id
-        */
+    /**
+     * Getter for Id.
+     *
+     * @return int|null Id
+     */
     public function getId(): ?int
     {
         return $this->id;
@@ -90,7 +90,7 @@ class Note
     /**
      * Getter for title.
      *
-     * @return string|null
+     * @return string|null String
      */
     public function getTitle(): ?string
     {
@@ -102,7 +102,7 @@ class Note
      *
      * @param string $title Title
      *
-     * @return Note
+     * @return Note Note
      */
     public function setTitle(string $title): self
     {
@@ -114,20 +114,20 @@ class Note
     /**
      * Get content function.
      *
-     * @return string|null
+     * @return string|null String
      */
     public function getContent(): ?string
     {
         return $this->content;
     }
 
-       /**
-        * Setter for content.
-        *
-        * @param string $content
-        *
-        * @return $this
-        */
+    /**
+     * Setter for content.
+     *
+     * @param string $content Note content
+     *
+     * @return $this Returns itself
+     */
     public function setContent(string $content): self
     {
         $this->content = $content;
@@ -135,11 +135,11 @@ class Note
         return $this;
     }
 
-       /**
-        * Getter for created at.
-        *
-        * @return DateTimeImmutable|null Created at
-        */
+    /**
+     * Getter for created at.
+     *
+     * @return DateTimeImmutable|null Created at
+     */
     public function getCreatedAt(): ?DateTimeImmutable
     {
         return $this->createdAt;
@@ -150,7 +150,7 @@ class Note
      *
      * @param DateTimeImmutable $createdAt Created at
      *
-     * @return Note
+     * @return Note Note
      */
     public function setCreatedAt(DateTimeImmutable $createdAt): self
     {
@@ -159,11 +159,11 @@ class Note
         return $this;
     }
 
-       /**
-        * Getter for updated at.
-        *
-        * @return DateTimeImmutable|null Updated at
-        */
+    /**
+     * Getter for updated at.
+     *
+     * @return DateTimeImmutable|null Updated at
+     */
     public function getUpdatedAt(): ?DateTimeImmutable
     {
         return $this->updatedAt;
@@ -174,7 +174,7 @@ class Note
      *
      * @param DateTimeImmutable $updatedAt Updated at
      *
-     * @return Note
+     * @return Note Note
      */
     public function setUpdatedAt(DateTimeImmutable $updatedAt): self
     {
@@ -186,20 +186,20 @@ class Note
     /**
      * Getter for category.
      *
-     * @return Category|null
+     * @return Category|null Category
      */
     public function getCategory(): ?Category
     {
         return $this->category;
     }
 
-       /**
-        * Setter for category.
-        *
-        * @param Category|null $category
-        *
-        * @return $this
-        */
+    /**
+     * Setter for category.
+     *
+     * @param Category|null $category Category
+     *
+     * @return $this Returns itself
+     */
     public function setCategory(?Category $category): self
     {
         $this->category = $category;
@@ -207,23 +207,23 @@ class Note
         return $this;
     }
 
-       /**
-        * Getter for tags.
-        *
-        * @return Collection<int, Tag>
-        */
+    /**
+     * Getter for tags.
+     *
+     * @return Collection<int, Tag> Returns many tags
+     */
     public function getTags(): Collection
     {
         return $this->tags;
     }
 
-       /**
-        * Adding tag.
-        *
-        * @param Tag $tag
-        *
-        * @return $this
-        */
+    /**
+     * Adding tag.
+     *
+     * @param Tag $tag Tag entity
+     *
+     * @return $this Returns itself
+     */
     public function addTag(Tag $tag): self
     {
         if (!$this->tags->contains($tag)) {
@@ -233,13 +233,13 @@ class Note
         return $this;
     }
 
-       /**
-        * Removing tag.
-        *
-        * @param Tag $tag
-        *
-        * @return $this
-        */
+    /**
+     * Removing tag.
+     *
+     * @param Tag $tag Tag entity
+     *
+     * @return $this Returns itself
+     */
     public function removeTag(Tag $tag): self
     {
         $this->tags->removeElement($tag);
@@ -247,11 +247,11 @@ class Note
         return $this;
     }
 
-       /**
-        * ToString function.
-        *
-        * @return string
-        */
+    /**
+     * ToString function.
+     *
+     * @return string String
+     */
     public function __toString()
     {
         return (string) $this->title;

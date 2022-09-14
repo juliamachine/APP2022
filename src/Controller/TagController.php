@@ -25,14 +25,14 @@ class TagController extends AbstractController
     /**
      * Tag service.
      *
-     * @param TagService $tagService
+     * @param TagService $tagService Tag service
      */
     private TagServiceInterface $tagService;
 
     /**
      * Constructor.
      *
-     * @param TagServiceInterface $tagService
+     * @param TagServiceInterface $tagService Tag service
      */
     public function __construct(TagServiceInterface $tagService)
     {
@@ -42,9 +42,9 @@ class TagController extends AbstractController
     /**
      * Index action.
      *
-     * @param Request $request
+     * @param Request $request HTTP request
      *
-     * @return Response
+     * @return Response HTTP response
      */
     #[Route('/', name: 'app_tag_index', methods: ['GET'])]
     public function index(Request $request): Response
@@ -59,9 +59,9 @@ class TagController extends AbstractController
     /**
      * New tag action.
      *
-     * @param Request $request
+     * @param Request $request HTTP request
      *
-     * @return Response
+     * @return Response HTTP response
      */
     #[Route('/new', name: 'app_tag_new', methods: ['GET', 'POST'])]
     public function new(Request $request): Response
@@ -89,9 +89,9 @@ class TagController extends AbstractController
     /**
      * Show tag action.
      *
-     * @param Tag $tag
+     * @param Tag $tag Tag entity
      *
-     * @return Response
+     * @return Response HTTP response
      */
     #[Route('/{id}', name: 'app_tag_show', methods: ['GET'])]
     public function show(Tag $tag): Response
@@ -104,10 +104,10 @@ class TagController extends AbstractController
     /**
      * Edit tag action.
      *
-     * @param Request $request
-     * @param Tag     $tag
+     * @param Request $request HTTP request
+     * @param Tag     $tag     Tag entity
      *
-     * @return Response
+     * @return Response HTTP response
      */
     #[Route('/{id}/edit', name: 'app_tag_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Tag $tag): Response

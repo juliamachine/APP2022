@@ -19,9 +19,9 @@ class LoginController extends AbstractController
     /**
      * Function index.
      *
-     * @param AuthenticationUtils $authenticationUtils
+     * @param AuthenticationUtils $authenticationUtils Authentication tool
      *
-     * @return Response
+     * @return Response HTTP response
      */
     #[Route('/login', name: 'app_login')]
     public function index(AuthenticationUtils $authenticationUtils): Response

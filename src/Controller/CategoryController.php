@@ -25,14 +25,14 @@ class CategoryController extends AbstractController
     /**
      * Category service.
      *
-     * @param CategoryService $categoryService
+     * @param CategoryService $categoryService Category service
      */
     private CategoryServiceInterface $categoryService;
 
     /**
      * Constructor.
      *
-     * @param CategoryServiceInterface $categoryService
+     * @param CategoryServiceInterface $categoryService Category service
      */
     public function __construct(CategoryServiceInterface $categoryService)
     {
@@ -42,9 +42,9 @@ class CategoryController extends AbstractController
     /**
      * Index function.
      *
-     * @param Request $request
+     * @param Request $request HTTP request
      *
-     * @return Response
+     * @return Response Response
      */
     #[Route('/', name: 'app_category_index', methods: ['GET'])]
     public function index(Request $request): Response
@@ -61,9 +61,9 @@ class CategoryController extends AbstractController
     /**
      * Create new function.
      *
-     * @param Request $request
+     * @param Request $request HTTP request
      *
-     * @return Response
+     * @return Response Response
      */
     #[Route('/new', name: 'app_category_new', methods: ['GET', 'POST'])]
     public function new(Request $request): Response
@@ -92,9 +92,9 @@ class CategoryController extends AbstractController
     /**
      * Show category action.
      *
-     * @param Category $category
+     * @param Category $category Category entity
      *
-     * @return Response
+     * @return Response Response
      */
     #[Route('/{id}', name: 'app_category_show', methods: ['GET'])]
     public function show(Category $category): Response
@@ -107,10 +107,10 @@ class CategoryController extends AbstractController
     /**
      * Edit category action.
      *
-     * @param Request  $request
-     * @param Category $category
+     * @param Request  $request  HTTP request
+     * @param Category $category Category entity
      *
-     * @return Response
+     * @return Response HTTP response
      */
     #[Route('/{id}/edit', name: 'app_category_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Category $category): Response

@@ -23,8 +23,10 @@ class NoteType extends AbstractType
     /**
      * Building form of note.
      *
-     * @param FormBuilderInterface $builder
-     * @param array                $options
+     * @param FormBuilderInterface $builder Form of builder
+     * @param array                $options Options array
+     *
+     * @return void Void
      */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -43,7 +45,9 @@ class NoteType extends AbstractType
     /**
      * Configure Options.
      *
-     * @param OptionsResolver $resolver
+     * @param OptionsResolver $resolver Options resolver
+     *
+     * @return void Void
      */
     public function configureOptions(OptionsResolver $resolver): void
     {

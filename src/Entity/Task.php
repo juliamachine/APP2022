@@ -140,10 +140,10 @@ class Task
     /**
      * Category.
      *
-     * @return Category|null
+     * @return Category|null Category
      */
-       #[ORM\ManyToOne(targetEntity: Category::class)]
-       #[ORM\JoinColumn(nullable: false)]
+    #[ORM\ManyToOne(targetEntity: Category::class)]
+    #[ORM\JoinColumn(nullable: false)]
     public function getCategory(): ?Category
     {
         return $this->category;
@@ -152,9 +152,9 @@ class Task
     /**
      * Setting category for Task.
      *
-     * @param Category|null $category
+     * @param Category|null $category Category entity
      *
-     * @return $this
+     * @return $this Returns itself
      */
     public function setCategory(?Category $category): self
     {
@@ -166,7 +166,7 @@ class Task
     /**
      * Getter for tags.
      *
-     * @return Collection<int, Tag>
+     * @return Collection<int, Tag> Returns many tags
      */
     public function getTags(): Collection
     {
@@ -176,9 +176,9 @@ class Task
     /**
      * Adds tag(s) to task.
      *
-     * @param Tag $tag
+     * @param Tag $tag Tag entity
      *
-     * @return $this
+     * @return $this Returns itself
      */
     public function addTag(Tag $tag): self
     {
@@ -192,9 +192,9 @@ class Task
     /**
      * Removes tag from task.
      *
-     * @param Tag $tag
+     * @param Tag $tag Tag entity
      *
-     * @return $this
+     * @return $this Returns itself
      */
     public function removeTag(Tag $tag): self
     {
@@ -206,7 +206,7 @@ class Task
     /**
      * Returns the string content that is directly in the element.
      *
-     * @return string
+     * @return string String
      */
     public function __toString()
     {

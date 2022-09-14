@@ -36,9 +36,9 @@ class TagService implements TagServiceInterface
     /**
      * Construct function.
      *
-     * @param TagRepository          $tagRepository
-     * @param PaginatorInterface     $paginator
-     * @param EntityManagerInterface $entityManager
+     * @param TagRepository          $tagRepository Tag repository
+     * @param PaginatorInterface     $paginator     Paginator
+     * @param EntityManagerInterface $entityManager Entity manager
      */
     public function __construct(TagRepository $tagRepository, PaginatorInterface $paginator, EntityManagerInterface $entityManager)
     {
@@ -66,8 +66,8 @@ class TagService implements TagServiceInterface
     /**
      * Adds new tag.
      *
-     * @param Tag  $entity
-     * @param bool $flush
+     * @param Tag  $entity Tag entity
+     * @param bool $flush  Flush function
      */
     public function add(Tag $entity, bool $flush = false): void
     {
@@ -81,8 +81,8 @@ class TagService implements TagServiceInterface
     /**
      * Removes tag.
      *
-     * @param Tag  $entity
-     * @param bool $flush
+     * @param Tag  $entity Tag entity
+     * @param bool $flush  Flush function
      */
     public function remove(Tag $entity, bool $flush = false): void
     {

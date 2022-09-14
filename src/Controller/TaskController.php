@@ -26,14 +26,14 @@ class TaskController extends AbstractController
     /**
      * Task service.
      *
-     * @param TaskService $taskService
+     * @param TaskService $taskService task service
      */
     private TaskService $taskService;
 
     /**
      * Constructor.
      *
-     * @param TaskService $taskService
+     * @param TaskService $taskService task service
      */
     public function __construct(TaskServiceInterface $taskService)
     {
@@ -43,9 +43,9 @@ class TaskController extends AbstractController
     /**
      * Index function of task.
      *
-     * @param Request $request
+     * @param request $request HTTP Request function
      *
-     * @return Response
+     * @return Response response
      */
     #[Route('/', name: 'app_task_index', methods: ['GET'])]
     public function index(Request $request): Response
@@ -60,10 +60,10 @@ class TaskController extends AbstractController
     /**
      * Creating new task.
      *
-     * @param Request                $request
-     * @param EntityManagerInterface $entityManager
+     * @param Request                $request       HTTP Request function
+     * @param EntityManagerInterface $entityManager entity Manager Interface
      *
-     * @return Response
+     * @return Response HTTP response
      */
     #[Route('/new', name: 'app_task_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
@@ -91,9 +91,9 @@ class TaskController extends AbstractController
     /**
      * Function for showing task.
      *
-     * @param Task $task
+     * @param Task $task task entity
      *
-     * @return Response
+     * @return Response response
      */
     #[Route('/{id}', name: 'app_task_show', methods: ['GET'])]
     public function show(Task $task): Response
@@ -106,11 +106,11 @@ class TaskController extends AbstractController
     /**
      * Edit task.
      *
-     * @param Request                $request
-     * @param Task                   $task
-     * @param EntityManagerInterface $entityManager
+     * @param Request                $request       HTTP Request
+     * @param Task                   $task          task entity
+     * @param EntityManagerInterface $entityManager entity manager interface
      *
-     * @return Response
+     * @return Response response
      */
     #[Route('/{id}/edit', name: 'app_task_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Task $task, EntityManagerInterface $entityManager): Response

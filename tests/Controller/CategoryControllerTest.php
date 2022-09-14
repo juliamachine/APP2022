@@ -3,14 +3,15 @@
 /**
  * Category controller test.
  */
+
 namespace App\Test\Controller;
 
 use App\Entity\Category;
 use App\Entity\User;
 use App\Repository\CategoryRepository;
+use Hautelook\AliceBundle\PhpUnit\ReloadDatabaseTrait;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
-use Hautelook\AliceBundle\PhpUnit\ReloadDatabaseTrait;
 
 /**
  * Category Controller test class.
@@ -27,28 +28,24 @@ class CategoryControllerTest extends WebTestCase
     /**
      * Set up function.
      *
-     * @return void
-     *
      * @throws \Psr\Container\ContainerExceptionInterface
      * @throws \Psr\Container\NotFoundExceptionInterface
      */
     protected function setUp(): void
     {
         $this->client = static::createClient();
-        $this->repository = (static::getContainer()->get('doctrine'))->getRepository(Category::class);
+        $this->repository = static::getContainer()->get('doctrine')->getRepository(Category::class);
 
         $user = new User();
         $user->setEmail('admin@localhost');
         $user->setPassword('admin');
-        $userRepository = (static::getContainer()->get('doctrine'))->getRepository(User::class);
+        $userRepository = static::getContainer()->get('doctrine')->getRepository(User::class);
         $userRepository->add($user, true);
         $this->user = $user;
     }
 
     /**
      * Test index function.
-     *
-     * @return void
      */
     public function testIndex(): void
     {
@@ -64,13 +61,11 @@ class CategoryControllerTest extends WebTestCase
         $this->client->request('GET', $this->path);
 
         self::assertResponseStatusCodeSame(200);
-        self::assertSelectorTextContains("table", "My Category");
+        self::assertSelectorTextContains('table', 'My Category');
     }
 
     /**
      * Test new function.
-     *
-     * @return void
      */
     public function testNew(): void
     {
@@ -93,8 +88,6 @@ class CategoryControllerTest extends WebTestCase
 
     /**
      * Test show function.
-     *
-     * @return void
      */
     public function testShow(): void
     {
@@ -108,13 +101,11 @@ class CategoryControllerTest extends WebTestCase
         $this->client->request('GET', sprintf('%s%s', $this->path, $fixture->getId()));
 
         self::assertResponseStatusCodeSame(200);
-        self::assertSelectorTextContains("table", "My Category");
+        self::assertSelectorTextContains('table', 'My Category');
     }
 
     /**
      * Test edit function.
-     *
-     * @return void
      */
     public function testEdit(): void
     {
@@ -142,8 +133,6 @@ class CategoryControllerTest extends WebTestCase
 
     /**
      * Test remove function.
-     *
-     * @return void
      */
     public function testRemove(): void
     {

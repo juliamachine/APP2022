@@ -1,18 +1,18 @@
 <?php
 
 /**
- * Task Controller Test
+ * Task Controller Test.
  */
 
 namespace App\Test\Controller;
 
-use App\Entity\Task;
 use App\Entity\Category;
+use App\Entity\Task;
 use App\Entity\User;
 use App\Repository\TaskRepository;
+use Hautelook\AliceBundle\PhpUnit\ReloadDatabaseTrait;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
-use Hautelook\AliceBundle\PhpUnit\ReloadDatabaseTrait;
 
 /**
  * TaskControllerTest class.
@@ -27,11 +27,8 @@ class TaskControllerTest extends WebTestCase
     private string $path = '/task/';
     private User $user;
 
-
     /**
      * Set up function.
-     *
-     * @return void
      *
      * @throws \Psr\Container\ContainerExceptionInterface
      * @throws \Psr\Container\NotFoundExceptionInterface
@@ -39,8 +36,8 @@ class TaskControllerTest extends WebTestCase
     protected function setUp(): void
     {
         $this->client = static::createClient();
-        $this->repository = (static::getContainer()->get('doctrine'))->getRepository(Task::class);
-        $this->categoryRepository = (static::getContainer()->get('doctrine'))->getRepository(Category::class);
+        $this->repository = static::getContainer()->get('doctrine')->getRepository(Task::class);
+        $this->categoryRepository = static::getContainer()->get('doctrine')->getRepository(Category::class);
 
         $this->category = new Category();
         $this->category->setCreatedAt(new \DateTimeImmutable());
@@ -51,16 +48,13 @@ class TaskControllerTest extends WebTestCase
         $user = new User();
         $user->setEmail('admin@localhost');
         $user->setPassword('admin');
-        $userRepository = (static::getContainer()->get('doctrine'))->getRepository(User::class);
+        $userRepository = static::getContainer()->get('doctrine')->getRepository(User::class);
         $userRepository->add($user, true);
         $this->user = $user;
     }
 
-
     /**
      * Test Index function.
-     *
-     * @return void
      */
     public function testIndex(): void
     {
@@ -77,14 +71,11 @@ class TaskControllerTest extends WebTestCase
         $this->client->request('GET', $this->path);
 
         self::assertResponseStatusCodeSame(200);
-        self::assertSelectorTextContains("table", "My Task");
+        self::assertSelectorTextContains('table', 'My Task');
     }
-
 
     /**
      * Test new function.
-     *
-     * @return void
      */
     public function testNew(): void
     {
@@ -108,8 +99,6 @@ class TaskControllerTest extends WebTestCase
 
     /**
      * Test show function.
-     *
-     * @return void
      */
     public function testShow(): void
     {
@@ -124,14 +113,11 @@ class TaskControllerTest extends WebTestCase
         $this->client->request('GET', sprintf('%s%d', $this->path, $fixture->getId()));
 
         self::assertResponseStatusCodeSame(200);
-        self::assertSelectorTextContains("body", "My Task");
+        self::assertSelectorTextContains('body', 'My Task');
     }
-
 
     /**
      * Test edit function.
-     *
-     * @return void
      */
     public function testEdit(): void
     {
@@ -160,11 +146,8 @@ class TaskControllerTest extends WebTestCase
         self::assertSame('Testing', $tasks[0]->getTitle());
     }
 
-
     /**
      * Test delete function.
-     *
-     * @return void
      */
     public function testDelete(): void
     {

@@ -6,13 +6,13 @@
 
 namespace App\Test\Controller;
 
-use App\Entity\Note;
 use App\Entity\Category;
+use App\Entity\Note;
 use App\Entity\User;
 use App\Repository\NoteRepository;
+use Hautelook\AliceBundle\PhpUnit\ReloadDatabaseTrait;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
-use Hautelook\AliceBundle\PhpUnit\ReloadDatabaseTrait;
 
 /**
  * Note controller test.
@@ -30,16 +30,14 @@ class NoteControllerTest extends WebTestCase
     /**
      * Set up function.
      *
-     * @return void
-     *
      * @throws \Psr\Container\ContainerExceptionInterface
      * @throws \Psr\Container\NotFoundExceptionInterface
      */
     protected function setUp(): void
     {
         $this->client = static::createClient();
-        $this->repository = (static::getContainer()->get('doctrine'))->getRepository(Note::class);
-        $this->categoryRepository = (static::getContainer()->get('doctrine'))->getRepository(Category::class);
+        $this->repository = static::getContainer()->get('doctrine')->getRepository(Note::class);
+        $this->categoryRepository = static::getContainer()->get('doctrine')->getRepository(Category::class);
 
         $this->category = new Category();
         $this->category->setCreatedAt(new \DateTimeImmutable());
@@ -50,15 +48,13 @@ class NoteControllerTest extends WebTestCase
         $user = new User();
         $user->setEmail('admin@localhost');
         $user->setPassword('admin');
-        $userRepository = (static::getContainer()->get('doctrine'))->getRepository(User::class);
+        $userRepository = static::getContainer()->get('doctrine')->getRepository(User::class);
         $userRepository->add($user, true);
         $this->user = $user;
     }
 
     /**
      * Test index function.
-     *
-     * @return void
      */
     public function testIndex(): void
     {
@@ -76,13 +72,11 @@ class NoteControllerTest extends WebTestCase
         $this->client->request('GET', $this->path);
 
         self::assertResponseStatusCodeSame(200);
-        self::assertSelectorTextContains("table", "My Note");
+        self::assertSelectorTextContains('table', 'My Note');
     }
 
     /**
      * Test new function.
-     *
-     * @return void
      */
     public function testNew(): void
     {
@@ -107,8 +101,6 @@ class NoteControllerTest extends WebTestCase
 
     /**
      * Test show function.
-     *
-     * @return void
      */
     public function testShow(): void
     {
@@ -124,13 +116,11 @@ class NoteControllerTest extends WebTestCase
         $this->client->request('GET', sprintf('%s%d', $this->path, $fixture->getId()));
 
         self::assertResponseStatusCodeSame(200);
-        self::assertSelectorTextContains("table", "My Note");
+        self::assertSelectorTextContains('table', 'My Note');
     }
 
     /**
      * Test edit function.
-     *
-     * @return void
      */
     public function testEdit(): void
     {
@@ -163,8 +153,6 @@ class NoteControllerTest extends WebTestCase
 
     /**
      * Test delete function.
-     *
-     * @return void
      */
     public function testDelete(): void
     {

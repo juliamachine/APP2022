@@ -43,9 +43,9 @@ class TaskService implements TaskServiceInterface
     /**
      * Construct function.
      *
-     * @param TaskRepository         $taskRepository
-     * @param PaginatorInterface     $paginator
-     * @param EntityManagerInterface $entityManager
+     * @param TaskRepository         $taskRepository Task repository
+     * @param PaginatorInterface     $paginator      Paginator
+     * @param EntityManagerInterface $entityManager  Entity manager
      */
     public function __construct(TaskRepository $taskRepository, PaginatorInterface $paginator, EntityManagerInterface $entityManager)
     {
@@ -73,8 +73,8 @@ class TaskService implements TaskServiceInterface
     /**
      * Removes task.
      *
-     * @param Task $entity
-     * @param bool $flush
+     * @param Task $entity Task entity
+     * @param bool $flush  Flush function
      */
     public function remove(Task $entity, bool $flush = false): void
     {

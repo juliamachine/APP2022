@@ -26,14 +26,14 @@ class NoteController extends AbstractController
     /**
      * Note service.
      *
-     * @param NoteService $noteService
+     * @param NoteService $noteService Note service
      */
     private NoteServiceInterface $noteService;
 
     /**
      * Constructor.
      *
-     * @param NoteService $noteService
+     * @param NoteService $noteService Note service
      */
     public function __construct(NoteServiceInterface $noteService)
     {
@@ -43,9 +43,9 @@ class NoteController extends AbstractController
     /**
      * Index function for note.
      *
-     * @param Request $request
+     * @param Request $request HTTP request
      *
-     * @return Response
+     * @return Response HTTP response
      */
     #[Route('/', name: 'app_note_index', methods: ['GET'])]
     public function index(Request $request): Response
@@ -60,10 +60,10 @@ class NoteController extends AbstractController
     /**
      * Adding new note.
      *
-     * @param Request                $request
-     * @param EntityManagerInterface $entityManager
+     * @param Request                $request       HTTP request
+     * @param EntityManagerInterface $entityManager Entity manager interface
      *
-     * @return Response
+     * @return Response HTTP response
      */
     #[Route('/new', name: 'app_note_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
@@ -93,9 +93,9 @@ class NoteController extends AbstractController
     /**
      * Show note action.
      *
-     * @param Note $note
+     * @param Note $note Note entity
      *
-     * @return Response
+     * @return Response HTTP response
      */
     #[Route('/{id}', name: 'app_note_show', methods: ['GET'])]
     public function show(Note $note): Response
@@ -108,11 +108,11 @@ class NoteController extends AbstractController
     /**
      * Editing function.
      *
-     * @param Request                $request
-     * @param Note                   $note
-     * @param EntityManagerInterface $entityManager
+     * @param Request                $request       HTTP request
+     * @param Note                   $note          Note entity
+     * @param EntityManagerInterface $entityManager Entity manager interface
      *
-     * @return Response
+     * @return Response HTTP response
      */
     #[Route('/{id}/edit', name: 'app_note_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Note $note, EntityManagerInterface $entityManager): Response

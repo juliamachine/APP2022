@@ -363,12 +363,12 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\Entity\\Category\u003A\u003AgetNotes\u0028\u0029",
             "name": "getNotes",
-            "summary": "",
+            "summary": "Get\u0020notes.",
             "url": "classes/App-Entity-Category.html#method_getNotes"
         },                {
             "fqsen": "\\App\\Entity\\Category\u003A\u003AgetTasks\u0028\u0029",
             "name": "getTasks",
-            "summary": "",
+            "summary": "Get\u0020tasks.",
             "url": "classes/App-Entity-Category.html#method_getTasks"
         },                {
             "fqsen": "\\App\\Entity\\Category\u003A\u003A\u0024id",
